@@ -15,10 +15,11 @@ namespace CMPS_202_project
     public partial class LoginForm : Form
     {
 
-        Controller controllerObj = new Controller();    
+        Controller controllerObj = new Controller();
         public LoginForm()
         {
             InitializeComponent();
+            textBox2.UseSystemPasswordChar = true;
             label6.Hide();
             label7.Hide();
             label8.Hide();
@@ -26,7 +27,7 @@ namespace CMPS_202_project
 
         private void button1_Click(object sender, EventArgs e)
         {
-        
+
             string username = textBox1.Text.Trim();
             string password = textBox2.Text.Trim();
 
@@ -36,11 +37,12 @@ namespace CMPS_202_project
                 label6.Show();
                 return;
             }
-            else { 
+            else
+            {
                 label6.Hide();
-                }
+            }
 
-                object result = controllerObj.GetAdminPassword(username); // TODO:: Make this
+            object result = controllerObj.GetAdminPassword(username); // TODO:: Make this
 
 
             if (result == null)
@@ -67,7 +69,7 @@ namespace CMPS_202_project
         }
 
 
-        
+
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
@@ -82,6 +84,31 @@ namespace CMPS_202_project
         private void label8_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+            SignInForm signIn = new SignInForm(this);
+            signIn.Show();
+            this.Hide();
+
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                textBox2.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                textBox2.UseSystemPasswordChar = true;
+            }
         }
     }
 }

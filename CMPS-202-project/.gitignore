@@ -1,2 +1,4 @@
 ﻿.vs/
+.CMPS-202-project/bin/debug
+.CMPS-202-project/obj/debug
 App1.config

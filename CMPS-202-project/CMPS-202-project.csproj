@@ -46,13 +46,55 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminForm.Designer.cs">
+      <DependentUpon>AdminForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin_with_publisher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin_with_publisher.Designer.cs">
+      <DependentUpon>Admin_with_publisher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin_With_User.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin_With_User.Designer.cs">
+      <DependentUpon>Admin_With_User.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controller.cs" />
     <Compile Include="DBManager.cs" />
+    <Compile Include="ListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListForm.Designer.cs">
+      <DependentUpon>ListForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Publisher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Publisher.Designer.cs">
+      <DependentUpon>Publisher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RateForm.Designer.cs">
+      <DependentUpon>RateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SignInForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SignInForm.Designer.cs">
+      <DependentUpon>SignInForm.cs</DependentUpon>
     </Compile>
     <Compile Include="WelcomeForm.cs">
       <SubType>Form</SubType>
@@ -62,8 +104,29 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AdminForm.resx">
+      <DependentUpon>AdminForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin_with_publisher.resx">
+      <DependentUpon>Admin_with_publisher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin_With_User.resx">
+      <DependentUpon>Admin_With_User.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListForm.resx">
+      <DependentUpon>ListForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Publisher.resx">
+      <DependentUpon>Publisher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RateForm.resx">
+      <DependentUpon>RateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SignInForm.resx">
+      <DependentUpon>SignInForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WelcomeForm.resx">
       <DependentUpon>WelcomeForm.cs</DependentUpon>
