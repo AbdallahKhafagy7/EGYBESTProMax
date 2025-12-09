@@ -7,18 +7,19 @@ using System.Data;
 using System.Windows.Forms;
 using System.Configuration;
 
+
 namespace DBapplication
 {
     public class DBManager
     {
 
-        static string DB_Connection_String = "make connection String"; // TODO:: Put your connection string here
+        static string DB_Connection_String = "Data Source=.;Initial Catalog = project_egybestpromax; Integrated Security = True; Encrypt=False"; // TODO:: Put your connection string here
 
         SqlConnection myConnection;
 
         public DBManager()
         {
-            // myConnection = new SqlConnection(DB_Connection_String);
+            myConnection = new SqlConnection(DB_Connection_String);
             try
             {
                // myConnection.Open(); //Open a connection with the DB
@@ -26,7 +27,7 @@ namespace DBapplication
                 // just for illustration when the database is opened, 
                 // this should NOT be shown in GUI to the user in the final application
                 // but we show it here only to make sure that the database is working
-                MessageBox.Show("Successfully connected to the database!");
+                //MessageBox.Show("Successfully connected to the database!");
             }
             catch (Exception e)
             {
@@ -71,7 +72,8 @@ namespace DBapplication
             }
             catch (Exception ex)
             {
-                // this message should not appear to user in the final application
+            // this message should not appear to user in the final application
+                //reader.Close();
                 MessageBox.Show(ex.Message);
                 return null;
             }

@@ -34,14 +34,7 @@ namespace CMPS_202_project
 
         private void button1_Click(object sender, EventArgs e)
         {
-            // TODO:: Add sign-in logic here
-            if (String.IsNullOrEmpty(textBox1.Text))
-            {
-                label1.ForeColor = Color.Red;
-                label1.Text = "the username Can't be empty";
-                label1.Show();
-                return;
-            }
+           
 
             if (String.IsNullOrEmpty(textBox2.Text)) 
             {
@@ -72,10 +65,10 @@ namespace CMPS_202_project
                 return;
             }
 
-            int k = Controllerobj.addUser(textBox1.Text,textBox2.Text,textBox3.Text,textBox4.Text);
+            int k = Controllerobj.addUser(textBox2.Text,textBox3.Text,textBox4.Text);
             if (k == 0)
             {
-                label10.Text = "sign-in Failed,please change Your username";
+                label10.Text = "sign- failed : the email already exists";
             
             }
             else

@@ -28,11 +28,11 @@ namespace CMPS_202_project
         private void button1_Click(object sender, EventArgs e)
         {
 
-            string username = textBox1.Text.Trim();
+            string Email = textBox1.Text.Trim();
             string password = textBox2.Text.Trim();
 
             // 1. Basic Validation: Don't allow empty inputs
-            if (string.IsNullOrEmpty(username))
+            if (string.IsNullOrEmpty(Email))
             {
                 label6.Show();
                 return;
@@ -42,26 +42,24 @@ namespace CMPS_202_project
                 label6.Hide();
             }
 
-            object result = controllerObj.GetAdminPassword(username); // TODO:: Make this
+            int result = controllerObj.IsEmailExists(Email); // TODO:: Make this
 
 
-            if (result == null)
+            if (result == 0)
             {
                 label8.Show();
             }
             else
             {
-                string dbPassword = result.ToString();
-
-                if (password != dbPassword)
+                    
+                if (!controllerObj.CheckPassword(Email, password))
                 {
-                    // Scenario B: User exists, but password doesn't match
-                    label8.Show();
+                    label7.Show();
                 }
                 else
                 {
 
-                    WelcomeForm welcome = new WelcomeForm(username);
+                    WelcomeForm welcome = new WelcomeForm(Email);
                     welcome.Show();
                     this.Hide();
                 }

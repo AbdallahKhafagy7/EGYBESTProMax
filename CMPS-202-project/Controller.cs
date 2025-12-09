@@ -10,7 +10,7 @@ namespace DBapplication
 {
     public class Controller
     {
-        DBManager dbMan;
+        DBManager dbMan = new DBManager();
 
         public object GetAdminPassword(string username)
         {
@@ -35,7 +35,7 @@ namespace DBapplication
         // 2. Add New User (Sign Up)
         public int IsEmailExists(string email)
         {
-            string query = "SELECT COUNT(*) FROM [User] WHERE Email = '" + email + "'";
+            string query = "SELECT COUNT(*) FROM [User] WHERE Email = '" + email + "';";
             int count = (int)dbMan.ExecuteScalar(query);
             if (count > 0) return 1; // Email found
             return 0;                // Email not found
@@ -57,7 +57,7 @@ namespace DBapplication
        
 
         // Modified AddUser to use the Email check first
-        public int addUser(string username, string Email, string name, string password)
+        public int addUser(string Email,string username,string password)
         {
             // Step 1: Check if the email already exists
             if (IsEmailExists(Email) == 1)
