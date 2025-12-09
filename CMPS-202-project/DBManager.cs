@@ -22,7 +22,7 @@ namespace DBapplication
             myConnection = new SqlConnection(DB_Connection_String);
             try
             {
-               // myConnection.Open(); //Open a connection with the DB
+                 myConnection.Open(); //Open a connection with the DB
 
                 // just for illustration when the database is opened, 
                 // this should NOT be shown in GUI to the user in the final application
