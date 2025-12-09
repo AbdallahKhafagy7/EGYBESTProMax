@@ -33,8 +33,39 @@ namespace DBapplication
         }
 
         // 2. Add New User (Sign Up)
+        public int IsEmailExists(string email)
+        {
+            string query = "SELECT COUNT(*) FROM [User] WHERE Email = '" + email + "'";
+            int count = (int)dbMan.ExecuteScalar(query);
+            if (count > 0) return 1; // Email found
+            return 0;                // Email not found
+        }
+
+        // FUNCTION B: Check Password
+        // Returns true if password matches, false otherwise.
+        public bool CheckPassword(string email, string password)
+        {
+            string query = "SELECT Password FROM [User] WHERE Email = '" + email + "'";
+            object result = dbMan.ExecuteScalar(query);
+
+            if (result == null) return false; // User not found
+
+            string dbPassword = result.ToString();
+            return (dbPassword == password);
+        }
+
+       
+
+        // Modified AddUser to use the Email check first
         public int addUser(string username, string Email, string name, string password)
         {
+            // Step 1: Check if the email already exists
+            if (IsEmailExists(Email) == 1)
+            {
+                return 0; // Failure: Email already taken
+            }
+
+            // Step 2: Generate ID and Insert
             int newId = GetNextUserId();
 
             string queryUser = "INSERT INTO [User] (UserID, Email, Name, Password) VALUES (" +
@@ -44,11 +75,13 @@ namespace DBapplication
 
             if (result1 > 0)
             {
+                // Insert into EndUser table
                 string queryEndUser = "INSERT INTO [EndUser] (UserID) VALUES (" + newId + ");";
                 return dbMan.ExecuteNonQuery(queryEndUser);
             }
             return 0;
         }
+
         public DataTable getShows(string username, string listName)
         {
             // If a list is selected, show items in that list.
