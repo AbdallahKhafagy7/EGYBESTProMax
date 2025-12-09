@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace CMPS_202_project
 {
@@ -38,8 +39,50 @@ namespace CMPS_202_project
 
         private void button2_Click(object sender, EventArgs e)
         {
+           
+            // 1. Check if a List is selected in the ComboBox
+            if (comboBox1.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a list to add the show to.");
+                return;
+            }
 
+            // 2. Check if a Show is selected in the DataGridView
+            if (dataGridView1.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a show from the table.");
+                return;
+            }
+
+            // 3. Get the MediaID from the selected row
+            // IMPORTANT: Replace "MediaID" with the actual column name or index from your query.
+            // If MediaID is the first column in your SQL query, use Cells[0].
+            // If you used "SELECT Name, MediaID...", then it might be Cells[1].
+            string mediaIdString = dataGridView1.SelectedRows[0].Cells["MediaID"].Value.ToString();
+            int mediaId = int.Parse(mediaIdString);
+
+            // 4. Get the selected List Name
+            string listName = comboBox1.Text;
+
+            // 5. Call the Controller
+            // Note: Ensure you have the 'username' available in this form (passed in constructor)
+            int result = controllerObj.AddShowToList(listName, mediaId, this.welcomeForm.Name);
+
+            // 6. Handle the Result
+            if (result > 0)
+            {
+                MessageBox.Show("Show added to list successfully!");
+            }
+            else if (result == -1)
+            {
+                MessageBox.Show("This show is already in that list!");
+            }
+            else
+            {
+                MessageBox.Show("Failed to add show.");
+            }
         }
+        
 
         private void button1_Click(object sender, EventArgs e)
         {

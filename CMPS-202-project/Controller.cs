@@ -88,6 +88,31 @@ namespace DBapplication
                            "WHERE U.Name LIKE '%" + name + "%'";
             return dbMan.ExecuteReader(query);
         }
+        // Function to Add a Show to a User's List
+        public int AddShowToList(string listName, int mediaId, string username)
+        {
+            // 1. Get the ListID based on ListName and Username
+            string getListIdQuery = "SELECT L.ListID FROM List L " +
+                                    "JOIN [User] U ON L.UserID = U.UserID " +
+                                    "WHERE L.ListName = '" + listName + "' AND U.Name = '" + username + "'";
+
+            object result = dbMan.ExecuteScalar(getListIdQuery);
+
+            if (result == null) return 0; // List not found or User mismatch
+
+            int listId = Convert.ToInt32(result);
+
+            // 2. Check if the show is already in the list to avoid duplicates (Optional but recommended)
+            string checkQuery = "SELECT COUNT(*) FROM ListItems WHERE ListID = " + listId + " AND MediaID = " + mediaId;
+            if ((int)dbMan.ExecuteScalar(checkQuery) > 0)
+            {
+                return -1; // Specific code for "Already Exists"
+            }
+
+            // 3. Insert into ListItems
+            string insertQuery = "INSERT INTO ListItems (ListID, MediaID) VALUES (" + listId + ", " + mediaId + ")";
+            return dbMan.ExecuteNonQuery(insertQuery);
+        }
         private int GetNextUserId()
         {
             string query = "SELECT ISNULL(MAX(UserID), 0) + 1 FROM [User]";
