@@ -93,7 +93,7 @@ namespace CMPS_202_project
 
         private void label3_Click(object sender, EventArgs e)
         {
-            SignInForm signIn = new SignInForm(this);
+            SignUpForm signIn = new SignUpForm(this);
             signIn.Show();
             this.Hide();
 

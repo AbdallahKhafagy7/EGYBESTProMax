@@ -90,11 +90,11 @@
     <Compile Include="RateForm.Designer.cs">
       <DependentUpon>RateForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="SignInForm.cs">
+    <Compile Include="SignUpForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SignInForm.Designer.cs">
-      <DependentUpon>SignInForm.cs</DependentUpon>
+    <Compile Include="SignUpForm.Designer.cs">
+      <DependentUpon>SignUpForm.cs</DependentUpon>
     </Compile>
     <Compile Include="WelcomeForm.cs">
       <SubType>Form</SubType>
@@ -125,8 +125,8 @@
     <EmbeddedResource Include="RateForm.resx">
       <DependentUpon>RateForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SignInForm.resx">
-      <DependentUpon>SignInForm.cs</DependentUpon>
+    <EmbeddedResource Include="SignUpForm.resx">
+      <DependentUpon>SignUpForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WelcomeForm.resx">
       <DependentUpon>WelcomeForm.cs</DependentUpon>

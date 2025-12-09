@@ -11,11 +11,11 @@ using System.Windows.Forms;
 
 namespace CMPS_202_project
 {
-    public partial class SignInForm : Form
+    public partial class SignUpForm : Form
     {
         LoginForm loginForm;
         Controller Controllerobj =new Controller();
-        public SignInForm(LoginForm loginForm)
+        public SignUpForm(LoginForm loginForm)
         {
             InitializeComponent();
             this.loginForm = loginForm;

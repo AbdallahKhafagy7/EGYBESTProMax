@@ -12,41 +12,121 @@ namespace DBapplication
     {
         DBManager dbMan;
 
-        public Controller()
-        {
-            dbMan = new DBManager();
-        }
-
         public object GetAdminPassword(string username)
         {
-            // Queries the password for the given username
-            string query = "";// TODO:: DO the query After Making the DataBase
+            // Simple query to get password. Assumes 'User' table exists.
+            string query = "SELECT Password FROM [User] WHERE Name = '" + username + "'";
             return dbMan.ExecuteScalar(query);
         }
-        public int addUser(string username , string Email, string name , string password)
+
+        // 2. Add New User (Sign Up)
+        private int GetNextUserId()
         {
-            string query = "";
-            return dbMan.ExecuteNonQuery(query);
+            string query = "SELECT ISNULL(MAX(UserID), 0) + 1 FROM [User]";
+            object result = dbMan.ExecuteScalar(query);
+
+            if (result == null || result == DBNull.Value)
+            {
+                return 1;
+            }
+            return Convert.ToInt32(result);
         }
-        public DataTable getShows(string username,string list)
+
+        // 2. Add New User (Sign Up)
+        public int addUser(string username, string Email, string name, string password)
         {
-            string query = "";
+            int newId = GetNextUserId();
+
+            string queryUser = "INSERT INTO [User] (UserID, Email, Name, Password) VALUES (" +
+                               newId + ", '" + Email + "', '" + username + "', '" + password + "');";
+
+            int result1 = dbMan.ExecuteNonQuery(queryUser);
+
+            if (result1 > 0)
+            {
+                string queryEndUser = "INSERT INTO [EndUser] (UserID) VALUES (" + newId + ");";
+                return dbMan.ExecuteNonQuery(queryEndUser);
+            }
+            return 0;
+        }
+        public DataTable getShows(string username, string listName)
+        {
+            // If a list is selected, show items in that list.
+            // If no list is selected ("" or null), show ALL shows.
+
+            string query;
+            if (string.IsNullOrEmpty(listName))
+            {
+                // Show all media that are Shows
+                query = "SELECT M.Name, M.NumOfFavs, M.Finished, S.MediaID " +
+                        "FROM Media M " +
+                        "JOIN Show S ON M.MediaID = S.MediaID";
+            }
+            else
+            {
+                // Show items in a specific list for this user
+                // Joins: User -> List -> ListItems -> Media -> Show
+                query = "SELECT M.Name, M.NumOfFavs, M.Finished " +
+                        "FROM Media M " +
+                        "JOIN Show S ON M.MediaID = S.MediaID " +
+                        "JOIN ListItems LI ON M.MediaID = LI.MediaID " +
+                        "JOIN List L ON LI.ListID = L.ListID " +
+                        "JOIN [User] U ON L.UserID = U.UserID " +
+                        "WHERE U.Name = '" + username + "' AND L.ListName = '" + listName + "'";
+            }
             return dbMan.ExecuteReader(query);
         }
-        public int UpdateRating(string show,string rating,string username)
+
+        // 4. Update Rating
+        public int UpdateRating(string showName, string rating, string username)
         {
-            string query = "";
-             return dbMan.ExecuteNonQuery(query);
+            // Logic: Find MediaID from Name, Find UserID from Name, then Insert/Update
+            // This is complex because we need IDs. 
+            // Simplified logic: Assume we can subquery IDs.
+
+            // Check if rating exists to decide between INSERT or UPDATE
+            string checkQuery = "SELECT COUNT(*) FROM MediaRating MR " +
+                                "JOIN Media M ON MR.MediaID = M.MediaID " +
+                                "JOIN [User] U ON MR.UserID = U.UserID " +
+                                "WHERE M.Name = '" + showName + "' AND U.Name = '" + username + "'";
+
+            int exists = (int)dbMan.ExecuteScalar(checkQuery);
+
+            if (exists > 0)
+            {
+                // UPDATE
+                string updateQuery = "UPDATE MR SET MR.Rating = " + rating + " " +
+                                     "FROM MediaRating MR " +
+                                     "JOIN Media M ON MR.MediaID = M.MediaID " +
+                                     "JOIN [User] U ON MR.UserID = U.UserID " +
+                                     "WHERE M.Name = '" + showName + "' AND U.Name = '" + username + "'";
+                return dbMan.ExecuteNonQuery(updateQuery);
+            }
+            else
+            {
+                // INSERT
+                // We need to fetch IDs first or use subqueries in INSERT
+                string insertQuery = "INSERT INTO MediaRating (MediaID, UserID, Rating) " +
+                                     "SELECT M.MediaID, U.UserID, " + rating + " " +
+                                     "FROM Media M, [User] U " +
+                                     "WHERE M.Name = '" + showName + "' AND U.Name = '" + username + "'";
+                return dbMan.ExecuteNonQuery(insertQuery);
+            }
         }
+
+        // 5. Get All Lists for a User
         public DataTable getAllist(string username)
         {
-            string query = "";
+            string query = "SELECT ListName AS list FROM List L " +
+                           "JOIN [User] U ON L.UserID = U.UserID " +
+                           "WHERE U.Name = '" + username + "'";
             return dbMan.ExecuteReader(query);
         }
+
         public void TerminateConnection()
         {
             dbMan.CloseConnection();
         }
-
     }
 }
+
