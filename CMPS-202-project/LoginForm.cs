@@ -58,10 +58,24 @@ namespace CMPS_202_project
                 }
                 else
                 {
-
-                    WelcomeForm welcome = new WelcomeForm(Email);
-                    welcome.Show();
-                    this.Hide();
+                    if (controllerObj.GetUserType(Email) == "EndUser")
+                    {
+                        WelcomeForm welcome = new WelcomeForm(Email);
+                        welcome.Show();
+                        this.Hide();
+                    }
+                    else if (controllerObj.GetUserType(Email) == "Administrator")
+                    {
+                        AdminForm adminForm = new AdminForm(Email);
+                        adminForm.Show();
+                        this.Hide();
+                    }
+                    else if (controllerObj.GetUserType(Email) == "Publisher")
+                    {
+                        PublisherForm PublisherList = new PublisherForm(Email);
+                        PublisherList.Show();
+                        this.Hide();
+                    }
                 }
             }
         }

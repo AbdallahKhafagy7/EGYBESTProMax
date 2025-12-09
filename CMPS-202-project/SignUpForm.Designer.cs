@@ -65,6 +65,7 @@
             this.textBox4.PasswordChar = '*';
             this.textBox4.Size = new System.Drawing.Size(197, 22);
             this.textBox4.TabIndex = 3;
+            this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
             // label3
             // 

@@ -10,11 +10,13 @@ using System.Windows.Forms;
 
 namespace CMPS_202_project
 {
-    public partial class Publisher : Form
+    public partial class PublisherForm : Form
     {
-        public Publisher()
+        string email;
+        public PublisherForm(string email)
         {
             InitializeComponent();
+            this.email = email;
         }
 
         private void Publisher_Load(object sender, EventArgs e)

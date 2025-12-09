@@ -12,13 +12,28 @@ namespace CMPS_202_project
 {
     public partial class AdminForm : Form
     {
-        public AdminForm()
+        string username;
+        Admin_with_publisher Admin_With_Publisher = new Admin_with_publisher();
+        Admin_With_User Admin_With_User = new Admin_With_User();
+        public AdminForm(string username)
         {
             InitializeComponent();
+            this.username = username;
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Admin_With_User.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Admin_With_Publisher.Show();
 
         }
     }

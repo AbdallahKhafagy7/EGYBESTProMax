@@ -58,28 +58,32 @@ namespace CMPS_202_project
 
         private void button4_Click(object sender, EventArgs e)
         {
-            rate.Hide();
+            if (list == null || list.IsDisposed)
+            {
+                list = new ListForm(this);
+            }
             this.Hide();
             list.Show();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            list.Hide();
+            if (rate == null || rate.IsDisposed)
+            {
+                list = new ListForm(this);
+            }
             this.Hide();
             rate.Show();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            list.Hide();
-            rate.Hide();
+           
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            rate.Hide();
-            list.Hide();
+          
         }
     }
 }

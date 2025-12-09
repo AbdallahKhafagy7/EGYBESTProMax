@@ -13,7 +13,7 @@ namespace DBapplication
     public class DBManager
     {
 
-        static string DB_Connection_String = "Data Source=.;Initial Catalog = project_egybestpromax; Integrated Security = True; Encrypt=False"; // TODO:: Put your connection string here
+        static string DB_Connection_String = "Data Source=.;Initial Catalog=project_egybestpromax; Integrated Security=True; Encrypt=False"; // TODO:: Put your connection string here
 
         SqlConnection myConnection;
 

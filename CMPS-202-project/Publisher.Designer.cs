@@ -1,6 +1,6 @@
 ﻿namespace CMPS_202_project
 {
-    partial class Publisher
+    partial class PublisherForm
     {
         /// <summary>
         /// Required designer variable.

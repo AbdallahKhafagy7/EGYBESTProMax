@@ -32,13 +32,16 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.LavenderBlush;
-            this.button1.Location = new System.Drawing.Point(134, 158);
+            this.button1.Location = new System.Drawing.Point(134, 200);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(117, 57);
             this.button1.TabIndex = 0;
@@ -58,12 +61,13 @@
             // button3
             // 
             this.button3.BackColor = System.Drawing.Color.LavenderBlush;
-            this.button3.Location = new System.Drawing.Point(134, 47);
+            this.button3.Location = new System.Drawing.Point(134, 110);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(117, 57);
             this.button3.TabIndex = 2;
             this.button3.Text = "Show User";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // dataGridView1
             // 
@@ -76,12 +80,45 @@
             this.dataGridView1.Size = new System.Drawing.Size(322, 321);
             this.dataGridView1.TabIndex = 3;
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(273, 51);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(145, 22);
+            this.textBox1.TabIndex = 4;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label1.ForeColor = System.Drawing.Color.LavenderBlush;
+            this.label1.Location = new System.Drawing.Point(93, 47);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(158, 25);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Search by Name";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label2.ForeColor = System.Drawing.Color.Red;
+            this.label2.Location = new System.Drawing.Point(269, 101);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(140, 20);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "enter a username";
+            this.label2.Visible = false;
+            // 
             // Admin_With_User
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MidnightBlue;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -91,6 +128,7 @@
             this.Text = "Admin_With_User";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -100,5 +138,8 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }

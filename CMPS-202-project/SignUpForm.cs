@@ -50,14 +50,14 @@ namespace CMPS_202_project
                 label9.Show();
                 return;
             }
-            if (!String.IsNullOrEmpty(textBox4.Text)) {
+            if (String.IsNullOrEmpty(textBox4.Text)) {
 
                 label10.ForeColor = Color.Red;
                 label10.Text = "Must enter a password";
                 label10.Show();
                 return;
             }
-            if (textBox4.Text == textBox5.Text)
+            if (string.IsNullOrEmpty(textBox5.Text) && !(textBox4.Text == textBox5.Text) )
             { 
                 label10.ForeColor = Color.Red;
                 label10.Text = "the Passwords Must match";
@@ -90,6 +90,11 @@ namespace CMPS_202_project
         }
 
         private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
         {
 
         }

@@ -31,8 +31,63 @@ namespace DBapplication
             string query = "SELECT Password FROM [User] WHERE Name = '" + username + "'";
             return dbMan.ExecuteScalar(query);
         }
+        // Function to get the User Type (Admin, Publisher, or EndUser)
+        public string GetUserType(string email)
+        {
+            // 1. Get UserID first
+            string queryId = "SELECT UserID FROM [User] WHERE Email = '" + email + "'";
+            object resultId = dbMan.ExecuteScalar(queryId);
 
+            if (resultId == null) return "NotFound";
+            int userId = Convert.ToInt32(resultId);
+
+            // 2. Check Administrator Table
+            string queryAdmin = "SELECT COUNT(*) FROM [Administrator] WHERE UserID = " + userId;
+            if ((int)dbMan.ExecuteScalar(queryAdmin) > 0) return "Administrator";
+
+            // 3. Check Publisher Table
+            string queryPub = "SELECT COUNT(*) FROM [Publisher] WHERE UserID = " + userId;
+            if ((int)dbMan.ExecuteScalar(queryPub) > 0) return "Publisher";
+
+            // 4. Check EndUser Table
+            string queryEnd = "SELECT COUNT(*) FROM [EndUser] WHERE UserID = " + userId;
+            if ((int)dbMan.ExecuteScalar(queryEnd) > 0) return "EndUser";
+
+            return "Unknown";
+        }
         // 2. Add New User (Sign Up)
+
+        // 1. Search for EndUsers by Name (Partial Match)
+        // Useful for: Admin_With_User form
+        public DataTable GetUsersByName(string name)
+        {
+            string query = "SELECT U.UserID, U.Name, U.Email " +
+                           "FROM [User] U " +
+                           "JOIN EndUser E ON U.UserID = E.UserID " +
+                           "WHERE U.Name LIKE '%" + name + "%'";
+            return dbMan.ExecuteReader(query);
+        }
+        // Function to Search for Shows by Name (Partial Match)
+        public DataTable GetShowsByName(string subName)
+        {
+            // The '%' allows finding any name that *contains* the text entered
+            string query = "SELECT M.Name, M.NumOfFavs, M.Finished " +
+                           "FROM Media M " +
+                           "JOIN Show S ON M.MediaID = S.MediaID " +
+                           "WHERE M.Name LIKE '%" + subName + "%'";
+
+            return dbMan.ExecuteReader(query);
+        }
+        // 2. Search for Publishers by Name (Partial Match)
+        // Useful for: Admin_with_publisher form
+        public DataTable GetPublishersByName(string name)
+        {
+            string query = "SELECT U.UserID, U.Name, U.Email, P.Website " +
+                           "FROM [User] U " +
+                           "JOIN Publisher P ON U.UserID = P.UserID " +
+                           "WHERE U.Name LIKE '%" + name + "%'";
+            return dbMan.ExecuteReader(query);
+        }
         private int GetNextUserId()
         {
             string query = "SELECT ISNULL(MAX(UserID), 0) + 1 FROM [User]";
@@ -104,8 +159,8 @@ namespace DBapplication
             if (string.IsNullOrEmpty(listName))
             {
                 // Show all media that are Shows
-                query = "SELECT M.Name, M.NumOfFavs, M.Finished, S.MediaID " +
-                        "FROM Media M " +
+                query = "SELECT M.Name, M.NumOfFavs, M.Finished " +
+                        "FROM Media as M " +
                         "JOIN Show S ON M.MediaID = S.MediaID";
             }
             else
@@ -161,11 +216,11 @@ namespace DBapplication
         }
 
         // 5. Get All Lists for a User
-        public DataTable getAllist(string username)
+        public DataTable getAllist(string email)
         {
             string query = "SELECT ListName AS list FROM List L " +
                            "JOIN [User] U ON L.UserID = U.UserID " +
-                           "WHERE U.Name = '" + username + "'";
+                           "WHERE U.Email = '" + email + "'";  // CHANGED U.Name TO U.Email
             return dbMan.ExecuteReader(query);
         }
 
