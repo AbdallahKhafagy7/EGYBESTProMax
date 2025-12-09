@@ -12,6 +12,19 @@ namespace DBapplication
     {
         DBManager dbMan = new DBManager();
 
+        // Function to get the Name associated with an Email
+        public string GetNameFromEmail(string email)
+        {
+            string query = "SELECT Name FROM [User] WHERE Email = '" + email + "'";
+            object result = dbMan.ExecuteScalar(query);
+
+            if (result == null)
+            {
+                return ""; // Or return null if you prefer
+            }
+
+            return result.ToString();
+        }
         public object GetAdminPassword(string username)
         {
             // Simple query to get password. Assumes 'User' table exists.

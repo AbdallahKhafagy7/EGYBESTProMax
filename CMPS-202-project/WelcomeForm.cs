@@ -23,7 +23,7 @@ namespace CMPS_202_project
             InitializeComponent();
             ListForm list = new ListForm(this);
             RateForm rate = new RateForm(this,username);
-            label2.Text = "Welcome " + username;
+            label2.Text = "Welcome " + controllerobj.GetNameFromEmail(username);
             this.username= username;
             dataGridView1.Hide();
             DataTable dt = controllerobj.getAllist(username);
