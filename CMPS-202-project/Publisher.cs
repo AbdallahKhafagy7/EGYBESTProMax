@@ -34,5 +34,10 @@ namespace CMPS_202_project
         {
 
         }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
