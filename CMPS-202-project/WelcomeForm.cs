@@ -15,18 +15,20 @@ namespace CMPS_202_project
     {
         ListForm list;
         RateForm rate;
+        EditInfoForm edit;
         Controller controllerobj= new Controller();
-        public string username;
+        public string email;
 
-        public WelcomeForm(string username ="")
+        public WelcomeForm(string email ="")
         {
             InitializeComponent();
-            this.list = new ListForm(username);
-            this.rate = new RateForm(username);
-            label2.Text = "Welcome " + controllerobj.GetNameFromEmail(username);
-            this.username= username;
+            this.list = new ListForm(email);
+            this.rate = new RateForm(email);
+            this.edit = new EditInfoForm(controllerobj.GetNameFromEmail(email),email);
+            label2.Text = "Welcome " + controllerobj.GetNameFromEmail(email);
+            this.email= email;
             dataGridView1.Hide();
-            DataTable dt = controllerobj.getAllist(username);
+            DataTable dt = controllerobj.getAllist(email);
             comboBox1.DataSource = dt;
             comboBox1.DisplayMember = "list";
             comboBox1.SelectedIndex = -1;
@@ -50,7 +52,7 @@ namespace CMPS_202_project
 
         private void button1_Click(object sender, EventArgs e)
         {
-            DataTable dt = controllerobj.getShows(username,comboBox1.SelectedText);
+            DataTable dt = controllerobj.getShows(email,comboBox1.SelectedText);
             dataGridView1.DataSource = dt;
             dataGridView1.Show();
             // TODO:: Show data in dataGridView1
@@ -60,7 +62,8 @@ namespace CMPS_202_project
         {
             if (list == null || list.IsDisposed)
             {
-                list = new ListForm(username);
+                list = new ListForm(email);
+                this.Close();
             }
             this.Close();
             list.Show();
@@ -70,7 +73,9 @@ namespace CMPS_202_project
         {
             if (rate == null || rate.IsDisposed)
             {
-                list = new ListForm(username);
+                rate = new RateForm(email);
+                this.Close();
+                return;
             }
             this.Close();
             rate.Show();
@@ -78,7 +83,15 @@ namespace CMPS_202_project
 
         private void button3_Click(object sender, EventArgs e)
         {
-           
+            if (rate == null || rate.IsDisposed)
+            {
+                edit = new EditInfoForm(controllerobj.GetNameFromEmail(email),email);
+                this.Close();
+                return;
+            }
+            edit.Show();
+            this.Close();
+
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)

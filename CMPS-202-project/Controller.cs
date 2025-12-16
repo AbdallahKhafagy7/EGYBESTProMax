@@ -26,23 +26,25 @@ namespace DBapplication
 
             return result.ToString();
         }
+        public int UpdatePassword(string email, string newPassword)
+        {
+          
+            string query = "UPDATE [User] SET Password = '" + newPassword + "' WHERE Email = '" + email + "'";
+            return dbMan.ExecuteNonQuery(query);
+        }
         public object GetAdminPassword(string username)
         {
-            // Simple query to get password. Assumes 'User' table exists.
             string query = "SELECT Password FROM [User] WHERE Name = '" + username + "'";
             return dbMan.ExecuteScalar(query);
         }
-        // Function to get the User Type (Admin, Publisher, or EndUser)
         public string GetUserType(string email)
         {
-            // 1. Get UserID first
             string queryId = "SELECT UserID FROM [User] WHERE Email = '" + email + "'";
             object resultId = dbMan.ExecuteScalar(queryId);
 
             if (resultId == null) return "NotFound";
             int userId = Convert.ToInt32(resultId);
 
-            // 2. Check Administrator Table
             string queryAdmin = "SELECT COUNT(*) FROM [Administrator] WHERE UserID = " + userId;
             if ((int)dbMan.ExecuteScalar(queryAdmin) > 0) return "Administrator";
 
@@ -56,10 +58,7 @@ namespace DBapplication
 
             return "Unknown";
         }
-        // 2. Add New User (Sign Up)
-
-        // 1. Search for EndUsers by Name (Partial Match)
-        // Useful for: Admin_With_User form
+        
         public DataTable GetUsersByName(string name)
         {
             string query = "SELECT U.UserID, U.Name, U.Email " +
@@ -250,6 +249,13 @@ namespace DBapplication
             return dbMan.ExecuteReader(query);
         }
         // 6. Delete User
+        // Function to Update User Name
+        public int UpdateName(string email, string newName)
+        {
+            string query = "UPDATE [User] SET Name = '" + newName + "' WHERE Email = '" + email + "'";
+            return dbMan.ExecuteNonQuery(query);
+        }
+
         public int DeleteUser(int userID)
         {
             string deleteWatchHistoryQuery = "DELETE FROM WatchHistory WHERE UserID = " + userID;
