@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DBapplication;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DBapplication;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace CMPS_202_project
 {
@@ -110,6 +111,12 @@ namespace CMPS_202_project
         private void Admin_with_publisher_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Form2 form = new Form2();
+            form.Show();
         }
     }
 }

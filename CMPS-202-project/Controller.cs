@@ -692,6 +692,53 @@ namespace DBapplication
             string query = "SELECT * FROM Media WHERE Name = '" + showName + "'";
             return dbMan.ExecuteReader(query);
         }
+        public int AddActor(string name, int age)
+        {
+            // Generate ID
+            string maxIdQuery = "SELECT ISNULL(MAX(ActorID), 0) + 1 FROM Actors";
+            int newId = (int)dbMan.ExecuteScalar(maxIdQuery);
+
+            string query = "INSERT INTO Actors (ActorID, Name, Age) VALUES (" + newId + ", '" + name + "', " + age + ")";
+            return dbMan.ExecuteNonQuery(query);
+        }
+
+        // Link Actor to Media
+        public int AddActorToMedia(int mediaId, int actorId)
+        {
+            // Check if exists
+            string checkQuery = "SELECT COUNT(*) FROM MediaActors WHERE MediaID = " + mediaId + " AND ActorID = " + actorId;
+            if ((int)dbMan.ExecuteScalar(checkQuery) > 0) return -1; 
+
+            string query = "INSERT INTO MediaActors (MediaID, ActorID) VALUES (" + mediaId + ", " + actorId + ")";
+            return dbMan.ExecuteNonQuery(query);
+        }
+
+        // Get All Actors
+        public DataTable GetAllActors()
+        {
+            return dbMan.ExecuteReader("SELECT ActorID, Name FROM Actors");
+        }
+        public int AddPublisherUser(string email, string name, string password, string website)
+        {
+            if (IsEmailExists(email) == 1) return 0;
+
+            int userId = GetNextUserId();
+            string queryUser = "INSERT INTO [User] (UserID, Email, Name, Password) VALUES (" +
+                               userId + ", '" + email + "', '" + name + "', '" + password + "')";
+            dbMan.ExecuteNonQuery(queryUser);
+
+            string maxPubId = "SELECT ISNULL(MAX(PublisherID), 0) + 1 FROM Publisher";
+            int pubId = (int)dbMan.ExecuteScalar(maxPubId);
+
+            string queryPub = "INSERT INTO Publisher (PublisherID, Website, UserID) VALUES (" +
+                              pubId + ", '" + website + "', " + userId + ")";
+            return dbMan.ExecuteNonQuery(queryPub);
+        }
+        public DataTable GetActorsByName(string name)
+        {
+            string query = "SELECT ActorID, Name FROM Actors WHERE Name LIKE '%" + name + "%'";
+            return dbMan.ExecuteReader(query);
+        }
 
         public void TerminateConnection()
         {
