@@ -16,7 +16,7 @@ namespace CMPS_202_project
         ListForm list;
         RateForm rate;
         Controller controllerobj= new Controller();
-        string username;
+        public string username;
 
         public WelcomeForm(string username ="")
         {

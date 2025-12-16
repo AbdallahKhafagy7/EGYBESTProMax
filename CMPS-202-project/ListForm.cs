@@ -16,10 +16,18 @@ namespace CMPS_202_project
     {
         WelcomeForm welcomeForm;
         Controller controllerObj = new Controller();
+        ~ListForm()
+        {
+            welcomeForm.Close();
+        }
         public ListForm(WelcomeForm welcomeForm)
         {
             this.welcomeForm = welcomeForm;
             InitializeComponent();
+            comboBox1.DisplayMember = "list";
+            DataTable dt = controllerObj.getAllist(this.welcomeForm.username);
+            comboBox1.DataSource = dt;
+            comboBox1.ValueMember = "list";
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

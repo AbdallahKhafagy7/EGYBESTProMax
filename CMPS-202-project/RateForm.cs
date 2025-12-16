@@ -16,6 +16,11 @@ namespace CMPS_202_project
         WelcomeForm welcomeForm;
         Controller controllerobj =new Controller();
         string username;
+
+        ~RateForm()
+        {
+            welcomeForm.Close();
+        }   
         public RateForm(WelcomeForm welcomeForm,string username)
         {
             InitializeComponent();
@@ -63,6 +68,11 @@ namespace CMPS_202_project
 
 
         private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
         {
 
         }
