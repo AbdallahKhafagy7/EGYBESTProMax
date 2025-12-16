@@ -27,6 +27,18 @@ namespace DBapplication
                 return builder.ToString();
             }
         }
+        public string ResetUserPasswordTemp(int userID)
+        {
+            string tempPassword = Guid.NewGuid().ToString().Substring(0, 8);
+
+            string query = $"UPDATE [User] SET Password = '{tempPassword}' WHERE UserID = {userID}";
+            int rows = dbMan.ExecuteNonQuery(query);
+
+            if (rows > 0)
+                return tempPassword;
+            else
+                return null;
+        }
         // Function to get the Name associated with an Email
         public string GetNameFromEmail(string email)
         {
@@ -126,18 +138,7 @@ namespace DBapplication
             return dbMan.ExecuteNonQuery(insertAdmin);
         }
         //  16. temp pass 
-        public string ResetUserPasswordTemp(int userID)
-        {
-            string tempPassword = Guid.NewGuid().ToString().Substring(0, 8);
-
-            string query = $"UPDATE [User] SET Password = '{tempPassword}' WHERE UserID = {userID}";
-            int rows = dbMan.ExecuteNonQuery(query);
-
-            if (rows > 0)
-                return tempPassword;
-            else
-                return null;
-        }
+        
         public int AddShowToList(string listName, int mediaId, string username)
         {
             // 1. Get the ListID based on ListName and Username

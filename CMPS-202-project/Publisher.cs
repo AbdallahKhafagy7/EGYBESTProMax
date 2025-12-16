@@ -134,7 +134,7 @@ namespace CMPS_202_project
             LoginForm loginForm = new LoginForm();
             loginForm.Show();
             MessageBox.Show("Logged out successfully.");
-            this.Close();
+            this.Hide();
         }
     }
     }

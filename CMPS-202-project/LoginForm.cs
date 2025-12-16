@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -16,22 +15,21 @@ namespace CMPS_202_project
     {
         Controller controllerObj = new Controller();
 
-        // Properties to pass data to Program.cs
-        public string LoggedInEmail { get; private set; }
-        public string LoggedInUserType { get; private set; }
-
         public LoginForm()
         {
             InitializeComponent();
             GUIHelper.ApplyModernStyle(this);
+
+            // Initialize UI elements
             textBox2.UseSystemPasswordChar = true;
-            label6.Hide();
-            label7.Hide();
-            label8.Hide();
+            label6.Hide(); // Empty field error
+            label7.Hide(); // Wrong password error
+            label8.Hide(); // Email not found error
         }
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
+            // Styling the Sign Up link
             label3.ForeColor = Color.FromArgb(220, 20, 60);
             label3.Cursor = Cursors.Hand;
             label3.MouseEnter += (s, ev) => label3.ForeColor = Color.Red;
@@ -43,7 +41,8 @@ namespace CMPS_202_project
             string Email = textBox1.Text.Trim();
             string password = textBox2.Text.Trim();
 
-            if (string.IsNullOrEmpty(Email))
+            // 1. Validation: Check for empty inputs
+            if (string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(password))
             {
                 label6.Show();
                 return;
@@ -53,66 +52,72 @@ namespace CMPS_202_project
                 label6.Hide();
             }
 
+            // 2. Check if Email exists
             int result = controllerObj.IsEmailExists(Email);
 
             if (result == 0)
             {
-                label8.Show();
+                label8.Show(); // Email not found
             }
             else
             {
-                // Controller now handles hashing inside CheckPassword
+                label8.Hide();
+
+                // 3. Check Password
                 if (!controllerObj.CheckPassword(Email, password))
                 {
-                    label7.Show();
+                    label7.Show(); // Wrong password
                 }
                 else
                 {
-                    // LOGIN SUCCESS
-                    // 1. Store info for Program.cs
-                    LoggedInEmail = Email;
-                    LoggedInUserType = controllerObj.GetUserType(Email);
+                    // Login Successful
+                    label7.Hide();
 
-                    // 2. Set Result to OK so Program.cs knows to proceed
-                    this.DialogResult = DialogResult.OK;
+                    string userType = controllerObj.GetUserType(Email);
+                    Form nextForm = null;
 
-                    // 3. Close this form
-                    this.Close();
+                    if (userType == "EndUser")
+                    {
+                        nextForm = new WelcomeForm(Email);
+                    }
+                    else if (userType == "Administrator")
+                    {
+                        nextForm = new AdminForm(Email);
+                    }
+                    else if (userType == "Publisher")
+                    {
+                        nextForm = new PublisherForm(Email);
+                    }
+
+                    if (nextForm != null)
+                    {
+                        // IMPORTANT: When the next form closes, close THIS form (LoginForm)
+                        // This will effectively close the entire application.
+                        nextForm.FormClosed += (s, args) => this.Close();
+
+                        nextForm.Show();
+                        this.Hide(); // Hide Login so it runs in the background
+                    }
                 }
             }
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
         }
 
         private void label3_Click(object sender, EventArgs e)
         {
-            // Open SignUpForm as a modal dialog
-            this.Hide();
-            SignUpForm signIn = new SignUpForm();
-            signIn.ShowDialog();
-            this.Show();
+            // Open SignUp form as a dialog (pop-up)
+            // We don't want to hide Login here, just show SignUp over it
+            SignUpForm signUp = new SignUpForm();
+            signUp.ShowDialog();
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox1.Checked)
-            {
-                textBox2.UseSystemPasswordChar = false;
-            }
-            else
-            {
-                textBox2.UseSystemPasswordChar = true;
-            }
+            textBox2.UseSystemPasswordChar = !checkBox1.Checked;
         }
+
+        // Empty event handlers that might be auto-generated by Designer
+        private void textBox1_TextChanged(object sender, EventArgs e) { }
+        private void label6_Click(object sender, EventArgs e) { }
+        private void label8_Click(object sender, EventArgs e) { }
     }
 }

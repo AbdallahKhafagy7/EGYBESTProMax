@@ -90,18 +90,19 @@ namespace CMPS_202_project
                 return;
             }
 
-            string defaultPassword = "123456";
+            string defaultPassword = controllerObj.ResetUserPasswordTemp(userID);
 
-            int rows = controllerObj.ResetUserPassword(userID, defaultPassword);
+            string k = controllerObj.ResetUserPasswordTemp(userID);
 
-            if (rows > 0)
+            if (!string.IsNullOrEmpty(k))
             {
-                MessageBox.Show("Password reset successfully.\nNew password: 123456");
+                MessageBox.Show("User password has been reset to: " + k);
             }
             else
             {
-                MessageBox.Show("Failed to reset password. Make sure the user exists.");
+                MessageBox.Show("Failed to reset user password.");
             }
+
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

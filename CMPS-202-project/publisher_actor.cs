@@ -21,6 +21,7 @@ namespace CMPS_202_project
         {
             InitializeComponent();
             isReady = false;
+            GUIHelper.ApplyModernStyle(this);
 
         }
 
@@ -341,6 +342,18 @@ namespace CMPS_202_project
 
         private void comboBox2_SelectedIndexChanged_1(object sender, EventArgs e)
         {
+        }
+
+        private void panelMain_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            Admin_with_publisher adminForm = new Admin_with_publisher();
+            adminForm.Show();
+            this.Close();
         }
     }
 }

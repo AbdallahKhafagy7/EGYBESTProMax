@@ -61,7 +61,7 @@ namespace CMPS_202_project
             {
                 rate = new RateForm(email); // Fixed: Was creating ListForm before
             }
-            this.Close();
+            this.Hide();
             rate.Show();
         }
 
@@ -72,7 +72,7 @@ namespace CMPS_202_project
             {
                 list = new ListForm(email);
             }
-            this.Close();
+            this.Hide();
             list.Show();
         }
 
@@ -82,7 +82,7 @@ namespace CMPS_202_project
             {
                 watch = new WatchForm(email);
             }
-            this.Close();
+            this.Hide();
             watch.Show();
         }
 
@@ -100,7 +100,7 @@ namespace CMPS_202_project
             {
                 edit = new EditInfoForm(controllerobj.GetNameFromEmail(email), email);
             }
-            this.Close();
+            this.Hide();
             edit.Show();
         }
 
@@ -109,7 +109,7 @@ namespace CMPS_202_project
             LoginForm loginForm = new LoginForm();
             loginForm.Show();
             MessageBox.Show("Logged out successfully.");
-            this.Close();
+            this.Hide();
         }
     }
 }
