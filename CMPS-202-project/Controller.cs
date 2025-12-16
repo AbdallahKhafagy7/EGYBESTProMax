@@ -26,23 +26,25 @@ namespace DBapplication
 
             return result.ToString();
         }
+        public int UpdatePassword(string email, string newPassword)
+        {
+          
+            string query = "UPDATE [User] SET Password = '" + newPassword + "' WHERE Email = '" + email + "'";
+            return dbMan.ExecuteNonQuery(query);
+        }
         public object GetAdminPassword(string username)
         {
-            // Simple query to get password. Assumes 'User' table exists.
             string query = "SELECT Password FROM [User] WHERE Name = '" + username + "'";
             return dbMan.ExecuteScalar(query);
         }
-        // Function to get the User Type (Admin, Publisher, or EndUser)
         public string GetUserType(string email)
         {
-            // 1. Get UserID first
             string queryId = "SELECT UserID FROM [User] WHERE Email = '" + email + "'";
             object resultId = dbMan.ExecuteScalar(queryId);
 
             if (resultId == null) return "NotFound";
             int userId = Convert.ToInt32(resultId);
 
-            // 2. Check Administrator Table
             string queryAdmin = "SELECT COUNT(*) FROM [Administrator] WHERE UserID = " + userId;
             if ((int)dbMan.ExecuteScalar(queryAdmin) > 0) return "Administrator";
 
@@ -247,6 +249,13 @@ namespace DBapplication
             return dbMan.ExecuteReader(query);
         }
         // 6. Delete User
+        // Function to Update User Name
+        public int UpdateName(string email, string newName)
+        {
+            string query = "UPDATE [User] SET Name = '" + newName + "' WHERE Email = '" + email + "'";
+            return dbMan.ExecuteNonQuery(query);
+        }
+
         public int DeleteUser(int userID)
         {
             string deleteWatchHistoryQuery = "DELETE FROM WatchHistory WHERE UserID = " + userID;
@@ -404,6 +413,148 @@ namespace DBapplication
                       ORDER BY M.NumOfFavs DESC";
             return dbMan.ExecuteReader(query);
         }
+
+        //----------------------------
+
+        // get publisher by email
+        public DataTable GetPublisherByEmail(string email)
+        {
+            string query = "SELECT P.* " +
+                            "FROM Publisher P, [User] U " +
+                            "WHERE P.UserID = U.UserID " +
+                            "AND U.Email = '" + email + "'";
+            return dbMan.ExecuteReader(query);
+        }
+
+        // get shows by publisher id
+        public DataTable GetShowsByPublisherId(int publisherId)
+        {
+            string query = "SELECT M.Name, M.NumOfFavs, M.Finished " +
+                            "FROM Media M, Show S " +
+                            "WHERE M.MediaID = S.MediaID " +
+                            "AND M.PublisherID = " + publisherId;
+            return dbMan.ExecuteReader(query);
+        }
+
+        // insert show
+        public int InsertShow(int publisherId, string showName)
+        {
+            // Insert the show into the Media table
+            string insertMediaQuery =
+                "INSERT INTO Media (Name, Finished, NumOfFavs, PublisherID) " +
+                "VALUES ('" + showName + "', 0, 0, " + publisherId + ")";
+
+            // Execute the insert query
+            int result = dbMan.ExecuteNonQuery(insertMediaQuery);
+            if (result == 0) return 0; // Insertion failed
+
+            // Get the MediaID of the newly inserted show
+            string getMediaIdQuery = "SELECT MAX(MediaID) FROM Media";
+            int mediaId = Convert.ToInt32(dbMan.ExecuteScalar(getMediaIdQuery));
+
+            // Insert into Show table to make inheritance
+            string insertShowQuery = "INSERT INTO Show (MediaID) VALUES (" + mediaId + ")";
+            return dbMan.ExecuteNonQuery(insertShowQuery);
+        }
+
+        // rate show
+        public int RateShow(string mail, string showName, int rating)
+        {
+            // 1. Get UserID
+            string getUserIdQuery = "SELECT UserID FROM [User] WHERE Email = '" + mail + "'";
+            object userIdObj = dbMan.ExecuteScalar(getUserIdQuery);
+            if (userIdObj == null) return 0;
+            int userId = Convert.ToInt32(userIdObj);
+
+            // 2. Get MediaID
+            string getMediaIdQuery = "SELECT MediaID FROM Media WHERE Name LIKE '%" + showName + "%'";
+            object mediaIdObj = dbMan.ExecuteScalar(getMediaIdQuery);
+            if (mediaIdObj == null) return 0;
+            int mediaId = Convert.ToInt32(mediaIdObj);
+
+            // 3. Insert or Update Rating
+            string checkExistingQuery = "SELECT COUNT(*) FROM MediaRating WHERE UserID = " + userId + " AND MediaID = " + mediaId;
+            int count = (int)dbMan.ExecuteScalar(checkExistingQuery);
+            string rateQuery;
+            if (count > 0)
+            {
+                // Update existing rating
+                rateQuery = "UPDATE MediaRating SET Rating = " + rating + " WHERE UserID = " + userId + " AND MediaID = " + mediaId;
+            }
+            else
+            {
+                // Insert new rating
+                rateQuery = "INSERT INTO MediaRating (UserID, MediaID, Rating) VALUES (" + userId + ", " + mediaId + ", " + rating + ")";
+            }
+            return dbMan.ExecuteNonQuery(rateQuery);
+        }
+
+        // get user id by email
+        public int GetUserIDFromEmail(string email)
+        {
+            string query = "SELECT UserID FROM [User] WHERE Email = '" + email + "'";
+            object result = dbMan.ExecuteScalar(query);
+            if (result != null)
+                return Convert.ToInt32(result);
+            return -1;
+        }
+
+
+        // get all list for user id
+        public DataTable GetUserLists(int userId)
+        {
+            string query = "SELECT * FROM [List] WHERE UserID = " + userId;
+            return dbMan.ExecuteReader(query);
+        }
+        // create new list
+        public int InsertList(string listName, int userId)
+        {
+            string query = "INSERT INTO List (ListName, UserID) " +
+                           "VALUES ('" + listName + "', " + userId + ")";
+            return dbMan.ExecuteNonQuery(query);
+        }
+
+        // get MediaID by show name
+        public int GetMediaIDByName(string showName)
+        {
+            string query = "SELECT MediaID FROM Media WHERE Name = '" + showName + "'";
+            object mediaIdObj = dbMan.ExecuteScalar(query);
+            return (mediaIdObj == null) ? 0 : Convert.ToInt32(mediaIdObj);
+        }
+
+        // insert item into list
+        public int InsertListItem(string listName, int userId, int mediaId)
+        {
+            // Get ListID from listName and userId
+            string query = "SELECT ListID FROM List WHERE ListName = '" + listName + "' AND UserID = " + userId;
+            object listIdObj = dbMan.ExecuteScalar(query);
+            if (listIdObj == null) return 0;
+            int listId = Convert.ToInt32(listIdObj);
+
+            // Insert into ListItems
+            string insertQuery = "INSERT INTO ListItems (ListID, MediaID) VALUES (" + listId + ", " + mediaId + ")";
+            return dbMan.ExecuteNonQuery(insertQuery);
+        }
+
+        // get all shows in a list for a user
+        public DataTable GetListShows(int userId, string listName)
+        {
+            // 1. Get ListID for this user and list name
+            string listIdQuery = "SELECT ListID FROM List WHERE UserID = " + userId + " AND ListName = '" + listName + "'";
+            object listIdObj = dbMan.ExecuteScalar(listIdQuery);
+
+            if (listIdObj == null)
+                return new DataTable(); // Return empty DataTable if list doesn't exist
+
+            int listId = Convert.ToInt32(listIdObj);
+
+            // 2. Get all shows in this list
+            string query = "SELECT M.MediaID, M.Name AS [ShowName], M.NumOfFavs, M.Finished FROM ListItems LI INNER JOIN Media M ON LI.MediaID = M.MediaID WHERE LI.ListID = " + listId;
+
+            return dbMan.ExecuteReader(query);
+        }
+
+        //-----------------
         public DataTable GetWatchHistory(string email)
         {
             string query = "SELECT M.Name AS 'Media Name', WH.WatchDate " +

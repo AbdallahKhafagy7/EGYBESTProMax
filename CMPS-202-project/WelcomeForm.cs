@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace CMPS_202_project
 {
@@ -15,20 +16,25 @@ namespace CMPS_202_project
     {
         ListForm list;
         RateForm rate;
+        EditInfoForm edit;
         Controller controllerobj= new Controller();
-        public string username;
+        public string email;
 
-        public WelcomeForm(string username ="")
+        public WelcomeForm(string email ="")
         {
             InitializeComponent();
-            this.list = new ListForm(username);
-            this.rate = new RateForm(username);
-            label2.Text = "Welcome " + controllerobj.GetNameFromEmail(username);
-            this.username= username;
+            this.list = new ListForm(email);
+            this.rate = new RateForm(email);
+            this.edit = new EditInfoForm(controllerobj.GetNameFromEmail(email),email);
+            label2.Text = "Welcome " + controllerobj.GetNameFromEmail(email);
+            this.email= email;
             dataGridView1.Hide();
-            DataTable dt = controllerobj.getAllist(username);
+
+
+            int userId = controllerobj.GetUserIDFromEmail(email);
+            DataTable dt = controllerobj.GetUserLists(userId);
             comboBox1.DataSource = dt;
-            comboBox1.DisplayMember = "list";
+            comboBox1.DisplayMember = "ListName";
             comboBox1.SelectedIndex = -1;
         }
 
@@ -50,17 +56,17 @@ namespace CMPS_202_project
 
         private void button1_Click(object sender, EventArgs e)
         {
-            DataTable dt = controllerobj.getShows(username,comboBox1.SelectedText);
+            DataTable dt = controllerobj.getShows(email, null);
             dataGridView1.DataSource = dt;
             dataGridView1.Show();
-            // TODO:: Show data in dataGridView1
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             if (list == null || list.IsDisposed)
             {
-                list = new ListForm(username);
+                list = new ListForm(email);
+                this.Close();
             }
             this.Close();
             list.Show();
@@ -70,7 +76,9 @@ namespace CMPS_202_project
         {
             if (rate == null || rate.IsDisposed)
             {
-                list = new ListForm(username);
+                rate = new RateForm(email);
+                this.Close();
+                return;
             }
             this.Close();
             rate.Show();
@@ -78,12 +86,24 @@ namespace CMPS_202_project
 
         private void button3_Click(object sender, EventArgs e)
         {
-           
+            if (rate == null || rate.IsDisposed)
+            {
+                edit = new EditInfoForm(controllerobj.GetNameFromEmail(email),email);
+                this.Close();
+                return;
+            }
+            edit.Show();
+            this.Close();
+
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-          
+            dataGridView1.Show();
+            int userId = controllerobj.GetUserIDFromEmail(email);
+            string listName = comboBox1.Text;
+            DataTable dt = controllerobj.GetListShows(userId, listName);
+            dataGridView1.DataSource = dt;
         }
 
         private void button5_Click(object sender, EventArgs e)
