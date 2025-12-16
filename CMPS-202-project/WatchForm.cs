@@ -14,7 +14,7 @@ namespace CMPS_202_project
     public partial class WatchForm : Form
     {
         Controller controllerObj;
-        string currentEmail
+        string currentEmail;
 
         // This flag prevents "Auto-Adding" when the form loads or search updates
         bool isReady = false;
