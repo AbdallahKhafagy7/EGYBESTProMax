@@ -615,6 +615,48 @@ namespace DBapplication
                            "FROM [User] WHERE Email = '" + email + "'";
             return dbMan.ExecuteNonQuery(query);
         }
+        public string GetSubscriptionPlan(string email)
+        {
+            string query = "SELECT TOP 1 Subscription FROM Payment P " +
+                           "JOIN [User] U ON P.UserID = U.UserID " +
+                           "WHERE U.Email = '" + email + "' " +
+                           "ORDER BY PaymentID DESC";
+
+            object result = dbMan.ExecuteScalar(query);
+            if (result == null) return "Free Plan";
+            return result.ToString();
+        }
+
+        public int UpdateSubscription(string email, string newPlan, decimal price)
+        {
+            // 1. Get UserID
+            string userIdQuery = "SELECT UserID FROM [User] WHERE Email = '" + email + "'";
+            object result = dbMan.ExecuteScalar(userIdQuery);
+            if (result == null) return 0;
+            int userId = Convert.ToInt32(result);
+
+            // 2. Check if user has ANY payment record
+            string checkQuery = "SELECT COUNT(*) FROM Payment WHERE UserID = " + userId;
+            int count = (int)dbMan.ExecuteScalar(checkQuery);
+
+            if (count > 0)
+            {
+                // UPDATE the LATEST record for this user
+                string updateQuery = "UPDATE Payment SET Subscription = '" + newPlan + "', Price = " + price +
+                                     " WHERE PaymentID = (SELECT MAX(PaymentID) FROM Payment WHERE UserID = " + userId + ")";
+                return dbMan.ExecuteNonQuery(updateQuery);
+            }
+            else
+            {
+                // INSERT new record
+                string maxIdQuery = "SELECT ISNULL(MAX(PaymentID), 0) + 1 FROM Payment";
+                int newPaymentId = (int)dbMan.ExecuteScalar(maxIdQuery);
+
+                string insertQuery = "INSERT INTO Payment (PaymentID, Price, Subscription, UserID) " +
+                                     "VALUES (" + newPaymentId + ", " + price + ", '" + newPlan + "', " + userId + ")";
+                return dbMan.ExecuteNonQuery(insertQuery);
+            }
+        }
 
         public void TerminateConnection()
         {

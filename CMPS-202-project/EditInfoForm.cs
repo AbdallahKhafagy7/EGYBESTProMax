@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace CMPS_202_project
 {
@@ -126,6 +127,12 @@ namespace CMPS_202_project
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Form1 form = new Form1(username);
+            form.Show();
         }
     }
 }
