@@ -64,6 +64,12 @@ namespace CMPS_202_project
             dataGridView2.DataSource = dt;
         }
 
+        private void btnAddPublisher_Click(object sender, EventArgs e)
+        {
+            // TODO: Implement the logic to open a form or dialog to add a new publisher
+            MessageBox.Show("This feature will be implemented soon.");
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 0)
@@ -108,6 +114,11 @@ namespace CMPS_202_project
         }
 
         private void Admin_with_publisher_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAddPublisher_Click_1(object sender, EventArgs e)
         {
 
         }

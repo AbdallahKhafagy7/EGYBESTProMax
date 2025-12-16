@@ -687,10 +687,17 @@ namespace DBapplication
         }
 
         // get show by name if exits
+        // get show by name if exits
         public DataTable GetShowByName(string showName)
         {
             string query = "SELECT * FROM Media WHERE Name = '" + showName + "'";
-            return dbMan.ExecuteReader(query);
+            DataTable dt = dbMan.ExecuteReader(query);
+
+            // If ExecuteReader returned null, return empty DataTable
+            if (dt == null)
+                return new DataTable();
+
+            return dt;
         }
 
         public void TerminateConnection()

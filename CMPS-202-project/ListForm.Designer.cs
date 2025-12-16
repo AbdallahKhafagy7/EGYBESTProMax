@@ -27,6 +27,10 @@
             this.lblTitle = new System.Windows.Forms.Label();
             this.layoutMain = new System.Windows.Forms.TableLayoutPanel();
             this.panelControls = new System.Windows.Forms.Panel();
+            this.grpCreateList = new System.Windows.Forms.GroupBox();
+            this.btnCreateList = new System.Windows.Forms.Button();
+            this.lblNewList = new System.Windows.Forms.Label();
+            this.txtNewListName = new System.Windows.Forms.TextBox();
             this.grpAction = new System.Windows.Forms.GroupBox();
             this.lblListSelect = new System.Windows.Forms.Label();
             this.grpSearch = new System.Windows.Forms.GroupBox();
@@ -34,6 +38,7 @@
             this.panelHeader.SuspendLayout();
             this.layoutMain.SuspendLayout();
             this.panelControls.SuspendLayout();
+            this.grpCreateList.SuspendLayout();
             this.grpAction.SuspendLayout();
             this.grpSearch.SuspendLayout();
             this.SuspendLayout();
@@ -61,7 +66,7 @@
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(544, 486);
+            this.dataGridView1.Size = new System.Drawing.Size(544, 550);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -161,19 +166,64 @@
             this.layoutMain.Name = "layoutMain";
             this.layoutMain.RowCount = 1;
             this.layoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.layoutMain.Size = new System.Drawing.Size(900, 492);
+            this.layoutMain.Size = new System.Drawing.Size(900, 556);
             this.layoutMain.TabIndex = 1;
             // 
             // panelControls
             // 
+            this.panelControls.AutoScroll = true;
+            this.panelControls.Controls.Add(this.grpCreateList);
             this.panelControls.Controls.Add(this.grpAction);
             this.panelControls.Controls.Add(this.grpSearch);
             this.panelControls.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControls.Location = new System.Drawing.Point(3, 3);
             this.panelControls.Name = "panelControls";
             this.panelControls.Padding = new System.Windows.Forms.Padding(10);
-            this.panelControls.Size = new System.Drawing.Size(344, 486);
+            this.panelControls.Size = new System.Drawing.Size(344, 550);
             this.panelControls.TabIndex = 0;
+            // 
+            // grpCreateList
+            // 
+            this.grpCreateList.Controls.Add(this.btnCreateList);
+            this.grpCreateList.Controls.Add(this.lblNewList);
+            this.grpCreateList.Controls.Add(this.txtNewListName);
+            this.grpCreateList.Dock = System.Windows.Forms.DockStyle.Top;
+            this.grpCreateList.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.grpCreateList.Location = new System.Drawing.Point(10, 390);
+            this.grpCreateList.Name = "grpCreateList";
+            this.grpCreateList.Size = new System.Drawing.Size(324, 150);
+            this.grpCreateList.TabIndex = 2;
+            this.grpCreateList.TabStop = false;
+            this.grpCreateList.Text = "Create New List";
+            // 
+            // btnCreateList
+            // 
+            this.btnCreateList.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCreateList.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnCreateList.Location = new System.Drawing.Point(19, 100);
+            this.btnCreateList.Name = "btnCreateList";
+            this.btnCreateList.Size = new System.Drawing.Size(280, 40);
+            this.btnCreateList.TabIndex = 2;
+            this.btnCreateList.Text = "Create List";
+            this.btnCreateList.UseVisualStyleBackColor = true;
+            this.btnCreateList.Click += new System.EventHandler(this.btnCreateList_Click);
+            // 
+            // lblNewList
+            // 
+            this.lblNewList.AutoSize = true;
+            this.lblNewList.Location = new System.Drawing.Point(15, 35);
+            this.lblNewList.Name = "lblNewList";
+            this.lblNewList.Size = new System.Drawing.Size(86, 23);
+            this.lblNewList.TabIndex = 1;
+            this.lblNewList.Text = "List Name";
+            // 
+            // txtNewListName
+            // 
+            this.txtNewListName.Location = new System.Drawing.Point(19, 61);
+            this.txtNewListName.Name = "txtNewListName";
+            this.txtNewListName.Size = new System.Drawing.Size(280, 30);
+            this.txtNewListName.TabIndex = 0;
+            this.txtNewListName.TextChanged += new System.EventHandler(this.txtNewListName_TextChanged);
             // 
             // grpAction
             // 
@@ -181,11 +231,11 @@
             this.grpAction.Controls.Add(this.comboBox1);
             this.grpAction.Controls.Add(this.button2);
             this.grpAction.Controls.Add(this.label2);
-            this.grpAction.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grpAction.Dock = System.Windows.Forms.DockStyle.Top;
             this.grpAction.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.grpAction.Location = new System.Drawing.Point(10, 170);
             this.grpAction.Name = "grpAction";
-            this.grpAction.Size = new System.Drawing.Size(324, 306);
+            this.grpAction.Size = new System.Drawing.Size(324, 220);
             this.grpAction.TabIndex = 1;
             this.grpAction.TabStop = false;
             this.grpAction.Text = "Add to List";
@@ -217,7 +267,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(900, 562);
+            this.ClientSize = new System.Drawing.Size(900, 626);
             this.Controls.Add(this.layoutMain);
             this.Controls.Add(this.panelHeader);
             this.Name = "ListForm";
@@ -229,6 +279,8 @@
             this.panelHeader.PerformLayout();
             this.layoutMain.ResumeLayout(false);
             this.panelControls.ResumeLayout(false);
+            this.grpCreateList.ResumeLayout(false);
+            this.grpCreateList.PerformLayout();
             this.grpAction.ResumeLayout(false);
             this.grpAction.PerformLayout();
             this.grpSearch.ResumeLayout(false);
@@ -252,5 +304,9 @@
         private System.Windows.Forms.GroupBox grpSearch;
         private System.Windows.Forms.GroupBox grpAction;
         private System.Windows.Forms.Label lblListSelect;
+        private System.Windows.Forms.GroupBox grpCreateList;
+        private System.Windows.Forms.Button btnCreateList;
+        private System.Windows.Forms.Label lblNewList;
+        private System.Windows.Forms.TextBox txtNewListName;
     }
 }

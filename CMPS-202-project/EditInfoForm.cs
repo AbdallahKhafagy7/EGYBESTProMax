@@ -131,7 +131,7 @@ namespace CMPS_202_project
 
         private void button5_Click(object sender, EventArgs e)
         {
-            Form1 form = new Form1(username);
+            SubscriptionPlan form = new SubscriptionPlan(email);
             form.Show();
         }
 
