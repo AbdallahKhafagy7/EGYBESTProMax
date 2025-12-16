@@ -5,28 +5,31 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace CMPS_202_project
 {
     public partial class ListForm : Form
     {
         Controller controllerObj = new Controller();
-        string email;
+        string username;
 
         public ListForm(string username)
         {
-            this.email = username;
+            this.username = username;
             InitializeComponent();
+            RefreshListComboBox();
+            GUIHelper.ApplyModernStyle(this);
+        }
+
+        private void RefreshListComboBox()
+        {
             comboBox1.DisplayMember = "list";
             DataTable dt = controllerObj.getAllist(username);
             comboBox1.DataSource = dt;
             comboBox1.ValueMember = "list";
-            GUIHelper.ApplyModernStyle(this);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -34,7 +37,6 @@ namespace CMPS_202_project
 
         }
 
-        // Standardized Load method
         private void ListForm_Load(object sender, EventArgs e)
         {
 
@@ -59,21 +61,18 @@ namespace CMPS_202_project
                 return;
             }
 
-            string showName = dataGridView1.SelectedRows[0].Cells["Name"].Value.ToString();
-
-            DataTable dt = controllerObj.GetShowByName(showName);
-            if (dt.Rows.Count == 0)
+            // Ensure your query returns a column named 'MediaID'
+            if (dataGridView1.SelectedRows[0].Cells["MediaID"] == null)
             {
-                MessageBox.Show("Show not found.");
+                MessageBox.Show("Error: MediaID column not found.");
                 return;
             }
 
-            int mediaId = Convert.ToInt32(dt.Rows[0]["MediaID"]);
+            string mediaIdString = dataGridView1.SelectedRows[0].Cells["MediaID"].Value.ToString();
+            int mediaId = int.Parse(mediaIdString);
             string listName = comboBox1.Text;
 
-            string userName = controllerObj.GetNameFromEmail(email);
-
-            int result = controllerObj.AddShowToList(listName, mediaId, userName);
+            int result = controllerObj.AddShowToList(listName, mediaId, username);
 
             if (result > 0)
             {
@@ -89,6 +88,7 @@ namespace CMPS_202_project
             }
         }
 
+        // Search by Show Name
         private void button1_Click(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty(textBox1.Text))
@@ -103,6 +103,29 @@ namespace CMPS_202_project
             dataGridView1.DataSource = dt;
         }
 
+        // Search by Actor Name
+        private void btnSearchActor_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtSearchActor.Text))
+            {
+                MessageBox.Show("Please enter an actor name.");
+                return;
+            }
+
+            // Assuming your Controller has a method GetShowsByActor.
+            // If not, you need to implement it to query the Casting/Actor/Media tables.
+            DataTable dt = controllerObj.GetShowsByActor(txtSearchActor.Text);
+
+            if (dt != null)
+            {
+                dataGridView1.DataSource = dt;
+            }
+            else
+            {
+                MessageBox.Show("No shows found for this actor.");
+            }
+        }
+
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -110,7 +133,7 @@ namespace CMPS_202_project
 
         private void button3_Click(object sender, EventArgs e)
         {
-            WelcomeForm welcomeForm = new WelcomeForm(email);
+            WelcomeForm welcomeForm = new WelcomeForm(username);
             welcomeForm.Show();
             this.Close();
         }
@@ -120,42 +143,56 @@ namespace CMPS_202_project
 
         }
 
-        private void txtNewListName_TextChanged(object sender, EventArgs e)
-        {
-            
-
-        }
-
         private void btnCreateList_Click(object sender, EventArgs e)
         {
-            label2.Hide();
-            if (String.IsNullOrEmpty(txtNewListName.Text))
+            if (string.IsNullOrWhiteSpace(txtNewListName.Text))
             {
-                label2.ForeColor = Color.Red;
-                label2.Text = "The List name Can't Be empty";
-                label2.Show();
+                MessageBox.Show("Please enter a name for the new list.");
                 return;
+            }
+
+            // Use the Controller to get the correct UserID from the email (stored in 'username' variable)
+            int userId = controllerObj.GetUserIDFromEmail(username);
+
+            if (userId == -1)
+            {
+                MessageBox.Show("Error: User not found.");
+                return;
+            }
+
+            int result = controllerObj.InsertList(txtNewListName.Text, userId);
+
+            if (result > 0)
+            {
+                MessageBox.Show("List created successfully!");
+                txtNewListName.Clear();
+                RefreshListComboBox();
             }
             else
             {
-                string listName = txtNewListName.Text;
-                int userId = controllerObj.GetUserIDFromEmail(email);
-
-                int result = controllerObj.InsertList(listName, userId);
-                if (result == 0)
-                {
-                    MessageBox.Show("Error adding the list.");
-                }
-                else
-                {
-                    MessageBox.Show("List added successfully.");
-                }
-
-                DataTable dt = controllerObj.GetUserLists(userId);
-                comboBox1.DataSource = dt;
-                comboBox1.DisplayMember = "ListName";
-                comboBox1.SelectedIndex = -1;
+                MessageBox.Show("Failed to create list. It might already exist.");
             }
+        }
+
+        private void btnSearchActor_Click_1(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(txtSearchActor.Text))
+            {
+                label2.ForeColor = Color.Red;
+                label2.Text = "The actor name Can't Be empty";
+                label2.Show();
+                return;
+            }
+            label2.Hide();
+
+            DataTable dt = controllerObj.GetShowsByActor(textBox1.Text);
+            dataGridView1.DataSource = dt;
+
+        }
+
+        private void txtSearchActor_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

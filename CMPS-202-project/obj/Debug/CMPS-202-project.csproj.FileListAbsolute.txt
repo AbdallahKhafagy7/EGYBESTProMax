@@ -136,3 +136,4 @@ C:\Users\Abdallah\Desktop\lalalala\CMPS-202-project\obj\Debug\CMPS-202-project.c
 C:\Users\Abdallah\Desktop\lalalala\CMPS-202-project\obj\Debug\CMPS-202-project.csproj.CoreCompileInputs.cache
 C:\Users\Abdallah\Desktop\lalalala\CMPS-202-project\obj\Debug\CMPS-202-project.exe
 C:\Users\Abdallah\Desktop\lalalala\CMPS-202-project\obj\Debug\CMPS-202-project.pdb
+C:\Users\abdel\source\repos\CMPS-202-project\CMPS-202-project\obj\Debug\CMPS_202_project.publisher_actor.resources

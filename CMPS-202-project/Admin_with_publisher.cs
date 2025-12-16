@@ -15,18 +15,48 @@ namespace CMPS_202_project
     public partial class Admin_with_publisher : Form
     {
         Controller controllerObj = new Controller();
-        DBManager dbMan = new DBManager();
+        // DBManager dbMan = new DBManager(); // Not used directly, Controller handles DB
+
         public Admin_with_publisher()
         {
             InitializeComponent();
             GUIHelper.ApplyModernStyle(this);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Admin_with_publisher_Load(object sender, EventArgs e)
+        {
+            // Optional: Auto-load data when form opens
+            // button3_Click(sender, e); // Load Publishers
+            // button4_Click(sender, e); // Load Shows
+        }
+
+        // --- Publisher Management ---
+
+        private void button3_Click(object sender, EventArgs e) // Load Publishers
+        {
+            DataTable dt = controllerObj.GetAllPublishers();
+            dataGridView2.DataSource = dt;
+        }
+
+        private void btnAddPublisher_Click(object sender, EventArgs e) // Add Publisher
+        {
+            // Logic to add publisher is handled in Form2 usually, 
+            // but if you want a dialog here later, this is the placeholder.
+            MessageBox.Show("This feature will be implemented soon.");
+        }
+
+        private void button1_Click(object sender, EventArgs e) // Delete Publisher
         {
             if (dataGridView2.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Please select a publisher to delete.");
+                return;
+            }
+
+            // Ensure 'UserID' column exists in your GetAllPublishers query
+            if (dataGridView2.SelectedRows[0].Cells["UserID"] == null)
+            {
+                MessageBox.Show("Error: UserID column not found.");
                 return;
             }
 
@@ -45,7 +75,8 @@ namespace CMPS_202_project
                 if (rows > 0)
                 {
                     MessageBox.Show("Publisher deleted successfully.");
-                    dataGridView2.DataSource = controllerObj.GetAllPublishers();
+                    // Refresh list
+                    button3_Click(sender, e);
                 }
                 else
                 {
@@ -54,28 +85,26 @@ namespace CMPS_202_project
             }
         }
 
-        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
+        // --- Show Management ---
 
+        private void button4_Click(object sender, EventArgs e) // Load Shows
+        {
+            DataTable dt = controllerObj.GetAllShows();
+            dataGridView1.DataSource = dt;
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            DataTable dt = controllerObj.GetAllPublishers();
-            dataGridView2.DataSource = dt;
-        }
-
-        private void btnAddPublisher_Click(object sender, EventArgs e)
-        {
-            // TODO: Implement the logic to open a form or dialog to add a new publisher
-            MessageBox.Show("This feature will be implemented soon.");
-        }
-
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e) // Delete Show
         {
             if (dataGridView1.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Please select a show to delete.");
+                return;
+            }
+
+            // Ensure 'MediaID' column exists
+            if (dataGridView1.SelectedRows[0].Cells["MediaID"] == null)
+            {
+                MessageBox.Show("Error: MediaID column not found.");
                 return;
             }
 
@@ -94,7 +123,8 @@ namespace CMPS_202_project
                 if (rows > 0)
                 {
                     MessageBox.Show("Show deleted successfully.");
-                    dataGridView1.DataSource = controllerObj.GetAllShows();
+                    // Refresh list
+                    button4_Click(sender, e);
                 }
                 else
                 {
@@ -103,31 +133,16 @@ namespace CMPS_202_project
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        // --- Navigation ---
+
+        private void button5_Click(object sender, EventArgs e) // Go to Data Entry (Form2)
         {
-            DataTable dt = controllerObj.GetAllShows();
-            dataGridView1.DataSource = dt;
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void Admin_with_publisher_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            Form2 form = new Form2();
+            publisher_actor form = new publisher_actor();
             form.Show();
         }
 
-        private void btnAddPublisher_Click_1(object sender, EventArgs e)
-        {
-
-        }
+        // Unused events
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
     }
 }

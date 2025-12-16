@@ -702,7 +702,37 @@ namespace DBapplication
                 return dbMan.ExecuteNonQuery(insertQuery);
             }
         }
+        public int UpdateActorName(int actorId, string newName)
+        {
+            string query = "UPDATE Actors SET Name = '" + newName + "' WHERE ActorID = " + actorId;
+            return dbMan.ExecuteNonQuery(query);
+        }
 
+        // Update Actor Age
+        public int UpdateActorAge(int actorId, int newAge)
+        {
+            string query = "UPDATE Actors SET Age = " + newAge + " WHERE ActorID = " + actorId;
+            return dbMan.ExecuteNonQuery(query);
+        }
+        public DataTable GetMoviesByActor(string actorName)
+        {
+            string query = "SELECT M.MediaID, M.Name AS MediaName, A.Name AS ActorName " +
+                           "FROM Media M " +
+                           "JOIN MediaActors MA ON M.MediaID = MA.MediaID " +
+                           "JOIN Actors A ON MA.ActorID = A.ActorID " +
+                           "WHERE A.Name LIKE '%" + actorName + "'";
+            return dbMan.ExecuteReader(query);
+        }
+        // Search Movies by Actor Name (distinct movies only)
+        public DataTable GetShowsByActor(string actorName)
+        {
+            string query = "SELECT DISTINCT M.Name AS MediaName, M.NumOfFavs, M.Finished " +
+                           "FROM Media M " +
+                           "JOIN MediaActors MA ON M.MediaID = MA.MediaID " +
+                           "JOIN Actors A ON MA.ActorID = A.ActorID " +
+                           "WHERE A.Name LIKE '%" + actorName + "%'";
+            return dbMan.ExecuteReader(query);
+        }
         // get show by name if exits
         public DataTable GetShowByName(string showName)
         {

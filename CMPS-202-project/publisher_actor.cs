@@ -12,12 +12,12 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace CMPS_202_project
 {
-    public partial class Form2 : Form
+    public partial class publisher_actor : Form
     {
         Controller controllerObj = new Controller();
         bool isReady;
 
-        public Form2()
+        public publisher_actor()
         {
             InitializeComponent();
             isReady = false;
@@ -38,7 +38,13 @@ namespace CMPS_202_project
             comboBox1.ValueMember = "ActorID";
             comboBox1.SelectedIndex = -1;
         }
-
+        private void UpdateActorComboBox3(DataTable dt)
+        {
+            comboBox3.DataSource = dt;
+            comboBox3.DisplayMember = "Name";
+            comboBox3.ValueMember = "ActorID";
+            comboBox3.SelectedIndex = -1;
+        }
         private void UpdateMediaComboBox(DataTable dt)
         {
             comboBox2.DataSource = dt;
@@ -231,6 +237,110 @@ namespace CMPS_202_project
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            // 1. Check if an actor is selected
+            if (comboBox3.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select an actor to update.");
+                return;
+            }
+
+            int actorId = Convert.ToInt32(comboBox3.SelectedValue);
+
+            string newName = textBox11.Text.Trim();
+            string ageStr = textBox10.Text.Trim();
+
+            bool nameUpdated = false;
+            bool ageUpdated = false;
+
+            // 2. Check Name Input (Update if not empty)
+            if (!string.IsNullOrEmpty(newName))
+            {
+                int result = controllerObj.UpdateActorName(actorId, newName);
+                if (result > 0) nameUpdated = true;
+                else MessageBox.Show("Failed to update Name.");
+            }
+
+            // 3. Check Age Input (Update if not empty)
+            if (!string.IsNullOrEmpty(ageStr))
+            {
+                if (int.TryParse(ageStr, out int newAge))
+                {
+                    int result = controllerObj.UpdateActorAge(actorId, newAge);
+                    if (result > 0) ageUpdated = true;
+                    else MessageBox.Show("Failed to update Age.");
+                }
+                else
+                {
+                    MessageBox.Show("Invalid Age format. Age not updated.");
+                }
+            }
+
+            // 4. Feedback & Refresh
+            if (nameUpdated || ageUpdated)
+            {
+                MessageBox.Show("Actor updated successfully!");
+
+                // Refresh lists to reflect changes
+                isReady = false;
+                RefreshCombos();
+                isReady = true;
+
+                // Clear inputs
+                textBox11.Clear();
+                textBox10.Clear();
+            }
+            else if (string.IsNullOrEmpty(newName) && string.IsNullOrEmpty(ageStr))
+            {
+                MessageBox.Show("Please enter a Name or Age to update.");
+            }
+        }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox10_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox11_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox9_TextChanged(object sender, EventArgs e)
+        {
+            UpdateActorComboBox3(controllerObj.GetActorsByName(textBox9.Text.Trim()));
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox6_TextChanged_1(object sender, EventArgs e)
+        {
+            UpdateActorComboBox(controllerObj.GetActorsByName(textBox6.Text.Trim()));
+        }
+
+        private void textBox7_TextChanged_1(object sender, EventArgs e)
+        {
+            UpdateMediaComboBox(controllerObj.GetMediaByName(textBox7.Text.Trim()));
+        }
+
+        private void comboBox2_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
         }
     }
 }
