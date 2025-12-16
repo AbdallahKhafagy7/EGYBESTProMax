@@ -15,6 +15,7 @@ namespace CMPS_202_project
         string username;
         Admin_with_publisher Admin_With_Publisher = new Admin_with_publisher();
         Admin_With_User Admin_With_User = new Admin_With_User();
+        StatsForm statsForm = new StatsForm();
         public AdminForm(string username)
         {
             InitializeComponent();
@@ -35,6 +36,11 @@ namespace CMPS_202_project
         {
             Admin_With_Publisher.Show();
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            statsForm.Show();
         }
     }
 }

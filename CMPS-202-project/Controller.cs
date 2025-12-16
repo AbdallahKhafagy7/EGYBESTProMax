@@ -5,6 +5,7 @@ using System.Text;
 using System.Data;
 using System.Windows.Forms;
 using System.Runtime.Remoting.Messaging;
+using System.Data.SqlClient;
 
 namespace DBapplication
 {
@@ -248,7 +249,164 @@ namespace DBapplication
                            "WHERE U.Email = '" + email + "'";  // CHANGED U.Name TO U.Email
             return dbMan.ExecuteReader(query);
         }
+        // 6. Delete User
+        public int DeleteUser(int userID)
+        {
+            string deleteWatchHistoryQuery = "DELETE FROM WatchHistory WHERE UserID = " + userID;
+            dbMan.ExecuteNonQuery(deleteWatchHistoryQuery);
 
+            string deleteRatingsQuery = "DELETE FROM MediaRating WHERE UserID = " + userID;
+            dbMan.ExecuteNonQuery(deleteRatingsQuery);
+
+            string deleteListItemsQuery = "DELETE FROM ListItems WHERE ListID IN (SELECT ListID FROM List WHERE UserID = " + userID + ")";
+            dbMan.ExecuteNonQuery(deleteListItemsQuery);
+
+            string deleteListsQuery = "DELETE FROM List WHERE UserID = " + userID;
+            dbMan.ExecuteNonQuery(deleteListsQuery);
+
+            string deletePaymentsQuery = "DELETE FROM Payment WHERE UserID = " + userID;
+            dbMan.ExecuteNonQuery(deletePaymentsQuery);
+
+            string deleteEndUserQuery = "DELETE FROM EndUser WHERE UserID = " + userID;
+            dbMan.ExecuteNonQuery(deleteEndUserQuery);
+
+            string deleteAdminQuery = "DELETE FROM Administrator WHERE UserID = " + userID;
+            dbMan.ExecuteNonQuery(deleteAdminQuery);
+
+            string deletePublisherQuery = "DELETE FROM Publisher WHERE UserID = " + userID;
+            dbMan.ExecuteNonQuery(deletePublisherQuery);
+
+            string deleteUserQuery = "DELETE FROM [User] WHERE UserID = " + userID;
+            return dbMan.ExecuteNonQuery(deleteUserQuery);
+        }
+
+
+        // 7. Reset User Pass
+        public int ResetUserPassword(int userID, string newPassword)
+        {
+            if (userID <= 0 || string.IsNullOrEmpty(newPassword))
+            {
+                MessageBox.Show("Invalid UserID or password.");
+                return 0;
+            }
+
+            string checkUserQuery = "SELECT COUNT(*) FROM [User] WHERE UserID = " + userID;
+            object exists = dbMan.ExecuteScalar(checkUserQuery);
+            if (Convert.ToInt32(exists) == 0)
+            {
+                MessageBox.Show("User not found in database.");
+                return 0;
+            }
+
+            string updatePasswordQuery = "UPDATE [User] SET Password = '" + newPassword + "' WHERE UserID = " + userID;
+            int rowsAffected = dbMan.ExecuteNonQuery(updatePasswordQuery);
+
+            return rowsAffected;
+        }
+
+
+        // 8. Delete Publisher
+        public int DeletePublisher(int userID)
+        {
+            string deleteWatchHistoryQuery = "DELETE FROM WatchHistory WHERE MediaID IN " +
+                                             "(SELECT MediaID FROM Media WHERE PublisherID = (SELECT PublisherID FROM Publisher WHERE UserID = " + userID + "))";
+            dbMan.ExecuteNonQuery(deleteWatchHistoryQuery);
+
+            string deleteRatingsQuery = "DELETE FROM MediaRating WHERE MediaID IN " +
+                                        "(SELECT MediaID FROM Media WHERE PublisherID = (SELECT PublisherID FROM Publisher WHERE UserID = " + userID + "))";
+            dbMan.ExecuteNonQuery(deleteRatingsQuery);
+
+            string deleteListItemsQuery = "DELETE FROM ListItems WHERE MediaID IN " +
+                                         "(SELECT MediaID FROM Media WHERE PublisherID = (SELECT PublisherID FROM Publisher WHERE UserID = " + userID + "))";
+            dbMan.ExecuteNonQuery(deleteListItemsQuery);
+
+            string deleteShowQuery = "DELETE FROM Show WHERE MediaID IN " +
+                                     "(SELECT MediaID FROM Media WHERE PublisherID = (SELECT PublisherID FROM Publisher WHERE UserID = " + userID + "))";
+            dbMan.ExecuteNonQuery(deleteShowQuery);
+
+            string deleteMediaQuery = "DELETE FROM Media WHERE PublisherID = (SELECT PublisherID FROM Publisher WHERE UserID = " + userID + ")";
+            dbMan.ExecuteNonQuery(deleteMediaQuery);
+
+            string deletePublisherQuery = "DELETE FROM Publisher WHERE UserID = " + userID;
+            dbMan.ExecuteNonQuery(deletePublisherQuery);
+
+            string deleteListItemsUserQuery = "DELETE FROM ListItems WHERE ListID IN (SELECT ListID FROM List WHERE UserID = " + userID + ")";
+            dbMan.ExecuteNonQuery(deleteListItemsUserQuery);
+
+            string deleteListsQuery = "DELETE FROM List WHERE UserID = " + userID;
+            dbMan.ExecuteNonQuery(deleteListsQuery);
+
+            string deleteUserQuery = "DELETE FROM [User] WHERE UserID = " + userID;
+            return dbMan.ExecuteNonQuery(deleteUserQuery);
+        }
+
+
+        // 9. Delete a Show
+        public int DeleteShow(int mediaID)
+        {
+            string deleteWatchHistoryQuery = "DELETE FROM WatchHistory WHERE MediaID = " + mediaID;
+            dbMan.ExecuteNonQuery(deleteWatchHistoryQuery);
+
+            string deleteRatingsQuery = "DELETE FROM MediaRating WHERE MediaID = " + mediaID;
+            dbMan.ExecuteNonQuery(deleteRatingsQuery);
+
+            string deleteListItemsQuery = "DELETE FROM ListItems WHERE MediaID = " + mediaID;
+            dbMan.ExecuteNonQuery(deleteListItemsQuery);
+
+            string deleteShowQuery = "DELETE FROM Show WHERE MediaID = " + mediaID;
+            dbMan.ExecuteNonQuery(deleteShowQuery);
+
+            string deleteMediaQuery = "DELETE FROM Media WHERE MediaID = " + mediaID;
+            return dbMan.ExecuteNonQuery(deleteMediaQuery);
+        }
+
+        // 10. Get All Shows
+        public DataTable GetAllShows()
+        {
+            string query = "SELECT M.MediaID, M.Name, M.NumOfFavs, M.Finished " +
+                           "FROM Media M " +
+                           "JOIN Show S ON M.MediaID = S.MediaID";
+            return dbMan.ExecuteReader(query);
+        }
+
+        // 11. Get All Publishers
+        public DataTable GetAllPublishers()
+        {
+            string query = "SELECT U.UserID, U.Name, U.Email, P.Website " +
+                           "FROM [User] U " +
+                           "JOIN Publisher P ON U.UserID = P.UserID";
+            return dbMan.ExecuteReader(query);
+        }
+        // 12. Get No. of Shows Per Publisher
+        public DataTable GetShowCountPerPublisher()
+        {
+            string query = @"SELECT U.Name AS Publisher, COUNT(M.MediaID) AS NumOfShows
+                     FROM Publisher P
+                     JOIN [User] U ON P.UserID = U.UserID
+                     LEFT JOIN Media M ON P.PublisherID = M.PublisherID
+                     GROUP BY U.Name";
+            return dbMan.ExecuteReader(query);
+        }
+        // 13. Get Avg Rating 
+        public DataTable GetShowRatings()
+        {
+            string query = @"SELECT M.Name AS ShowName, ISNULL(AVG(MR.Rating),0) AS AvgRating
+                     FROM Media M
+                     LEFT JOIN MediaRating MR ON M.MediaID = MR.MediaID
+                     JOIN Show S ON M.MediaID = S.MediaID
+                     GROUP BY M.Name";
+            return dbMan.ExecuteReader(query);
+        }
+
+        //14. Get top fav shows
+        public DataTable GetTopFavorites(int topN)
+        {
+            string query = $@"SELECT TOP {topN} M.Name AS ShowName, M.NumOfFavs
+                      FROM Media M
+                      JOIN Show S ON M.MediaID = S.MediaID
+                      ORDER BY M.NumOfFavs DESC";
+            return dbMan.ExecuteReader(query);
+        }
         public void TerminateConnection()
         {
             dbMan.CloseConnection();

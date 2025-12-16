@@ -42,17 +42,20 @@
             // 
             this.dataGridView1.BackgroundColor = System.Drawing.Color.LavenderBlush;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(536, 28);
+            this.dataGridView1.Location = new System.Drawing.Point(453, 91);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.Size = new System.Drawing.Size(297, 347);
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(232, 358);
+            this.dataGridView1.Size = new System.Drawing.Size(261, 448);
             this.dataGridView1.TabIndex = 7;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.LavenderBlush;
-            this.button3.Location = new System.Drawing.Point(81, 28);
+            this.button3.Location = new System.Drawing.Point(12, 28);
+            this.button3.Location = new System.Drawing.Point(91, 35);
+            this.button3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(117, 57);
             this.button3.TabIndex = 6;
@@ -61,47 +64,49 @@
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.LavenderBlush;
-            this.button2.Location = new System.Drawing.Point(81, 301);
+            this.button2.Location = new System.Drawing.Point(633, 28);
+            this.button2.Location = new System.Drawing.Point(91, 376);
+            this.button2.Size = new System.Drawing.Size(117, 57);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(117, 85);
+            this.button2.Size = new System.Drawing.Size(132, 106);
             this.button2.TabIndex = 5;
             this.button2.Text = "Delete Show";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.LavenderBlush;
-            this.button1.Location = new System.Drawing.Point(81, 110);
+            this.button1.Location = new System.Drawing.Point(189, 28);
+            this.button1.Location = new System.Drawing.Point(91, 138);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(117, 57);
             this.button1.TabIndex = 4;
-            this.button1.Text = "delete publisher";
+            this.button1.Text = "Delete Publisher";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // dataGridView2
             // 
-            this.dataGridView2.BackgroundColor = System.Drawing.Color.LavenderBlush;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(284, 28);
+            this.dataGridView2.Location = new System.Drawing.Point(12, 91);
+            this.dataGridView2.Location = new System.Drawing.Point(320, 35);
+            this.dataGridView2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowHeadersWidth = 51;
+            this.dataGridView2.Size = new System.Drawing.Size(294, 347);
             this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(232, 358);
+            this.dataGridView2.Size = new System.Drawing.Size(261, 448);
             this.dataGridView2.TabIndex = 8;
             this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
             // button4
-            // 
-            this.button4.BackColor = System.Drawing.Color.LavenderBlush;
-            this.button4.Location = new System.Drawing.Point(81, 204);
+            this.button4.Location = new System.Drawing.Point(453, 28);
+            this.button4.Location = new System.Drawing.Point(91, 255);
+            this.button4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(117, 57);
             this.button4.TabIndex = 9;
-            this.button4.Text = "show show";
+            this.button4.Text = "Show show";
             this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // Admin_with_publisher
             // 
