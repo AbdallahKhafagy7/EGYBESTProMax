@@ -14,7 +14,7 @@ namespace CMPS_202_project
     public partial class WatchForm : Form
     {
         Controller controllerObj;
-        string currentEmail
+        string currentEmail;
 
         // This flag prevents "Auto-Adding" when the form loads or search updates
         bool isReady = false;
@@ -133,7 +133,11 @@ namespace CMPS_202_project
             isReady = true;
         }
 
-     
-
+        private void buttonBack_Click(object sender, EventArgs e)
+        {
+            WelcomeForm welcome = new WelcomeForm(currentEmail);
+            welcome.Show();
+            this.Close();
+        }
     }
 }
