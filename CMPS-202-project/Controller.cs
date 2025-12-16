@@ -473,7 +473,7 @@ namespace DBapplication
         }
 
         // insert show
-        public int InsertShow(int publisherId, string showName, int episodesCount)
+        public int InsertShow(int publisherId, string showName, int episodesCount, string genre)
         {
             // 1. Insert into Media
             string insertMediaQuery =
@@ -497,6 +497,12 @@ namespace DBapplication
                 "INSERT INTO Seasons (MediaID, EpisodeCount, Name) " +
                 "VALUES (" + mediaId + ", " + episodesCount + ", 'Season 1')";
             dbMan.ExecuteNonQuery(insertSeasonQuery);
+
+            // 5. Insert Genre
+            string insertGenreQuery =
+                "INSERT INTO MediaGenre (MediaID, GenreName) " +
+                "VALUES (" + mediaId + ", '" + genre + "')";
+            dbMan.ExecuteNonQuery(insertGenreQuery);
 
             return mediaId;
         }

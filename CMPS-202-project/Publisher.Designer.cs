@@ -29,6 +29,8 @@
             this.panelControls = new System.Windows.Forms.Panel();
             this.grpAddShow = new System.Windows.Forms.GroupBox();
             this.panelActions = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panelHeader.SuspendLayout();
             this.layoutMain.SuspendLayout();
@@ -86,7 +88,7 @@
             // 
             this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.button1.Location = new System.Drawing.Point(17, 148);
+            this.button1.Location = new System.Drawing.Point(13, 213);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(249, 36);
@@ -175,6 +177,8 @@
             // 
             // grpAddShow
             // 
+            this.grpAddShow.Controls.Add(this.textBox1);
+            this.grpAddShow.Controls.Add(this.label4);
             this.grpAddShow.Controls.Add(this.label3);
             this.grpAddShow.Controls.Add(this.textBox2);
             this.grpAddShow.Controls.Add(this.label2);
@@ -187,7 +191,7 @@
             this.grpAddShow.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.grpAddShow.Name = "grpAddShow";
             this.grpAddShow.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.grpAddShow.Size = new System.Drawing.Size(287, 224);
+            this.grpAddShow.Size = new System.Drawing.Size(287, 275);
             this.grpAddShow.TabIndex = 0;
             this.grpAddShow.TabStop = false;
             this.grpAddShow.Text = "Add New Show";
@@ -201,6 +205,22 @@
             this.panelActions.Name = "panelActions";
             this.panelActions.Size = new System.Drawing.Size(287, 80);
             this.panelActions.TabIndex = 1;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(21, 145);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(56, 23);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Genre";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(17, 172);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(249, 30);
+            this.textBox1.TabIndex = 8;
             // 
             // PublisherForm
             // 
@@ -240,5 +260,7 @@
         private System.Windows.Forms.Panel panelControls;
         private System.Windows.Forms.GroupBox grpAddShow;
         private System.Windows.Forms.Panel panelActions;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label4;
     }
 }
