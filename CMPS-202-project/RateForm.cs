@@ -14,14 +14,15 @@ namespace CMPS_202_project
     public partial class RateForm : Form
     {
         Controller controllerobj =new Controller();
-        string username;
+        string mail;
 
         
-        public RateForm(string username)
+        public RateForm(string mail)
         {
             InitializeComponent();
             label3.Hide();
-            this.username = username;
+            this.mail = mail;
+            dataGridView1.MultiSelect = false;
             GUIHelper.ApplyModernStyle(this);
         }
 
@@ -39,26 +40,33 @@ namespace CMPS_202_project
         {
             if (string.IsNullOrEmpty(textBox2.Text))
             {
-                label4.Show();
+                label2.Show();
             }
             else
             {
-                label4.Hide();
+                label2.Hide();
             }
 
-            if (dataGridView1.SelectedRows[0].Cells[0].Value == null)
-            {
-                label5.Show();
-            }
-            else
+            if (dataGridView1.SelectedRows.Count > 0)
             {
                 label5.Hide();
+                DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
+                string showName = selectedRow.Cells["Name"].Value.ToString();
+                int rating = Convert.ToInt32(textBox2.Text);
+                // update rating
+                int status = controllerobj.RateShow(mail, showName, rating);
+                if (status == 0)
+                {
+                    MessageBox.Show("Error updating rating.");
+                }
+                else
+                {
+                    MessageBox.Show("Rating updated successfully.");
+                }
             }
-
-            int k = controllerobj.UpdateRating(dataGridView1.SelectedRows[0].Cells[0].Value.ToString(),textBox2.Text,username);
-            if (k == 0)
+            else
             {
-                   
+                label5.Show();
             }
         }
 
@@ -70,12 +78,14 @@ namespace CMPS_202_project
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            string name = textBox1.Text;
+            DataTable dt = controllerobj.GetShowsByName(name);
+            dataGridView1.DataSource = dt;
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            WelcomeForm welcomeForm = new WelcomeForm(username);
+            WelcomeForm welcomeForm = new WelcomeForm(mail);
             welcomeForm.Show();
             this.Close();
         }

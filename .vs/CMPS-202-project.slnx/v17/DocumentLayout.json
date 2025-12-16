@@ -3,11 +3,23 @@
   "WorkspaceRootPath": "C:\\Users\\Abdallah\\Desktop\\j\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{09B73215-0B01-4A75-A159-9BE2796ADC48}|CMPS-202-project\\CMPS-202-project.csproj|c:\\users\\abdallah\\desktop\\j\\cmps-202-project\\rateform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{09B73215-0B01-4A75-A159-9BE2796ADC48}|CMPS-202-project\\CMPS-202-project.csproj|solutionrelative:cmps-202-project\\rateform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{09B73215-0B01-4A75-A159-9BE2796ADC48}|CMPS-202-project\\CMPS-202-project.csproj|c:\\users\\abdallah\\desktop\\j\\cmps-202-project\\rateform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{09B73215-0B01-4A75-A159-9BE2796ADC48}|CMPS-202-project\\CMPS-202-project.csproj|solutionrelative:cmps-202-project\\rateform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{09B73215-0B01-4A75-A159-9BE2796ADC48}|CMPS-202-project\\CMPS-202-project.csproj|c:\\users\\abdallah\\desktop\\j\\cmps-202-project\\rateform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{09B73215-0B01-4A75-A159-9BE2796ADC48}|CMPS-202-project\\CMPS-202-project.csproj|solutionrelative:cmps-202-project\\rateform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{09B73215-0B01-4A75-A159-9BE2796ADC48}|CMPS-202-project\\CMPS-202-project.csproj|c:\\users\\abdallah\\desktop\\j\\cmps-202-project\\welcomeform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{09B73215-0B01-4A75-A159-9BE2796ADC48}|CMPS-202-project\\CMPS-202-project.csproj|solutionrelative:cmps-202-project\\welcomeform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{09B73215-0B01-4A75-A159-9BE2796ADC48}|CMPS-202-project\\CMPS-202-project.csproj|c:\\users\\abdallah\\desktop\\j\\cmps-202-project\\welcomeform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{09B73215-0B01-4A75-A159-9BE2796ADC48}|CMPS-202-project\\CMPS-202-project.csproj|C:\\Users\\Abdallah\\Desktop\\j\\cmps-202-project\\welcomeform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{09B73215-0B01-4A75-A159-9BE2796ADC48}|CMPS-202-project\\CMPS-202-project.csproj|solutionrelative:cmps-202-project\\welcomeform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
@@ -18,32 +30,69 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "RateForm.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\Abdallah\\Desktop\\j\\CMPS-202-project\\RateForm.Designer.cs",
+              "RelativeDocumentMoniker": "CMPS-202-project\\RateForm.Designer.cs",
+              "ToolTip": "C:\\Users\\Abdallah\\Desktop\\j\\CMPS-202-project\\RateForm.Designer.cs",
+              "RelativeToolTip": "CMPS-202-project\\RateForm.Designer.cs",
+              "ViewState": "AgIAAJMAAAAAAAAAAIAwwKAAAABOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-16T13:53:37.102Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "RateForm.cs",
+              "DocumentMoniker": "C:\\Users\\Abdallah\\Desktop\\j\\CMPS-202-project\\RateForm.cs",
+              "RelativeDocumentMoniker": "CMPS-202-project\\RateForm.cs",
+              "ToolTip": "C:\\Users\\Abdallah\\Desktop\\j\\CMPS-202-project\\RateForm.cs",
+              "RelativeToolTip": "CMPS-202-project\\RateForm.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAQwBgAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-16T13:53:28.701Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "RateForm.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Abdallah\\Desktop\\j\\CMPS-202-project\\RateForm.cs",
+              "RelativeDocumentMoniker": "CMPS-202-project\\RateForm.cs",
+              "ToolTip": "C:\\Users\\Abdallah\\Desktop\\j\\CMPS-202-project\\RateForm.cs [Design]",
+              "RelativeToolTip": "CMPS-202-project\\RateForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-16T13:52:29.876Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "WelcomeForm.cs",
               "DocumentMoniker": "C:\\Users\\Abdallah\\Desktop\\j\\CMPS-202-project\\WelcomeForm.cs",
               "RelativeDocumentMoniker": "CMPS-202-project\\WelcomeForm.cs",
               "ToolTip": "C:\\Users\\Abdallah\\Desktop\\j\\CMPS-202-project\\WelcomeForm.cs",
               "RelativeToolTip": "CMPS-202-project\\WelcomeForm.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAAcAAAAAAAAAA==",
+              "ViewState": "AgIAABAAAAAAAAAAAAAtwBwAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-16T13:49:35.822Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "WelcomeForm.cs [Design]",
               "DocumentMoniker": "C:\\Users\\Abdallah\\Desktop\\j\\CMPS-202-project\\WelcomeForm.cs",
               "RelativeDocumentMoniker": "CMPS-202-project\\WelcomeForm.cs",
               "ToolTip": "C:\\Users\\Abdallah\\Desktop\\j\\CMPS-202-project\\WelcomeForm.cs [Design]",
               "RelativeToolTip": "CMPS-202-project\\WelcomeForm.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-16T13:48:52.862Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-12-16T13:48:52.862Z"
             }
           ]
         }
