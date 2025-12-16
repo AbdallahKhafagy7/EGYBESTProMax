@@ -20,7 +20,7 @@ namespace CMPS_202_project
         {
             InitializeComponent();
             this.email = email;
-            label4.Hide();
+            //label4.Hide();
             dataGridView1.AllowUserToAddRows = false;
             GUIHelper.ApplyModernStyle(this);
         }
@@ -61,10 +61,10 @@ namespace CMPS_202_project
 
         private void button1_Click(object sender, EventArgs e)
         {
-            label4.Hide();
+            //label4.Hide();
             if (string.IsNullOrEmpty(textBox2.Text))
             {
-                label4.Show();
+              //  label4.Show();
                 return;
             }
 
@@ -81,6 +81,11 @@ namespace CMPS_202_project
             {
                 MessageBox.Show("Show added successfully.");
             }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

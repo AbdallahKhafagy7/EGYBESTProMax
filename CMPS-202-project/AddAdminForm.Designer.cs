@@ -2,15 +2,8 @@
 {
     partial class AddAdminForm
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,12 +13,6 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
@@ -47,72 +34,15 @@
             this.grpForm.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panelHeader
-            // 
-            this.panelHeader.Controls.Add(this.lblTitle);
-            this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelHeader.Location = new System.Drawing.Point(0, 0);
-            this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(500, 70);
-            this.panelHeader.TabIndex = 0;
-            // 
-            // lblTitle
-            // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
-            this.lblTitle.Location = new System.Drawing.Point(20, 15);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(228, 37);
-            this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "Create New Admin";
-            // 
-            // panelMain
-            // 
-            this.panelMain.Controls.Add(this.grpForm);
-            this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelMain.Padding = new System.Windows.Forms.Padding(20);
-            this.panelMain.Location = new System.Drawing.Point(0, 70);
-            this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(500, 500);
-            this.panelMain.TabIndex = 1;
-            // 
-            // grpForm
-            // 
-            this.grpForm.Controls.Add(this.label1);
-            this.grpForm.Controls.Add(this.textBoxName);
-            this.grpForm.Controls.Add(this.label2);
-            this.grpForm.Controls.Add(this.textBoxEmail);
-            this.grpForm.Controls.Add(this.label3);
-            this.grpForm.Controls.Add(this.textBoxPassword);
-            this.grpForm.Controls.Add(this.label4);
-            this.grpForm.Controls.Add(this.textBoxConfirm);
-            this.grpForm.Controls.Add(this.checkBoxShowPassword);
-            this.grpForm.Controls.Add(this.buttonAddAdmin);
-            this.grpForm.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grpForm.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.grpForm.Location = new System.Drawing.Point(20, 20);
-            this.grpForm.Name = "grpForm";
-            this.grpForm.Size = new System.Drawing.Size(460, 460);
-            this.grpForm.TabIndex = 0;
-            this.grpForm.TabStop = false;
-            this.grpForm.Text = "Admin Details";
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.label1.Location = new System.Drawing.Point(20, 40);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(84, 23);
+            this.label1.Size = new System.Drawing.Size(87, 23);
             this.label1.TabIndex = 0;
             this.label1.Text = "Full Name";
-            // 
-            // textBoxName
-            // 
-            this.textBoxName.Location = new System.Drawing.Point(24, 66);
-            this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(400, 30);
-            this.textBoxName.TabIndex = 3;
             // 
             // label2
             // 
@@ -124,13 +54,6 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Email Address";
             // 
-            // textBoxEmail
-            // 
-            this.textBoxEmail.Location = new System.Drawing.Point(24, 136);
-            this.textBoxEmail.Name = "textBoxEmail";
-            this.textBoxEmail.Size = new System.Drawing.Size(400, 30);
-            this.textBoxEmail.TabIndex = 4;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -140,6 +63,20 @@
             this.label3.Size = new System.Drawing.Size(80, 23);
             this.label3.TabIndex = 2;
             this.label3.Text = "Password";
+            // 
+            // textBoxName
+            // 
+            this.textBoxName.Location = new System.Drawing.Point(24, 66);
+            this.textBoxName.Name = "textBoxName";
+            this.textBoxName.Size = new System.Drawing.Size(400, 30);
+            this.textBoxName.TabIndex = 3;
+            // 
+            // textBoxEmail
+            // 
+            this.textBoxEmail.Location = new System.Drawing.Point(24, 136);
+            this.textBoxEmail.Name = "textBoxEmail";
+            this.textBoxEmail.Size = new System.Drawing.Size(400, 30);
+            this.textBoxEmail.TabIndex = 4;
             // 
             // textBoxPassword
             // 
@@ -191,6 +128,57 @@
             this.buttonAddAdmin.UseVisualStyleBackColor = true;
             this.buttonAddAdmin.Click += new System.EventHandler(this.buttonAddAdmin_Click_1);
             // 
+            // panelHeader
+            // 
+            this.panelHeader.Controls.Add(this.lblTitle);
+            this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelHeader.Location = new System.Drawing.Point(0, 0);
+            this.panelHeader.Name = "panelHeader";
+            this.panelHeader.Size = new System.Drawing.Size(500, 70);
+            this.panelHeader.TabIndex = 0;
+            this.panelHeader.Paint += new System.Windows.Forms.PaintEventHandler(this.panelHeader_Paint);
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
+            this.lblTitle.Location = new System.Drawing.Point(20, 15);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(258, 37);
+            this.lblTitle.TabIndex = 0;
+            this.lblTitle.Text = "Create New Admin";
+            // 
+            // panelMain
+            // 
+            this.panelMain.Controls.Add(this.grpForm);
+            this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelMain.Location = new System.Drawing.Point(0, 70);
+            this.panelMain.Name = "panelMain";
+            this.panelMain.Padding = new System.Windows.Forms.Padding(20);
+            this.panelMain.Size = new System.Drawing.Size(500, 500);
+            this.panelMain.TabIndex = 1;
+            // 
+            // grpForm
+            // 
+            this.grpForm.Controls.Add(this.label1);
+            this.grpForm.Controls.Add(this.textBoxName);
+            this.grpForm.Controls.Add(this.label2);
+            this.grpForm.Controls.Add(this.textBoxEmail);
+            this.grpForm.Controls.Add(this.label3);
+            this.grpForm.Controls.Add(this.textBoxPassword);
+            this.grpForm.Controls.Add(this.label4);
+            this.grpForm.Controls.Add(this.textBoxConfirm);
+            this.grpForm.Controls.Add(this.checkBoxShowPassword);
+            this.grpForm.Controls.Add(this.buttonAddAdmin);
+            this.grpForm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grpForm.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.grpForm.Location = new System.Drawing.Point(20, 20);
+            this.grpForm.Name = "grpForm";
+            this.grpForm.Size = new System.Drawing.Size(460, 460);
+            this.grpForm.TabIndex = 0;
+            this.grpForm.TabStop = false;
+            this.grpForm.Text = "Admin Details";
+            // 
             // AddAdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -211,9 +199,6 @@
 
         }
 
-        #endregion
-
-        // Original Variables Preserved
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -224,8 +209,6 @@
         private System.Windows.Forms.TextBox textBoxConfirm;
         private System.Windows.Forms.CheckBox checkBoxShowPassword;
         private System.Windows.Forms.Button buttonAddAdmin;
-
-        // New Layout Containers
         private System.Windows.Forms.Panel panelHeader;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Panel panelMain;

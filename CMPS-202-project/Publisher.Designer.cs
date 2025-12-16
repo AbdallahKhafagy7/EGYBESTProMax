@@ -2,15 +2,8 @@
 {
     partial class PublisherForm
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,16 +13,12 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -70,8 +59,8 @@
             // layoutMain
             // 
             this.layoutMain.ColumnCount = 2;
-            this.layoutMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 350F)); // Fixed Left
-            this.layoutMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F)); // Responsive Right
+            this.layoutMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 350F));
+            this.layoutMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.layoutMain.Controls.Add(this.panelControls, 0, 0);
             this.layoutMain.Controls.Add(this.dataGridView1, 1, 0);
             this.layoutMain.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -105,7 +94,7 @@
             this.grpAddShow.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.grpAddShow.Location = new System.Drawing.Point(10, 10);
             this.grpAddShow.Name = "grpAddShow";
-            this.grpAddShow.Size = new System.Drawing.Size(324, 250);
+            this.grpAddShow.Size = new System.Drawing.Size(324, 280);
             this.grpAddShow.TabIndex = 0;
             this.grpAddShow.TabStop = false;
             this.grpAddShow.Text = "Add New Show";
@@ -203,7 +192,7 @@
             // 
             // PublisherForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(900, 562);
             this.Controls.Add(this.layoutMain);
@@ -224,17 +213,14 @@
 
         }
 
-        #endregion
-
-        // Original Variables Preserved
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button2;
-
-        // New Layout Containers
         private System.Windows.Forms.Panel panelHeader;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.TableLayoutPanel layoutMain;

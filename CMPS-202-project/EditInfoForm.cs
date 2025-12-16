@@ -132,5 +132,10 @@ namespace CMPS_202_project
         {
 
         }
+
+        private void panelHeader_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
