@@ -13,18 +13,15 @@ namespace CMPS_202_project
 {
     public partial class SignUpForm : Form
     {
-        LoginForm loginForm;
+        // Removed LoginForm dependency
         Controller controllerObj = new Controller();
 
-        public SignUpForm(LoginForm loginForm)
+        public SignUpForm()
         {
             InitializeComponent();
-            this.loginForm = loginForm;
 
-            // 1. Apply Modern Theme
             GUIHelper.ApplyModernStyle(this);
 
-            // 2. Hide Error Labels initially
             lblErrorEmail.Hide();
             lblErrorName.Hide();
             lblErrorPass.Hide();
@@ -33,18 +30,14 @@ namespace CMPS_202_project
 
         private void SignUpForm_Load(object sender, EventArgs e)
         {
-            // Style the "Login" link manually since it's a Label acting as a button
-            lblLoginLink.ForeColor = Color.FromArgb(220, 20, 60); // Modern Red
+            lblLoginLink.ForeColor = Color.FromArgb(220, 20, 60);
             lblLoginLink.Cursor = Cursors.Hand;
-
-            // Add Hover Effects
             lblLoginLink.MouseEnter += (s, ev) => lblLoginLink.ForeColor = Color.Red;
             lblLoginLink.MouseLeave += (s, ev) => lblLoginLink.ForeColor = Color.FromArgb(220, 20, 60);
         }
 
         private void btnSignUp_Click(object sender, EventArgs e)
         {
-            // Reset Errors
             lblErrorEmail.Hide();
             lblErrorName.Hide();
             lblErrorPass.Hide();
@@ -55,7 +48,6 @@ namespace CMPS_202_project
             string pass = txtPassword.Text;
             string confirm = txtConfirm.Text;
 
-            // 1. Validation
             bool isValid = true;
 
             if (string.IsNullOrEmpty(email))
@@ -81,8 +73,7 @@ namespace CMPS_202_project
 
             if (!isValid) return;
 
-            // 2. Call Controller
-            // Note: Ensure Controller.addUser signature is (Email, Name, Password)
+            // Controller hashes the password internally now
             int result = controllerObj.addUser(email, name, pass);
 
             if (result == 0)
@@ -92,28 +83,24 @@ namespace CMPS_202_project
             else
             {
                 MessageBox.Show("Account created successfully!");
-                this.Close();
-                loginForm.Show();
+                this.Close(); // Just close. LoginForm is waiting in background.
             }
         }
 
         private void lblLoginLink_Click(object sender, EventArgs e)
         {
-            this.Close();
-            loginForm.Show();
+            this.Close(); // Return to Login
         }
 
         private void chkShowPass_CheckedChanged(object sender, EventArgs e)
         {
-            // Toggle visibility for both password fields
             txtPassword.UseSystemPasswordChar = !chkShowPass.Checked;
             txtConfirm.UseSystemPasswordChar = !chkShowPass.Checked;
         }
 
-        // Prevent app closing if user clicks 'X'
         private void SignUpForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            loginForm.Show();
+            // No action needed, parent form (Login) handles re-showing
         }
     }
 }

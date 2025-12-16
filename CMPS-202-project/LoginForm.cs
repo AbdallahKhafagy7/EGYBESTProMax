@@ -9,12 +9,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 namespace CMPS_202_project
 {
     public partial class LoginForm : Form
     {
-
         Controller controllerObj = new Controller();
+
+        // Properties to pass data to Program.cs
+        public string LoggedInEmail { get; private set; }
+        public string LoggedInUserType { get; private set; }
+
         public LoginForm()
         {
             InitializeComponent();
@@ -24,24 +29,20 @@ namespace CMPS_202_project
             label7.Hide();
             label8.Hide();
         }
+
         private void LoginForm_Load(object sender, EventArgs e)
         {
-            // FORCE "Sign up" label to be RED and clickable
-            label3.ForeColor = Color.FromArgb(220, 20, 60); // Modern Red
+            label3.ForeColor = Color.FromArgb(220, 20, 60);
             label3.Cursor = Cursors.Hand;
-
-            // Add Hover Effects manually since it is a Label, not a LinkLabel
-            label3.MouseEnter += (s, ev) => label3.ForeColor = Color.Red; // Bright Red on Hover
-            label3.MouseLeave += (s, ev) => label3.ForeColor = Color.FromArgb(220, 20, 60); // Back to Darker Red
+            label3.MouseEnter += (s, ev) => label3.ForeColor = Color.Red;
+            label3.MouseLeave += (s, ev) => label3.ForeColor = Color.FromArgb(220, 20, 60);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-
             string Email = textBox1.Text.Trim();
             string password = textBox2.Text.Trim();
 
-            // 1. Basic Validation: Don't allow empty inputs
             if (string.IsNullOrEmpty(Email))
             {
                 label6.Show();
@@ -52,8 +53,7 @@ namespace CMPS_202_project
                 label6.Hide();
             }
 
-            int result = controllerObj.IsEmailExists(Email); // TODO:: Make this
-
+            int result = controllerObj.IsEmailExists(Email);
 
             if (result == 0)
             {
@@ -61,60 +61,46 @@ namespace CMPS_202_project
             }
             else
             {
-                    
+                // Controller now handles hashing inside CheckPassword
                 if (!controllerObj.CheckPassword(Email, password))
                 {
                     label7.Show();
                 }
                 else
                 {
-                    if (controllerObj.GetUserType(Email) == "EndUser")
-                    {
-                        WelcomeForm welcome = new WelcomeForm(Email);
-                        welcome.Show();
-                        this.Hide();
-                    }
-                    else if (controllerObj.GetUserType(Email) == "Administrator")
-                    {
-                        AdminForm adminForm = new AdminForm(Email);
-                        adminForm.Show();
-                        this.Hide();
-                    }
-                    else if (controllerObj.GetUserType(Email) == "Publisher")
-                    {
-                        PublisherForm PublisherList = new PublisherForm(Email);
-                        PublisherList.Show();
-                        this.Hide();
-                    }
+                    // LOGIN SUCCESS
+                    // 1. Store info for Program.cs
+                    LoggedInEmail = Email;
+                    LoggedInUserType = controllerObj.GetUserType(Email);
+
+                    // 2. Set Result to OK so Program.cs knows to proceed
+                    this.DialogResult = DialogResult.OK;
+
+                    // 3. Close this form
+                    this.Close();
                 }
             }
         }
 
-
-
-
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-
         }
 
         private void label6_Click(object sender, EventArgs e)
         {
-
         }
 
         private void label8_Click(object sender, EventArgs e)
         {
-
         }
-
 
         private void label3_Click(object sender, EventArgs e)
         {
-            SignUpForm signIn = new SignUpForm(this);
-            signIn.Show();
+            // Open SignUpForm as a modal dialog
             this.Hide();
-
+            SignUpForm signIn = new SignUpForm();
+            signIn.ShowDialog();
+            this.Show();
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
