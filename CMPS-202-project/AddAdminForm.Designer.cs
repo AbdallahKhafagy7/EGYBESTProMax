@@ -178,6 +178,7 @@
             this.grpForm.TabIndex = 0;
             this.grpForm.TabStop = false;
             this.grpForm.Text = "Admin Details";
+            this.grpForm.Enter += new System.EventHandler(this.grpForm_Enter);
             // 
             // AddAdminForm
             // 

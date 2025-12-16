@@ -35,18 +35,10 @@
             this.button4 = new System.Windows.Forms.Button();
             this.panelHeader = new System.Windows.Forms.Panel();
             this.layoutMain = new System.Windows.Forms.TableLayoutPanel();
+            this.button5 = new System.Windows.Forms.Button();
             this.panelHeader.SuspendLayout();
             this.layoutMain.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // panelHeader
-            // 
-            this.panelHeader.Controls.Add(this.label1);
-            this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelHeader.Location = new System.Drawing.Point(0, 0);
-            this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(900, 100);
-            this.panelHeader.TabIndex = 0;
             // 
             // label1
             // 
@@ -59,25 +51,6 @@
             this.label1.Text = "Admin Dashboard";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // layoutMain
-            // 
-            this.layoutMain.ColumnCount = 2;
-            this.layoutMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.layoutMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.layoutMain.Controls.Add(this.button1, 0, 0);
-            this.layoutMain.Controls.Add(this.button2, 1, 0);
-            this.layoutMain.Controls.Add(this.button4, 0, 1);
-            this.layoutMain.Controls.Add(this.button3, 1, 1);
-            this.layoutMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.layoutMain.Location = new System.Drawing.Point(0, 100);
-            this.layoutMain.Name = "layoutMain";
-            this.layoutMain.Padding = new System.Windows.Forms.Padding(50);
-            this.layoutMain.RowCount = 2;
-            this.layoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.layoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.layoutMain.Size = new System.Drawing.Size(900, 450);
-            this.layoutMain.TabIndex = 1;
             // 
             // button1
             // 
@@ -135,6 +108,46 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
+            // panelHeader
+            // 
+            this.panelHeader.Controls.Add(this.button5);
+            this.panelHeader.Controls.Add(this.label1);
+            this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelHeader.Location = new System.Drawing.Point(0, 0);
+            this.panelHeader.Name = "panelHeader";
+            this.panelHeader.Size = new System.Drawing.Size(900, 100);
+            this.panelHeader.TabIndex = 0;
+            // 
+            // layoutMain
+            // 
+            this.layoutMain.ColumnCount = 2;
+            this.layoutMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.layoutMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.layoutMain.Controls.Add(this.button1, 0, 0);
+            this.layoutMain.Controls.Add(this.button2, 1, 0);
+            this.layoutMain.Controls.Add(this.button4, 0, 1);
+            this.layoutMain.Controls.Add(this.button3, 1, 1);
+            this.layoutMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.layoutMain.Location = new System.Drawing.Point(0, 100);
+            this.layoutMain.Name = "layoutMain";
+            this.layoutMain.Padding = new System.Windows.Forms.Padding(50);
+            this.layoutMain.RowCount = 2;
+            this.layoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.layoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.layoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.layoutMain.Size = new System.Drawing.Size(900, 450);
+            this.layoutMain.TabIndex = 1;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(32, 38);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(111, 47);
+            this.button5.TabIndex = 1;
+            this.button5.Text = "logout";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -164,5 +177,6 @@
         // New Layout Containers
         private System.Windows.Forms.Panel panelHeader;
         private System.Windows.Forms.TableLayoutPanel layoutMain;
+        private System.Windows.Forms.Button button5;
     }
 }

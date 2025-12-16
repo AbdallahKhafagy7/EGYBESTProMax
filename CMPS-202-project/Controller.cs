@@ -724,13 +724,16 @@ namespace DBapplication
             return dbMan.ExecuteReader(query);
         }
         // Search Movies by Actor Name (distinct movies only)
+        // Function to Search for Shows by Actor Name
         public DataTable GetShowsByActor(string actorName)
         {
-            string query = "SELECT DISTINCT M.Name AS MediaName, M.NumOfFavs, M.Finished " +
+            // Corrected Query using your specific table names: 'MediaActors' and 'Actors'
+            string query = "SELECT M.Name, M.NumOfFavs, M.Finished " +
                            "FROM Media M " +
                            "JOIN MediaActors MA ON M.MediaID = MA.MediaID " +
                            "JOIN Actors A ON MA.ActorID = A.ActorID " +
                            "WHERE A.Name LIKE '%" + actorName + "%'";
+
             return dbMan.ExecuteReader(query);
         }
         // get show by name if exits

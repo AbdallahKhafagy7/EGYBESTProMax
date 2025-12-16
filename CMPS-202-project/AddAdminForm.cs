@@ -71,5 +71,10 @@ namespace CMPS_202_project
         {
             // You can leave this empty if you don't need custom painting.
         }
+
+        private void grpForm_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

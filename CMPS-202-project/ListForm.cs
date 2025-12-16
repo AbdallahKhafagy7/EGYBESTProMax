@@ -176,18 +176,24 @@ namespace CMPS_202_project
 
         private void btnSearchActor_Click_1(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(txtSearchActor.Text))
+            // Ensure you have a textbox named 'txtSearchActor' in your Designer
+            if (string.IsNullOrWhiteSpace(txtSearchActor.Text))
             {
-                label2.ForeColor = Color.Red;
-                label2.Text = "The actor name Can't Be empty";
-                label2.Show();
+                MessageBox.Show("Please enter an actor name.");
                 return;
             }
-            label2.Hide();
 
-            DataTable dt = controllerObj.GetShowsByActor(textBox1.Text);
-            dataGridView1.DataSource = dt;
+            // Call the specific controller method for Actor Search
+            DataTable dt = controllerObj.GetShowsByActor(txtSearchActor.Text);
 
+            if (dt != null)
+            {
+                dataGridView1.DataSource = dt;
+            }
+            else
+            {
+                MessageBox.Show("No shows found for this actor.");
+            }
         }
 
         private void txtSearchActor_TextChanged(object sender, EventArgs e)

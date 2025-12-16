@@ -54,5 +54,13 @@ namespace CMPS_202_project
         {
 
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            LoginForm loginForm = new LoginForm();
+            loginForm.Show();
+            MessageBox.Show("Logged out successfully.");
+            this.Close();
+        }
     }
 }
