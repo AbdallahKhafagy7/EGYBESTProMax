@@ -103,28 +103,6 @@ namespace CMPS_202_project
             dataGridView1.DataSource = dt;
         }
 
-        // Search by Actor Name
-        private void btnSearchActor_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(txtSearchActor.Text))
-            {
-                MessageBox.Show("Please enter an actor name.");
-                return;
-            }
-
-            // Assuming your Controller has a method GetShowsByActor.
-            // If not, you need to implement it to query the Casting/Actor/Media tables.
-            DataTable dt = controllerObj.GetShowsByActor(txtSearchActor.Text);
-
-            if (dt != null)
-            {
-                dataGridView1.DataSource = dt;
-            }
-            else
-            {
-                MessageBox.Show("No shows found for this actor.");
-            }
-        }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -184,7 +162,7 @@ namespace CMPS_202_project
             }
 
             // Call the specific controller method for Actor Search
-            DataTable dt = controllerObj.GetShowsByActor(txtSearchActor.Text);
+            DataTable dt = controllerObj.GetMoviesByActor(txtSearchActor.Text);
 
             if (dt != null)
             {
