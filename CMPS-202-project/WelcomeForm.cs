@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace CMPS_202_project
 {
@@ -28,9 +29,12 @@ namespace CMPS_202_project
             label2.Text = "Welcome " + controllerobj.GetNameFromEmail(email);
             this.email= email;
             dataGridView1.Hide();
-            DataTable dt = controllerobj.getAllist(email);
+
+
+            int userId = controllerobj.GetUserIDFromEmail(email);
+            DataTable dt = controllerobj.GetUserLists(userId);
             comboBox1.DataSource = dt;
-            comboBox1.DisplayMember = "list";
+            comboBox1.DisplayMember = "ListName";
             comboBox1.SelectedIndex = -1;
             GUIHelper.ApplyModernStyle(this);
         }
@@ -53,10 +57,9 @@ namespace CMPS_202_project
 
         private void button1_Click(object sender, EventArgs e)
         {
-            DataTable dt = controllerobj.getShows(email,comboBox1.SelectedText);
+            DataTable dt = controllerobj.getShows(email, null);
             dataGridView1.DataSource = dt;
             dataGridView1.Show();
-            // TODO:: Show data in dataGridView1
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -97,7 +100,11 @@ namespace CMPS_202_project
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-          
+            dataGridView1.Show();
+            int userId = controllerobj.GetUserIDFromEmail(email);
+            string listName = comboBox1.Text;
+            DataTable dt = controllerobj.GetListShows(userId, listName);
+            dataGridView1.DataSource = dt;
         }
     }
 }
