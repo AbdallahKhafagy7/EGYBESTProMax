@@ -59,18 +59,21 @@ namespace CMPS_202_project
                 return;
             }
 
-            // Ensure your query returns a column named 'MediaID'
-            if (dataGridView1.SelectedRows[0].Cells["MediaID"] == null)
+            string showName = dataGridView1.SelectedRows[0].Cells["Name"].Value.ToString();
+
+            DataTable dt = controllerObj.GetShowByName(showName);
+            if (dt.Rows.Count == 0)
             {
-                MessageBox.Show("Error: MediaID column not found.");
+                MessageBox.Show("Show not found.");
                 return;
             }
 
-            string mediaIdString = dataGridView1.SelectedRows[0].Cells["MediaID"].Value.ToString();
-            int mediaId = int.Parse(mediaIdString);
+            int mediaId = Convert.ToInt32(dt.Rows[0]["MediaID"]);
             string listName = comboBox1.Text;
 
-            int result = controllerObj.AddShowToList(listName, mediaId, email);
+            string userName = controllerObj.GetNameFromEmail(email);
+
+            int result = controllerObj.AddShowToList(listName, mediaId, userName);
 
             if (result > 0)
             {

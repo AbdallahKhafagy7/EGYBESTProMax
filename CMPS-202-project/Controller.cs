@@ -558,6 +558,17 @@ namespace DBapplication
             return -1;
         }
 
+        // get user name by email
+
+        public string GetUserNameFromEmail(string email)
+        {
+            string query = "SELECT Name FROM [User] WHERE Email = '" + email + "'";
+            object result = dbMan.ExecuteScalar(query);
+            if (result != null)
+                return result.ToString();
+            return "";
+        }
+
 
         // get all list for user id
         public DataTable GetUserLists(int userId)
@@ -687,13 +698,11 @@ namespace DBapplication
         }
 
         // get show by name if exits
-        // get show by name if exits
         public DataTable GetShowByName(string showName)
         {
             string query = "SELECT * FROM Media WHERE Name = '" + showName + "'";
             DataTable dt = dbMan.ExecuteReader(query);
 
-            // If ExecuteReader returned null, return empty DataTable
             if (dt == null)
                 return new DataTable();
 
