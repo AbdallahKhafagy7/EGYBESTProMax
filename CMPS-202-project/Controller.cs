@@ -56,10 +56,7 @@ namespace DBapplication
 
             return "Unknown";
         }
-        // 2. Add New User (Sign Up)
-
-        // 1. Search for EndUsers by Name (Partial Match)
-        // Useful for: Admin_With_User form
+        
         public DataTable GetUsersByName(string name)
         {
             string query = "SELECT U.UserID, U.Name, U.Email " +
@@ -407,6 +404,36 @@ namespace DBapplication
                       ORDER BY M.NumOfFavs DESC";
             return dbMan.ExecuteReader(query);
         }
+        public DataTable GetWatchHistory(string email)
+        {
+            string query = "SELECT M.Name AS 'Media Name', WH.WatchDate " +
+                           "FROM WatchHistory WH " +
+                           "JOIN Media M ON WH.MediaID = M.MediaID " +
+                           "JOIN [User] U ON WH.UserID = U.UserID " +
+                           "WHERE U.Email = '" + email + "' " +
+                           "ORDER BY WH.WatchDate DESC";
+            return dbMan.ExecuteReader(query);
+        }
+
+        public DataTable GetAllMedia()
+        {
+            string query = "SELECT MediaID, Name FROM Media";
+            return dbMan.ExecuteReader(query);
+        }
+
+        public DataTable GetMediaByName(string name)
+        {
+            string query = "SELECT MediaID, Name FROM Media WHERE Name LIKE '%" + name + "%'";
+            return dbMan.ExecuteReader(query);
+        }
+        public int AddToWatchHistory(int mediaId, string email)
+        {
+            string query = "INSERT INTO WatchHistory (MediaID, UserID, WatchDate) " +
+                           "SELECT " + mediaId + ", UserID, GETDATE() " +
+                           "FROM [User] WHERE Email = '" + email + "'";
+            return dbMan.ExecuteNonQuery(query);
+        }
+
         public void TerminateConnection()
         {
             dbMan.CloseConnection();
