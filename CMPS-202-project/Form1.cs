@@ -70,6 +70,20 @@ namespace CMPS_202_project
                 MessageBox.Show("Please select a plan from the list.");
                 return;
             }
+            string enteredPassword = textBox1.Text.Trim();
+
+            if (string.IsNullOrEmpty(enteredPassword))
+            {
+                MessageBox.Show("Please enter your password to confirm subscription change.");
+                return;
+            }
+            bool isPasswordCorrect = controllerObj.CheckPassword(currentEmail, enteredPassword);
+
+            if (!isPasswordCorrect)
+            {
+                MessageBox.Show("Incorrect Password! Subscription not changed.");
+                return;
+            }
 
             string newPlan = comboBox1.SelectedItem.ToString();
             decimal price = 0;
