@@ -25,7 +25,7 @@ namespace CMPS_202_project
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            comboBox1.Items.Clear();
+
             comboBox1.Items.Add("Free Plan");
             comboBox1.Items.Add("Basic Plan");
             comboBox1.Items.Add("Standard Plan");
