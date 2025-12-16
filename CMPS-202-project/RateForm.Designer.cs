@@ -39,101 +39,181 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
+            this.panelHeader = new System.Windows.Forms.Panel();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.layoutMain = new System.Windows.Forms.TableLayoutPanel();
+            this.panelControls = new System.Windows.Forms.Panel();
+            this.grpSearch = new System.Windows.Forms.GroupBox();
+            this.grpRate = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panelHeader.SuspendLayout();
+            this.layoutMain.SuspendLayout();
+            this.panelControls.SuspendLayout();
+            this.grpSearch.SuspendLayout();
+            this.grpRate.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button1
+            // panelHeader
             // 
-            this.button1.BackColor = System.Drawing.Color.LavenderBlush;
-            this.button1.Location = new System.Drawing.Point(126, 111);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(164, 23);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "search";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.panelHeader.Controls.Add(this.lblTitle);
+            this.panelHeader.Controls.Add(this.button3);
+            this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelHeader.Location = new System.Drawing.Point(0, 0);
+            this.panelHeader.Name = "panelHeader";
+            this.panelHeader.Size = new System.Drawing.Size(900, 70);
+            this.panelHeader.TabIndex = 0;
+            // 
+            // button3
+            // 
+            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button3.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.button3.Location = new System.Drawing.Point(12, 12);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(100, 45);
+            this.button3.TabIndex = 16;
+            this.button3.Text = "← Back";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
+            this.lblTitle.Location = new System.Drawing.Point(130, 15);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(161, 37);
+            this.lblTitle.TabIndex = 0;
+            this.lblTitle.Text = "Rate Shows";
+            // 
+            // layoutMain
+            // 
+            this.layoutMain.ColumnCount = 2;
+            this.layoutMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 350F)); // Left side fixed width
+            this.layoutMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F)); // Right side responsive
+            this.layoutMain.Controls.Add(this.panelControls, 0, 0);
+            this.layoutMain.Controls.Add(this.dataGridView1, 1, 0);
+            this.layoutMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.layoutMain.Location = new System.Drawing.Point(0, 70);
+            this.layoutMain.Name = "layoutMain";
+            this.layoutMain.RowCount = 1;
+            this.layoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.layoutMain.Size = new System.Drawing.Size(900, 530);
+            this.layoutMain.TabIndex = 1;
+            // 
+            // panelControls
+            // 
+            this.panelControls.Controls.Add(this.grpRate);
+            this.panelControls.Controls.Add(this.grpSearch);
+            this.panelControls.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelControls.Padding = new System.Windows.Forms.Padding(10);
+            this.panelControls.Location = new System.Drawing.Point(3, 3);
+            this.panelControls.Name = "panelControls";
+            this.panelControls.Size = new System.Drawing.Size(344, 524);
+            this.panelControls.TabIndex = 0;
+            // 
+            // grpSearch
+            // 
+            this.grpSearch.Controls.Add(this.label1);
+            this.grpSearch.Controls.Add(this.textBox1);
+            this.grpSearch.Controls.Add(this.button1);
+            this.grpSearch.Dock = System.Windows.Forms.DockStyle.Top;
+            this.grpSearch.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.grpSearch.Location = new System.Drawing.Point(10, 10);
+            this.grpSearch.Name = "grpSearch";
+            this.grpSearch.Size = new System.Drawing.Size(324, 150);
+            this.grpSearch.TabIndex = 0;
+            this.grpSearch.TabStop = false;
+            this.grpSearch.Text = "Find a Show";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label1.ForeColor = System.Drawing.Color.LavenderBlush;
-            this.label1.Location = new System.Drawing.Point(36, 50);
+            this.label1.Location = new System.Drawing.Point(15, 35);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 20);
+            this.label1.Size = new System.Drawing.Size(106, 23);
             this.label1.TabIndex = 7;
-            this.label1.Text = "search";
+            this.label1.Text = "Search Name";
             // 
             // textBox1
             // 
-            this.textBox1.BackColor = System.Drawing.Color.LavenderBlush;
-            this.textBox1.Location = new System.Drawing.Point(126, 50);
+            this.textBox1.Location = new System.Drawing.Point(19, 61);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(164, 22);
+            this.textBox1.Size = new System.Drawing.Size(280, 30);
             this.textBox1.TabIndex = 6;
             // 
-            // dataGridView1
+            // button1
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.LavenderBlush;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(521, 50);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(240, 348);
-            this.dataGridView1.TabIndex = 5;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.Location = new System.Drawing.Point(19, 100);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(280, 35);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "Search";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // grpRate
+            // 
+            this.grpRate.Controls.Add(this.label4);
+            this.grpRate.Controls.Add(this.textBox2);
+            this.grpRate.Controls.Add(this.button2);
+            this.grpRate.Controls.Add(this.label3);
+            this.grpRate.Controls.Add(this.label2);
+            this.grpRate.Controls.Add(this.label5);
+            this.grpRate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grpRate.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.grpRate.Location = new System.Drawing.Point(10, 160);
+            this.grpRate.Name = "grpRate";
+            this.grpRate.Size = new System.Drawing.Size(324, 354);
+            this.grpRate.TabIndex = 1;
+            this.grpRate.TabStop = false;
+            this.grpRate.Text = "Rate Selected Show";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(15, 40);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(146, 23);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "Enter Rating (0-5)";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(19, 66);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(280, 30);
+            this.textBox2.TabIndex = 12;
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // button2
             // 
-            this.button2.BackColor = System.Drawing.Color.LavenderBlush;
-            this.button2.ForeColor = System.Drawing.Color.Black;
-            this.button2.Location = new System.Drawing.Point(126, 179);
+            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.button2.Location = new System.Drawing.Point(19, 110);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(164, 84);
+            this.button2.Size = new System.Drawing.Size(280, 50);
             this.button2.TabIndex = 9;
-            this.button2.Text = "rate";
-            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Text = "Submit Rating";
+            this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label3.ForeColor = System.Drawing.Color.LavenderBlush;
-            this.label3.Location = new System.Drawing.Point(339, 107);
+            this.label3.Location = new System.Drawing.Point(15, 260);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(64, 25);
+            this.label3.Size = new System.Drawing.Size(55, 23);
             this.label3.TabIndex = 11;
             this.label3.Text = "label3";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(328, 306);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(75, 22);
-            this.textBox2.TabIndex = 12;
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label4.ForeColor = System.Drawing.Color.LavenderBlush;
-            this.label4.Location = new System.Drawing.Point(121, 306);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(157, 25);
-            this.label4.TabIndex = 13;
-            this.label4.Text = "enter  your rating";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.label2.ForeColor = System.Drawing.Color.Red;
-            this.label2.Location = new System.Drawing.Point(121, 347);
+            this.label2.Location = new System.Drawing.Point(15, 175);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(281, 29);
+            this.label2.Size = new System.Drawing.Size(193, 23);
             this.label2.TabIndex = 14;
             this.label2.Text = "Please enter your rating";
             this.label2.Visible = false;
@@ -141,53 +221,58 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.label5.ForeColor = System.Drawing.Color.Red;
-            this.label5.Location = new System.Drawing.Point(121, 399);
+            this.label5.Location = new System.Drawing.Point(15, 205);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(253, 29);
+            this.label5.Size = new System.Drawing.Size(167, 23);
             this.label5.TabIndex = 15;
-            this.label5.Text = "please Select a show";
+            this.label5.Text = "Please Select a show";
             this.label5.Visible = false;
             // 
-            // button3
+            // dataGridView1
             // 
-            this.button3.Location = new System.Drawing.Point(40, 13);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(56, 23);
-            this.button3.TabIndex = 16;
-            this.button3.Text = "<------";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(353, 3);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(544, 524);
+            this.dataGridView1.TabIndex = 5;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // RateForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.MidnightBlue;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.dataGridView1);
+            this.ClientSize = new System.Drawing.Size(900, 600);
+            this.Controls.Add(this.layoutMain);
+            this.Controls.Add(this.panelHeader);
             this.Name = "RateForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RateForm";
             this.Load += new System.EventHandler(this.RateForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.panelHeader.ResumeLayout(false);
+            this.panelHeader.PerformLayout();
+            this.layoutMain.ResumeLayout(false);
+            this.panelControls.ResumeLayout(false);
+            this.grpSearch.ResumeLayout(false);
+            this.grpSearch.PerformLayout();
+            this.grpRate.ResumeLayout(false);
+            this.grpRate.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
+        // Original Variables Preserved
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
@@ -199,5 +284,13 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button3;
+
+        // New Layout Containers
+        private System.Windows.Forms.Panel panelHeader;
+        private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.TableLayoutPanel layoutMain;
+        private System.Windows.Forms.Panel panelControls;
+        private System.Windows.Forms.GroupBox grpSearch;
+        private System.Windows.Forms.GroupBox grpRate;
     }
 }

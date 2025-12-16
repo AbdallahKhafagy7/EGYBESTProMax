@@ -129,6 +129,16 @@ namespace CMPS_202_project
 
         }
 
+        private void button5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panelHeader_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
         private void button6_Click(object sender, EventArgs e)
         {
             Form1 form = new Form1(username);

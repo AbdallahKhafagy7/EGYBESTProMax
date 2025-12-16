@@ -37,6 +37,7 @@ namespace CMPS_202_project
 
             // Enable the event logic now that everything is ready
             isReady = true;
+            GUIHelper.ApplyModernStyle(this);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -132,7 +133,11 @@ namespace CMPS_202_project
             isReady = true;
         }
 
-     
-
+        private void buttonBack_Click(object sender, EventArgs e)
+        {
+            WelcomeForm welcome = new WelcomeForm(currentEmail);
+            welcome.Show();
+            this.Close();
+        }
     }
 }

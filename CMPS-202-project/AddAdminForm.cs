@@ -1,6 +1,5 @@
 ﻿using DBapplication;
 using System;
-﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,48 +13,12 @@ namespace CMPS_202_project
 {
     public partial class AddAdminForm : Form
     {
-
         Controller controllerObj = new Controller();
-
 
         public AddAdminForm()
         {
             InitializeComponent();
             GUIHelper.ApplyModernStyle(this);
-        }
-
-        private void buttonCreateAdmin_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(textBoxName.Text) ||
-                string.IsNullOrEmpty(textBoxEmail.Text) ||
-                string.IsNullOrEmpty(textBoxPassword.Text) ||
-                string.IsNullOrEmpty(textBoxConfirm.Text))
-            {
-                MessageBox.Show("Please fill all fields.");
-                return;
-            }
-
-            if (textBoxPassword.Text != textBoxConfirm.Text)
-            {
-                MessageBox.Show("Passwords do not match.");
-                return;
-            }
-
-            string name = textBoxName.Text;
-            string email = textBoxEmail.Text;
-            string password = textBoxPassword.Text;
-
-            int rows = controllerObj.AddAdmin(email, name, password);
-
-            if (rows > 0)
-            {
-                MessageBox.Show("Admin account created successfully.");
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("Failed to create admin.\nEmail may already exist.");
-            }
         }
 
         private void checkBoxShowPassword_CheckedChanged(object sender, EventArgs e)
@@ -69,6 +32,7 @@ namespace CMPS_202_project
         {
 
         }
+
         private void buttonAddAdmin_Click_1(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBoxName.Text) ||
@@ -101,7 +65,11 @@ namespace CMPS_202_project
             {
                 MessageBox.Show("Failed to add admin. Email may already exist.");
             }
-        }
 
+        }
+        private void panelHeader_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
+        {
+            // You can leave this empty if you don't need custom painting.
+        }
     }
 }
