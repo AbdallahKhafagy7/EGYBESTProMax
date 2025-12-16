@@ -113,5 +113,10 @@ namespace CMPS_202_project
         {
 
         }
+
+        private void Admin_With_User_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

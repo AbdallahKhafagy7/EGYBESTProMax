@@ -26,6 +26,7 @@ namespace DBapplication
 
             return result.ToString();
         }
+
         public int UpdatePassword(string email, string newPassword)
         {
           
@@ -89,6 +90,40 @@ namespace DBapplication
             return dbMan.ExecuteReader(query);
         }
         // Function to Add a Show to a User's List
+        //15. AddAdmin
+        public int AddAdmin(string email, string name, string password)
+        {
+            string checkQuery = $"SELECT COUNT(*) FROM [User] WHERE Email = '{email}'";
+            int exists = Convert.ToInt32(dbMan.ExecuteScalar(checkQuery));
+            if (exists > 0)
+                return 0;
+
+            string idQuery = "SELECT ISNULL(MAX(UserID),0) + 1 FROM [User]";
+            int newID = Convert.ToInt32(dbMan.ExecuteScalar(idQuery));
+
+            string insertUser =
+                $"INSERT INTO [User] (UserID, Email, Name, Password) VALUES ({newID}, '{email}', '{name}', '{password}')";
+            int r1 = dbMan.ExecuteNonQuery(insertUser);
+            if (r1 == 0) return 0;
+
+            string insertAdmin =
+                $"INSERT INTO Administrator (UserID) VALUES ({newID})";
+
+            return dbMan.ExecuteNonQuery(insertAdmin);
+        }
+        //  16. temp pass 
+        public string ResetUserPasswordTemp(int userID)
+        {
+            string tempPassword = Guid.NewGuid().ToString().Substring(0, 8);
+
+            string query = $"UPDATE [User] SET Password = '{tempPassword}' WHERE UserID = {userID}";
+            int rows = dbMan.ExecuteNonQuery(query);
+
+            if (rows > 0)
+                return tempPassword;
+            else
+                return null;
+        }
         public int AddShowToList(string listName, int mediaId, string username)
         {
             // 1. Get the ListID based on ListName and Username

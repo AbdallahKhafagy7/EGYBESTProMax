@@ -41,29 +41,29 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.LavenderBlush;
-            this.button1.Location = new System.Drawing.Point(134, 200);
+            this.button1.Location = new System.Drawing.Point(61, 200);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(117, 57);
             this.button1.TabIndex = 0;
-            this.button1.Text = "delete user";
+            this.button1.Text = "Delete User";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.LavenderBlush;
-            this.button2.Location = new System.Drawing.Point(134, 283);
+            this.button2.Location = new System.Drawing.Point(61, 283);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(117, 85);
             this.button2.TabIndex = 1;
-            this.button2.Text = "Reset Password for user";
+            this.button2.Text = "Reset Password for User";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // button3
             // 
             this.button3.BackColor = System.Drawing.Color.LavenderBlush;
-            this.button3.Location = new System.Drawing.Point(134, 110);
+            this.button3.Location = new System.Drawing.Point(61, 110);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(117, 57);
             this.button3.TabIndex = 2;
@@ -75,17 +75,17 @@
             // 
             this.dataGridView1.BackgroundColor = System.Drawing.Color.LavenderBlush;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(451, 47);
+            this.dataGridView1.Location = new System.Drawing.Point(394, 47);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(322, 321);
+            this.dataGridView1.Size = new System.Drawing.Size(379, 321);
             this.dataGridView1.TabIndex = 3;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(273, 51);
+            this.textBox1.Location = new System.Drawing.Point(200, 51);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(145, 22);
             this.textBox1.TabIndex = 4;
@@ -95,7 +95,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label1.ForeColor = System.Drawing.Color.LavenderBlush;
-            this.label1.Location = new System.Drawing.Point(93, 47);
+            this.label1.Location = new System.Drawing.Point(20, 47);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(158, 25);
             this.label1.TabIndex = 5;
@@ -106,11 +106,11 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.label2.ForeColor = System.Drawing.Color.Red;
-            this.label2.Location = new System.Drawing.Point(269, 101);
+            this.label2.Location = new System.Drawing.Point(200, 89);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(140, 20);
+            this.label2.Size = new System.Drawing.Size(145, 20);
             this.label2.TabIndex = 6;
-            this.label2.Text = "enter a username";
+            this.label2.Text = "Enter a Username";
             this.label2.Visible = false;
             // 
             // Admin_With_User
@@ -129,7 +129,7 @@
             this.ForeColor = System.Drawing.Color.Black;
             this.Name = "Admin_With_User";
             this.Text = "Admin_With_User";
-            this.Load += new System.EventHandler(this.Admin_With_User_Load);
+            this.Load += new System.EventHandler(this.Admin_With_User_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

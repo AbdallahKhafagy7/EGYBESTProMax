@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace CMPS_202_project
 {
-    public partial class Form1 : Form
+    public partial class WatchForm : Form
     {
         Controller controllerObj;
         string currentEmail;
@@ -19,7 +19,7 @@ namespace CMPS_202_project
         // This flag prevents "Auto-Adding" when the form loads or search updates
         bool isReady = false;
 
-        public Form1(string email)
+        public WatchForm(string email)
         {
             InitializeComponent();
             controllerObj = new Controller();
@@ -132,11 +132,7 @@ namespace CMPS_202_project
             isReady = true;
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-          
-        }
-
+     
 
     }
 }

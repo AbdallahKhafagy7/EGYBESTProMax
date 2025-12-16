@@ -1,6 +1,6 @@
 ﻿namespace CMPS_202_project
 {
-    partial class Form1
+    partial class WatchForm
     {
         /// <summary>
         /// Required designer variable.
@@ -71,7 +71,7 @@
             this.button1.TabIndex = 3;
             this.button1.Text = "search";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // comboBox1
             // 

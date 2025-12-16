@@ -19,6 +19,7 @@ namespace CMPS_202_project
         public AdminForm(string username)
         {
             InitializeComponent();
+            GUIHelper.ApplyModernStyle(this);
             this.username = username;
         }
 
@@ -41,6 +42,17 @@ namespace CMPS_202_project
         private void button3_Click(object sender, EventArgs e)
         {
             statsForm.Show();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            AddAdminForm f = new AddAdminForm();
+            f.ShowDialog();
+        }
+
+        private void AdminForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
