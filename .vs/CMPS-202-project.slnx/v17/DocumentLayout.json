@@ -3,20 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\Abdallah\\Desktop\\jjl\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{09B73215-0B01-4A75-A159-9BE2796ADC48}|CMPS-202-project\\CMPS-202-project.csproj|c:\\users\\abdallah\\desktop\\jjl\\cmps-202-project\\listform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{09B73215-0B01-4A75-A159-9BE2796ADC48}|CMPS-202-project\\CMPS-202-project.csproj|solutionrelative:cmps-202-project\\listform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{09B73215-0B01-4A75-A159-9BE2796ADC48}|CMPS-202-project\\CMPS-202-project.csproj|c:\\users\\abdallah\\desktop\\jjl\\cmps-202-project\\publisher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{09B73215-0B01-4A75-A159-9BE2796ADC48}|CMPS-202-project\\CMPS-202-project.csproj|solutionrelative:cmps-202-project\\publisher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{09B73215-0B01-4A75-A159-9BE2796ADC48}|CMPS-202-project\\CMPS-202-project.csproj|c:\\users\\abdallah\\desktop\\jjl\\cmps-202-project\\listform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{09B73215-0B01-4A75-A159-9BE2796ADC48}|CMPS-202-project\\CMPS-202-project.csproj|c:\\users\\abdallah\\desktop\\jjl\\cmps-202-project\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{09B73215-0B01-4A75-A159-9BE2796ADC48}|CMPS-202-project\\CMPS-202-project.csproj|solutionrelative:cmps-202-project\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{09B73215-0B01-4A75-A159-9BE2796ADC48}|CMPS-202-project\\CMPS-202-project.csproj|c:\\users\\abdallah\\desktop\\jjl\\cmps-202-project\\signupform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{09B73215-0B01-4A75-A159-9BE2796ADC48}|CMPS-202-project\\CMPS-202-project.csproj|solutionrelative:cmps-202-project\\signupform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{09B73215-0B01-4A75-A159-9BE2796ADC48}|CMPS-202-project\\CMPS-202-project.csproj|c:\\users\\abdallah\\desktop\\jjl\\cmps-202-project\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{09B73215-0B01-4A75-A159-9BE2796ADC48}|CMPS-202-project\\CMPS-202-project.csproj|solutionrelative:cmps-202-project\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{09B73215-0B01-4A75-A159-9BE2796ADC48}|CMPS-202-project\\CMPS-202-project.csproj|c:\\users\\abdallah\\desktop\\jjl\\cmps-202-project\\publisher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{09B73215-0B01-4A75-A159-9BE2796ADC48}|CMPS-202-project\\CMPS-202-project.csproj|solutionrelative:cmps-202-project\\publisher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{09B73215-0B01-4A75-A159-9BE2796ADC48}|CMPS-202-project\\CMPS-202-project.csproj|C:\\Users\\Abdallah\\Desktop\\jjl\\cmps-202-project\\listform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{09B73215-0B01-4A75-A159-9BE2796ADC48}|CMPS-202-project\\CMPS-202-project.csproj|solutionrelative:cmps-202-project\\listform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{09B73215-0B01-4A75-A159-9BE2796ADC48}|CMPS-202-project\\CMPS-202-project.csproj|c:\\users\\abdallah\\desktop\\jjl\\cmps-202-project\\listform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{09B73215-0B01-4A75-A159-9BE2796ADC48}|CMPS-202-project\\CMPS-202-project.csproj|solutionrelative:cmps-202-project\\listform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{09B73215-0B01-4A75-A159-9BE2796ADC48}|CMPS-202-project\\CMPS-202-project.csproj|c:\\users\\abdallah\\desktop\\jjl\\cmps-202-project\\watchform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{09B73215-0B01-4A75-A159-9BE2796ADC48}|CMPS-202-project\\CMPS-202-project.csproj|solutionrelative:cmps-202-project\\watchform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,11 +34,73 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "LoginForm.cs",
+              "DocumentMoniker": "C:\\Users\\Abdallah\\Desktop\\jjl\\CMPS-202-project\\LoginForm.cs",
+              "RelativeDocumentMoniker": "CMPS-202-project\\LoginForm.cs",
+              "ToolTip": "C:\\Users\\Abdallah\\Desktop\\jjl\\CMPS-202-project\\LoginForm.cs",
+              "RelativeToolTip": "CMPS-202-project\\LoginForm.cs",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAswFoAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-16T14:25:24.875Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "LoginForm.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Abdallah\\Desktop\\jjl\\CMPS-202-project\\LoginForm.cs",
+              "RelativeDocumentMoniker": "CMPS-202-project\\LoginForm.cs",
+              "ToolTip": "C:\\Users\\Abdallah\\Desktop\\jjl\\CMPS-202-project\\LoginForm.cs [Design]",
+              "RelativeToolTip": "CMPS-202-project\\LoginForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-16T14:25:22.179Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SignUpForm.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Abdallah\\Desktop\\jjl\\CMPS-202-project\\SignUpForm.cs",
+              "RelativeDocumentMoniker": "CMPS-202-project\\SignUpForm.cs",
+              "ToolTip": "C:\\Users\\Abdallah\\Desktop\\jjl\\CMPS-202-project\\SignUpForm.cs [Design]",
+              "RelativeToolTip": "CMPS-202-project\\SignUpForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-16T14:25:16.065Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Publisher.cs",
+              "DocumentMoniker": "C:\\Users\\Abdallah\\Desktop\\jjl\\CMPS-202-project\\Publisher.cs",
+              "RelativeDocumentMoniker": "CMPS-202-project\\Publisher.cs",
+              "ToolTip": "C:\\Users\\Abdallah\\Desktop\\jjl\\CMPS-202-project\\Publisher.cs",
+              "RelativeToolTip": "CMPS-202-project\\Publisher.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAQwBIAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-16T14:21:31.694Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Publisher.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Abdallah\\Desktop\\jjl\\CMPS-202-project\\Publisher.cs",
+              "RelativeDocumentMoniker": "CMPS-202-project\\Publisher.cs",
+              "ToolTip": "C:\\Users\\Abdallah\\Desktop\\jjl\\CMPS-202-project\\Publisher.cs [Design]",
+              "RelativeToolTip": "CMPS-202-project\\Publisher.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-16T14:21:01.756Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "ListForm.Designer.cs",
               "DocumentMoniker": "C:\\Users\\Abdallah\\Desktop\\jjl\\CMPS-202-project\\ListForm.Designer.cs",
               "RelativeDocumentMoniker": "CMPS-202-project\\ListForm.Designer.cs",
@@ -39,44 +109,6 @@
               "ViewState": "AgIAAKwAAAAAAAAAAIAwwLsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-16T14:16:37.533Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ListForm.cs",
-              "DocumentMoniker": "C:\\Users\\Abdallah\\Desktop\\jjl\\CMPS-202-project\\ListForm.cs",
-              "RelativeDocumentMoniker": "CMPS-202-project\\ListForm.cs",
-              "ToolTip": "C:\\Users\\Abdallah\\Desktop\\jjl\\CMPS-202-project\\ListForm.cs",
-              "RelativeToolTip": "CMPS-202-project\\ListForm.cs",
-              "ViewState": "AgIAAI0AAAAAAAAAAAAwwKUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-16T14:15:40.074Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ListForm.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Abdallah\\Desktop\\jjl\\CMPS-202-project\\ListForm.cs",
-              "RelativeDocumentMoniker": "CMPS-202-project\\ListForm.cs",
-              "ToolTip": "C:\\Users\\Abdallah\\Desktop\\jjl\\CMPS-202-project\\ListForm.cs [Design]",
-              "RelativeToolTip": "CMPS-202-project\\ListForm.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-16T14:15:37.931Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "WatchForm.cs",
-              "DocumentMoniker": "C:\\Users\\Abdallah\\Desktop\\jjl\\CMPS-202-project\\WatchForm.cs",
-              "RelativeDocumentMoniker": "CMPS-202-project\\WatchForm.cs",
-              "ToolTip": "C:\\Users\\Abdallah\\Desktop\\jjl\\CMPS-202-project\\WatchForm.cs",
-              "RelativeToolTip": "CMPS-202-project\\WatchForm.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAIAwwBAAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-16T14:14:58.261Z",
               "EditorCaption": ""
             }
           ]
