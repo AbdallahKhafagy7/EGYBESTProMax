@@ -25,6 +25,7 @@ namespace CMPS_202_project
             DataTable dt = controllerObj.getAllist(username);
             comboBox1.DataSource = dt;
             comboBox1.ValueMember = "list";
+            GUIHelper.ApplyModernStyle(this);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

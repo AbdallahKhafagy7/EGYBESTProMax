@@ -17,6 +17,7 @@ namespace CMPS_202_project
             InitializeComponent();
             LoadData();
             LoadCharts();
+            GUIHelper.ApplyModernStyle(this);
         }
 
         private void LoadData()
@@ -123,6 +124,11 @@ namespace CMPS_202_project
         }
 
         private void dataGridViewShows_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void StatsForm_Load(object sender, EventArgs e)
         {
 
         }

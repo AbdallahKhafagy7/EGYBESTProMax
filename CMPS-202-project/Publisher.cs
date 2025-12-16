@@ -17,6 +17,7 @@ namespace CMPS_202_project
         {
             InitializeComponent();
             this.email = email;
+            GUIHelper.ApplyModernStyle(this);
         }
 
         private void Publisher_Load(object sender, EventArgs e)

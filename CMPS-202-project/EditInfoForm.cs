@@ -21,6 +21,7 @@ namespace CMPS_202_project
             this.username = username;
             InitializeComponent();
             this.email = email;
+            GUIHelper.ApplyModernStyle(this);
         }
 
         private void EditInfoForm_Load(object sender, EventArgs e)

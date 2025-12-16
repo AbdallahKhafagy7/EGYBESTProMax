@@ -32,6 +32,7 @@ namespace CMPS_202_project
             comboBox1.DataSource = dt;
             comboBox1.DisplayMember = "list";
             comboBox1.SelectedIndex = -1;
+            GUIHelper.ApplyModernStyle(this);
         }
 
         private void Form2_Load(object sender, EventArgs e)

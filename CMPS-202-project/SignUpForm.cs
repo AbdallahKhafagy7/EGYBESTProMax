@@ -1,102 +1,86 @@
 ﻿using DBapplication;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CMPS_202_project
 {
     public partial class SignUpForm : Form
     {
+        Controller controllerObj = new Controller();
         LoginForm loginForm;
-        Controller Controllerobj =new Controller();
+
         public SignUpForm(LoginForm loginForm)
         {
             InitializeComponent();
             this.loginForm = loginForm;
+
+            // 1. Apply Modern Dark/Red Theme
+            GUIHelper.ApplyModernStyle(this);
+
+            // 2. Configure Password Field
+            textBox3.UseSystemPasswordChar = true;
         }
 
-        private void SignInForm_Load(object sender, EventArgs e)
+        private void SignUpForm_Load(object sender, EventArgs e)
         {
+            // Force the "Login" link to be Red and clickable
+            label5.ForeColor = Color.FromArgb(220, 20, 60);
+            label5.Cursor = Cursors.Hand;
 
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            loginForm.Show();
+            // Hover Effects for Link
+            label5.MouseEnter += (s, ev) => label5.ForeColor = Color.Red;
+            label5.MouseLeave += (s, ev) => label5.ForeColor = Color.FromArgb(220, 20, 60);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-           
+            string username = textBox1.Text.Trim();
+            string email = textBox2.Text.Trim();
+            string password = textBox3.Text.Trim();
 
-            if (String.IsNullOrEmpty(textBox2.Text)) 
+            // 1. Validation
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
             {
-                label7.ForeColor = Color.Red;
-                label7.Text = "the E-mail Can't Be empty";
-                label7.Show();
-                return;
-            }
-            if (String.IsNullOrEmpty(textBox3.Text))
-            {
-                label9.ForeColor = Color.Red;
-                label9.Text = "Please enter your name";
-                label9.Show();
-                return;
-            }
-            if (String.IsNullOrEmpty(textBox4.Text)) {
-
-                label10.ForeColor = Color.Red;
-                label10.Text = "Must enter a password";
-                label10.Show();
-                return;
-            }
-            if (string.IsNullOrEmpty(textBox5.Text) && !(textBox4.Text == textBox5.Text) )
-            { 
-                label10.ForeColor = Color.Red;
-                label10.Text = "the Passwords Must match";
-                label10.Show();
+                MessageBox.Show("Please fill in all fields.");
                 return;
             }
 
-            int k = Controllerobj.addUser(textBox2.Text,textBox3.Text,textBox4.Text);
-            if (k == 0)
+            // 2. Call Controller to Add User
+            // Note: controllerObj.addUser returns 1 if success, 0 if failed (e.g., email exists)
+            int result = controllerObj.addUser(email, username, password);
+
+            if (result > 0)
             {
-                label10.Text = "sign- failed : the email already exists";
-            
+                MessageBox.Show("Account created successfully!");
+
+                // Go back to Login
+                loginForm.Show();
+                this.Close();
             }
             else
             {
-                MessageBox.Show("login successful");
-                this.Close();
-                loginForm.Show();
+                MessageBox.Show("Registration failed. This email might already represent an account.");
             }
-
-
-
         }
 
-
-
-        private void label8_Click(object sender, EventArgs e)
+        private void label5_Click(object sender, EventArgs e)
         {
-
+            // Back to Login
+            loginForm.Show();
+            this.Close();
         }
 
-        private void label10_Click(object sender, EventArgs e)
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-
+            // Toggle Password Visibility
+            textBox3.UseSystemPasswordChar = !checkBox1.Checked;
         }
 
-        private void textBox4_TextChanged(object sender, EventArgs e)
+        // Prevent crashes if these events are linked in designer
+        private void SignUpForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-
+            loginForm.Show();
         }
     }
 }
