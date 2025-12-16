@@ -61,31 +61,45 @@ namespace CMPS_202_project
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //label4.Hide();
-            if (string.IsNullOrEmpty(textBox2.Text))
-            {
-              //  label4.Show();
-                return;
-            }
-
-            DataTable dt1 = controllerObj.GetPublisherByEmail(email);
-            int publisherID = Convert.ToInt32(dt1.Rows[0][0]);
-            string showName = textBox2.Text;
-            // insert show
-            int status = controllerObj.InsertShow(publisherID, showName);
-            if (status == 0)
-            {
-                MessageBox.Show("Error adding show.");
-            }
-            else
-            {
-                MessageBox.Show("Show added successfully.");
-            }
+            
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+            // 1. Validate show name
+            if (string.IsNullOrWhiteSpace(textBox2.Text))
+            {
+                MessageBox.Show("Please enter a show name.");
+                return;
+            }
 
+            // 2. Validate episode count
+            if (!int.TryParse(textBox3.Text, out int episodesCount) || episodesCount <= 0)
+            {
+                MessageBox.Show("Please enter a valid episode count (positive integer).");
+                return;
+            }
+
+            string showName = textBox2.Text;
+
+            // 3. Get publisher
+            DataTable dt1 = controllerObj.GetPublisherByEmail(email);
+            if (dt1.Rows.Count == 0)
+            {
+                MessageBox.Show("Publisher not found.");
+                return;
+            }
+
+            int publisherID = Convert.ToInt32(dt1.Rows[0][0]);
+
+            // 4. Insert show with season
+            int status = controllerObj.InsertShow(publisherID, showName, episodesCount);
+
+            // 5. Show feedback
+            if (status == 0)
+                MessageBox.Show("Error adding show.");
+            else
+                MessageBox.Show("Show added successfully.");
         }
     }
 }

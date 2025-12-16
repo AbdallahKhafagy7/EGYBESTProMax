@@ -460,32 +460,45 @@ namespace DBapplication
         // get shows by publisher id
         public DataTable GetShowsByPublisherId(int publisherId)
         {
-            string query = "SELECT M.Name, M.NumOfFavs, M.Finished " +
-                            "FROM Media M, Show S " +
-                            "WHERE M.MediaID = S.MediaID " +
-                            "AND M.PublisherID = " + publisherId;
+            string query = @"SELECT
+                                M.Name AS ShowName,
+                                M.NumOfFavs,
+                                SE.EpisodeCount,
+                                SE.Name AS SeasonName
+                            FROM Media M
+                            JOIN Seasons SE ON M.MediaID = SE.MediaID
+                            WHERE M.PublisherID = " + publisherId;
+
             return dbMan.ExecuteReader(query);
         }
 
         // insert show
-        public int InsertShow(int publisherId, string showName)
+        public int InsertShow(int publisherId, string showName, int episodesCount)
         {
-            // Insert the show into the Media table
+            // 1. Insert into Media
             string insertMediaQuery =
                 "INSERT INTO Media (Name, Finished, NumOfFavs, PublisherID) " +
                 "VALUES ('" + showName + "', 0, 0, " + publisherId + ")";
 
-            // Execute the insert query
             int result = dbMan.ExecuteNonQuery(insertMediaQuery);
-            if (result == 0) return 0; // Insertion failed
+            if (result == 0) return 0;
 
-            // Get the MediaID of the newly inserted show
+            // 2. Get newly inserted MediaID
             string getMediaIdQuery = "SELECT MAX(MediaID) FROM Media";
             int mediaId = Convert.ToInt32(dbMan.ExecuteScalar(getMediaIdQuery));
 
-            // Insert into Show table to make inheritance
-            string insertShowQuery = "INSERT INTO Show (MediaID) VALUES (" + mediaId + ")";
-            return dbMan.ExecuteNonQuery(insertShowQuery);
+            // 3. Insert into Show (inheritance)
+            string insertShowQuery =
+                "INSERT INTO Show (MediaID) VALUES (" + mediaId + ")";
+            dbMan.ExecuteNonQuery(insertShowQuery);
+
+            // 4. Insert Season 1 with provided episodes count
+            string insertSeasonQuery =
+                "INSERT INTO Seasons (MediaID, EpisodeCount, Name) " +
+                "VALUES (" + mediaId + ", " + episodesCount + ", 'Season 1')";
+            dbMan.ExecuteNonQuery(insertSeasonQuery);
+
+            return mediaId;
         }
 
         // rate show

@@ -84,7 +84,7 @@ namespace CMPS_202_project
                     {
                         PublisherForm PublisherList = new PublisherForm(Email);
                         PublisherList.Show();
-                        this.Close();
+                        this.Hide();
                     }
                 }
             }
