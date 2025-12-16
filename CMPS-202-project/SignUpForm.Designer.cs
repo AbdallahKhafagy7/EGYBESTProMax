@@ -28,47 +28,63 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.lblTitle = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.txtUsername = new System.Windows.Forms.TextBox();
+            this.lblErrorName = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.lblErrorEmail = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.lblErrorPass = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.labelTitle = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.txtConfirm = new System.Windows.Forms.TextBox();
+            this.lblErrorConfirm = new System.Windows.Forms.Label();
+            this.chkShowPass = new System.Windows.Forms.CheckBox();
             this.labelShowPass = new System.Windows.Forms.Label();
+            this.btnSignUp = new System.Windows.Forms.Button();
+            this.labelAccount = new System.Windows.Forms.Label();
+            this.lblLoginLink = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // labelTitle (Sign Up Header)
+            // lblTitle
             // 
-            this.labelTitle.AutoSize = true;
-            this.labelTitle.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Bold);
-            this.labelTitle.ForeColor = System.Drawing.Color.LavenderBlush;
-            this.labelTitle.Location = new System.Drawing.Point(260, 20);
-            this.labelTitle.Name = "labelTitle";
-            this.labelTitle.Size = new System.Drawing.Size(252, 81);
-            this.labelTitle.TabIndex = 0;
-            this.labelTitle.Text = "Sign Up";
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Bold);
+            this.lblTitle.ForeColor = System.Drawing.Color.LavenderBlush;
+            this.lblTitle.Location = new System.Drawing.Point(265, 20);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(252, 81);
+            this.lblTitle.TabIndex = 0;
+            this.lblTitle.Text = "Sign Up";
             // 
             // label1 (Username Label)
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.LavenderBlush;
-            this.label1.Location = new System.Drawing.Point(250, 120);
+            this.label1.Location = new System.Drawing.Point(250, 110);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(70, 16);
             this.label1.TabIndex = 1;
             this.label1.Text = "Username";
             // 
-            // textBox1 (Username Input)
+            // txtUsername
             // 
-            this.textBox1.Location = new System.Drawing.Point(250, 145);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(280, 22);
-            this.textBox1.TabIndex = 2;
+            this.txtUsername.Location = new System.Drawing.Point(250, 130);
+            this.txtUsername.Name = "txtUsername";
+            this.txtUsername.Size = new System.Drawing.Size(280, 22);
+            this.txtUsername.TabIndex = 1;
+            // 
+            // lblErrorName
+            // 
+            this.lblErrorName.AutoSize = true;
+            this.lblErrorName.ForeColor = System.Drawing.Color.Red;
+            this.lblErrorName.Location = new System.Drawing.Point(250, 155);
+            this.lblErrorName.Name = "lblErrorName";
+            this.lblErrorName.Size = new System.Drawing.Size(153, 16);
+            this.lblErrorName.TabIndex = 10;
+            this.lblErrorName.Text = "Please enter your name";
             // 
             // label2 (Email Label)
             // 
@@ -77,106 +93,160 @@
             this.label2.Location = new System.Drawing.Point(250, 180);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(41, 16);
-            this.label2.TabIndex = 3;
+            this.label2.TabIndex = 2;
             this.label2.Text = "Email";
             // 
-            // textBox2 (Email Input)
+            // txtEmail
             // 
-            this.textBox2.Location = new System.Drawing.Point(250, 205);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(280, 22);
-            this.textBox2.TabIndex = 4;
+            this.txtEmail.Location = new System.Drawing.Point(250, 200);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(280, 22);
+            this.txtEmail.TabIndex = 2;
+            // 
+            // lblErrorEmail
+            // 
+            this.lblErrorEmail.AutoSize = true;
+            this.lblErrorEmail.ForeColor = System.Drawing.Color.Red;
+            this.lblErrorEmail.Location = new System.Drawing.Point(250, 225);
+            this.lblErrorEmail.Name = "lblErrorEmail";
+            this.lblErrorEmail.Size = new System.Drawing.Size(164, 16);
+            this.lblErrorEmail.TabIndex = 11;
+            this.lblErrorEmail.Text = "Email cannot be empty";
             // 
             // label3 (Password Label)
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.LavenderBlush;
-            this.label3.Location = new System.Drawing.Point(250, 240);
+            this.label3.Location = new System.Drawing.Point(250, 250);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(67, 16);
-            this.label3.TabIndex = 5;
+            this.label3.TabIndex = 3;
             this.label3.Text = "Password";
             // 
-            // textBox3 (Password Input)
+            // txtPassword
             // 
-            this.textBox3.Location = new System.Drawing.Point(250, 265);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(280, 22);
-            this.textBox3.TabIndex = 6;
-            this.textBox3.UseSystemPasswordChar = true;
+            this.txtPassword.Location = new System.Drawing.Point(250, 270);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.Size = new System.Drawing.Size(280, 22);
+            this.txtPassword.TabIndex = 3;
+            this.txtPassword.UseSystemPasswordChar = true;
             // 
-            // checkBox1 (Show Password Checkbox)
+            // lblErrorPass
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(250, 300);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(18, 17);
-            this.checkBox1.TabIndex = 11;
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.lblErrorPass.AutoSize = true;
+            this.lblErrorPass.ForeColor = System.Drawing.Color.Red;
+            this.lblErrorPass.Location = new System.Drawing.Point(250, 295);
+            this.lblErrorPass.Name = "lblErrorPass";
+            this.lblErrorPass.Size = new System.Drawing.Size(145, 16);
+            this.lblErrorPass.TabIndex = 12;
+            this.lblErrorPass.Text = "Must enter a password";
+            // 
+            // label4 (Confirm Pass Label)
+            // 
+            this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.Color.LavenderBlush;
+            this.label4.Location = new System.Drawing.Point(250, 320);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(115, 16);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Confirm Password";
+            // 
+            // txtConfirm
+            // 
+            this.txtConfirm.Location = new System.Drawing.Point(250, 340);
+            this.txtConfirm.Name = "txtConfirm";
+            this.txtConfirm.Size = new System.Drawing.Size(280, 22);
+            this.txtConfirm.TabIndex = 4;
+            this.txtConfirm.UseSystemPasswordChar = true;
+            // 
+            // lblErrorConfirm
+            // 
+            this.lblErrorConfirm.AutoSize = true;
+            this.lblErrorConfirm.ForeColor = System.Drawing.Color.Red;
+            this.lblErrorConfirm.Location = new System.Drawing.Point(250, 365);
+            this.lblErrorConfirm.Name = "lblErrorConfirm";
+            this.lblErrorConfirm.Size = new System.Drawing.Size(145, 16);
+            this.lblErrorConfirm.TabIndex = 13;
+            this.lblErrorConfirm.Text = "Passwords must match";
+            // 
+            // chkShowPass
+            // 
+            this.chkShowPass.AutoSize = true;
+            this.chkShowPass.Location = new System.Drawing.Point(250, 390);
+            this.chkShowPass.Name = "chkShowPass";
+            this.chkShowPass.Size = new System.Drawing.Size(18, 17);
+            this.chkShowPass.TabIndex = 5;
+            this.chkShowPass.UseVisualStyleBackColor = true;
+            this.chkShowPass.CheckedChanged += new System.EventHandler(this.chkShowPass_CheckedChanged);
             // 
             // labelShowPass
             // 
             this.labelShowPass.AutoSize = true;
             this.labelShowPass.ForeColor = System.Drawing.Color.LavenderBlush;
-            this.labelShowPass.Location = new System.Drawing.Point(275, 300);
+            this.labelShowPass.Location = new System.Drawing.Point(275, 390);
             this.labelShowPass.Name = "labelShowPass";
             this.labelShowPass.Size = new System.Drawing.Size(103, 16);
-            this.labelShowPass.TabIndex = 12;
+            this.labelShowPass.TabIndex = 6;
             this.labelShowPass.Text = "Show Password";
             // 
-            // button1 (Sign Up Button)
+            // btnSignUp
             // 
-            this.button1.BackColor = System.Drawing.Color.LavenderBlush;
-            this.button1.ForeColor = System.Drawing.Color.Black;
-            this.button1.Location = new System.Drawing.Point(250, 340);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(280, 45);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "Sign Up";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnSignUp.BackColor = System.Drawing.Color.LavenderBlush;
+            this.btnSignUp.ForeColor = System.Drawing.Color.Black;
+            this.btnSignUp.Location = new System.Drawing.Point(250, 420);
+            this.btnSignUp.Name = "btnSignUp";
+            this.btnSignUp.Size = new System.Drawing.Size(280, 45);
+            this.btnSignUp.TabIndex = 6;
+            this.btnSignUp.Text = "Sign Up";
+            this.btnSignUp.UseVisualStyleBackColor = false;
+            this.btnSignUp.Click += new System.EventHandler(this.btnSignUp_Click);
             // 
-            // label4 (Already have account?)
+            // labelAccount
             // 
-            this.label4.AutoSize = true;
-            this.label4.ForeColor = System.Drawing.Color.LavenderBlush;
-            this.label4.Location = new System.Drawing.Point(260, 420);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(162, 16);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Already have an account?";
+            this.labelAccount.AutoSize = true;
+            this.labelAccount.ForeColor = System.Drawing.Color.LavenderBlush;
+            this.labelAccount.Location = new System.Drawing.Point(260, 480);
+            this.labelAccount.Name = "labelAccount";
+            this.labelAccount.Size = new System.Drawing.Size(162, 16);
+            this.labelAccount.TabIndex = 7;
+            this.labelAccount.Text = "Already have an account?";
             // 
-            // label5 (Login Link)
+            // lblLoginLink
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold);
-            this.label5.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.label5.Location = new System.Drawing.Point(435, 420);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(45, 16);
-            this.label5.TabIndex = 9;
-            this.label5.Text = "Login";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
+            this.lblLoginLink.AutoSize = true;
+            this.lblLoginLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold);
+            this.lblLoginLink.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.lblLoginLink.Location = new System.Drawing.Point(435, 480);
+            this.lblLoginLink.Name = "lblLoginLink";
+            this.lblLoginLink.Size = new System.Drawing.Size(45, 16);
+            this.lblLoginLink.TabIndex = 8;
+            this.lblLoginLink.Text = "Login";
+            this.lblLoginLink.Click += new System.EventHandler(this.lblLoginLink_Click);
             // 
             // SignUpForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MidnightBlue;
-            this.ClientSize = new System.Drawing.Size(786, 506);
+            this.ClientSize = new System.Drawing.Size(786, 550);
+            this.Controls.Add(this.lblLoginLink);
+            this.Controls.Add(this.labelAccount);
+            this.Controls.Add(this.btnSignUp);
             this.Controls.Add(this.labelShowPass);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.chkShowPass);
+            this.Controls.Add(this.lblErrorConfirm);
+            this.Controls.Add(this.txtConfirm);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.lblErrorPass);
+            this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.lblErrorEmail);
+            this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.lblErrorName);
+            this.Controls.Add(this.txtUsername);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.labelTitle);
+            this.Controls.Add(this.lblTitle);
             this.Name = "SignUpForm";
             this.Text = "Sign Up";
             this.Load += new System.EventHandler(this.SignUpForm_Load);
@@ -187,17 +257,23 @@
 
         #endregion
 
+        private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtUsername;
+        private System.Windows.Forms.Label lblErrorName;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtEmail;
+        private System.Windows.Forms.Label lblErrorEmail;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.Label lblErrorPass;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label labelTitle;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.TextBox txtConfirm;
+        private System.Windows.Forms.Label lblErrorConfirm;
+        private System.Windows.Forms.CheckBox chkShowPass;
         private System.Windows.Forms.Label labelShowPass;
+        private System.Windows.Forms.Button btnSignUp;
+        private System.Windows.Forms.Label labelAccount;
+        private System.Windows.Forms.Label lblLoginLink;
     }
 }
