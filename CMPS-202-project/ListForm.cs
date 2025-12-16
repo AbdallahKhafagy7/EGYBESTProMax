@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,16 +16,23 @@ namespace CMPS_202_project
     public partial class ListForm : Form
     {
         Controller controllerObj = new Controller();
-        string username;
+        string mail;
 
-        public ListForm(string username)
+        public ListForm(string mail)
         {
-            this.username = username;
+            this.mail = mail;
             InitializeComponent();
-            comboBox1.DisplayMember = "list";
-            DataTable dt = controllerObj.getAllist(username);
+            label2.Hide();
+            label3.Hide();
+            label4.Hide();
+
+            int userId = controllerObj.GetUserIDFromEmail(mail);
+
+            DataTable dt = controllerObj.GetUserLists(userId);
             comboBox1.DataSource = dt;
-            comboBox1.ValueMember = "list";
+            comboBox1.DisplayMember = "ListName";
+            comboBox1.SelectedIndex = -1;
+
             GUIHelper.ApplyModernStyle(this);
         }
 
@@ -38,7 +46,7 @@ namespace CMPS_202_project
 
         }
 
-        
+
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -46,61 +54,65 @@ namespace CMPS_202_project
 
         private void button2_Click(object sender, EventArgs e)
         {
-           
-            // 1. Check if a List is selected in the ComboBox
+            label4.Hide();
+
             if (comboBox1.SelectedIndex == -1)
             {
-                MessageBox.Show("Please select a list to add the show to.");
+                label4.ForeColor = Color.Red;
+                label4.Text = "Please select a list.";
+                label4.Show();
                 return;
             }
 
-            // 2. Check if a Show is selected in the DataGridView
             if (dataGridView1.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Please select a show from the table.");
+                label4.ForeColor = Color.Red;
+                label4.Text = "Please select a show from the list.";
+                label4.Show();
                 return;
             }
 
-            // 3. Get the MediaID from the selected row
-            // IMPORTANT: Replace "MediaID" with the actual column name or index from your query.
-            // If MediaID is the first column in your SQL query, use Cells[0].
-            // If you used "SELECT Name, MediaID...", then it might be Cells[1].
-            string mediaIdString = dataGridView1.SelectedRows[0].Cells["MediaID"].Value.ToString();
-            int mediaId = int.Parse(mediaIdString);
-
-            // 4. Get the selected List Name
+            // Get the selected list name
             string listName = comboBox1.Text;
 
-            // 5. Call the Controller
-            // Note: Ensure you have the 'username' available in this form (passed in constructor)
-            int result = controllerObj.AddShowToList(listName, mediaId, username);
+            // Get the selected show name from DataGridView
+            string showName = dataGridView1.SelectedRows[0].Cells["Name"].Value.ToString();
 
-            // 6. Handle the Result
-            if (result > 0)
+            // Get MediaID from show name
+            int mediaId = controllerObj.GetMediaIDByName(showName);
+            if (mediaId == 0)
             {
-                MessageBox.Show("Show added to list successfully!");
+                MessageBox.Show("Selected show not found in database.");
+                return;
             }
-            else if (result == -1)
+
+            // Get UserID
+            int userId = controllerObj.GetUserIDFromEmail(mail);
+
+            // Insert into ListItems
+            int result = controllerObj.InsertListItem(listName, userId, mediaId);
+
+            if (result == 0)
             {
-                MessageBox.Show("This show is already in that list!");
+                MessageBox.Show("Error adding the show to the list.");
             }
             else
             {
-                MessageBox.Show("Failed to add show.");
+                MessageBox.Show("Show added successfully to the list.");
             }
         }
-        
+
 
         private void button1_Click(object sender, EventArgs e)
         {
+            label2.Hide();
             if (String.IsNullOrEmpty(textBox1.Text))
             {
                 label2.ForeColor = Color.Red;
-                label2.Text = "the Show name Can't Be empty";
+                label2.Text = "The Show name Can't Be empty";
                 label2.Show();
                 return;
             }
-            label2.Hide();
             DataTable dt = controllerObj.GetShowsByName(textBox1.Text);
             dataGridView1.DataSource = dt;
             return;
@@ -111,18 +123,43 @@ namespace CMPS_202_project
 
         }
 
-      
-
-        private void ListForm_Load_1(object sender, EventArgs e)
-        {
-
-        }
-
         private void button3_Click(object sender, EventArgs e)
         {
-            WelcomeForm welcomeForm = new WelcomeForm(username);
+            WelcomeForm welcomeForm = new WelcomeForm(mail);
             welcomeForm.Show();
             this.Close();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            label3.Hide();
+            if (String.IsNullOrEmpty(textBox2.Text))
+            {
+                label3.ForeColor = Color.Red;
+                label3.Text = "The List name Can't Be empty";
+                label3.Show();
+                return;
+            }
+            else
+            {
+                string listName = textBox2.Text;
+                int userId = controllerObj.GetUserIDFromEmail(mail);
+
+                int result = controllerObj.InsertList(listName, userId);
+                if (result == 0)
+                {
+                    MessageBox.Show("Error adding the list.");
+                }
+                else
+                {
+                    MessageBox.Show("List added successfully.");
+                }
+
+                DataTable dt = controllerObj.GetUserLists(userId);
+                comboBox1.DataSource = dt;
+                comboBox1.DisplayMember = "ListName";
+                comboBox1.SelectedIndex = -1;
+            }
         }
     }
 }
