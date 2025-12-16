@@ -44,16 +44,15 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(453, 91);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(297, 347);
+            this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(261, 448);
             this.dataGridView1.TabIndex = 7;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // button3
-            this.button3.Location = new System.Drawing.Point(12, 28);
+            // 
             this.button3.Location = new System.Drawing.Point(91, 35);
             this.button3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button3.Name = "button3";
@@ -64,9 +63,8 @@
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
-            this.button2.Location = new System.Drawing.Point(633, 28);
+            // 
             this.button2.Location = new System.Drawing.Point(91, 376);
-            this.button2.Size = new System.Drawing.Size(117, 57);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(132, 106);
             this.button2.TabIndex = 5;
@@ -75,7 +73,7 @@
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
-            this.button1.Location = new System.Drawing.Point(189, 28);
+            // 
             this.button1.Location = new System.Drawing.Point(91, 138);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button1.Name = "button1";
@@ -87,18 +85,18 @@
             // 
             // dataGridView2
             // 
-            this.dataGridView2.Location = new System.Drawing.Point(12, 91);
+            this.dataGridView2.ColumnHeadersHeight = 29;
             this.dataGridView2.Location = new System.Drawing.Point(320, 35);
             this.dataGridView2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(294, 347);
+            this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.RowTemplate.Height = 24;
             this.dataGridView2.Size = new System.Drawing.Size(261, 448);
             this.dataGridView2.TabIndex = 8;
             this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
             // button4
-            this.button4.Location = new System.Drawing.Point(453, 28);
+            // 
             this.button4.Location = new System.Drawing.Point(91, 255);
             this.button4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button4.Name = "button4";
@@ -123,6 +121,7 @@
             this.ForeColor = System.Drawing.Color.Black;
             this.Name = "Admin_with_publisher";
             this.Text = "Admin_with_publisher";
+            this.Load += new System.EventHandler(this.Admin_with_publisher_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);

@@ -22,6 +22,7 @@ namespace CMPS_202_project
             InitializeComponent();
             label3.Hide();
             this.username = username;
+            GUIHelper.ApplyModernStyle(this);
         }
 
         private void RateForm_Load(object sender, EventArgs e)

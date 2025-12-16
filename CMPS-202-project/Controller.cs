@@ -177,9 +177,7 @@ namespace DBapplication
 
         public DataTable getShows(string username, string listName)
         {
-            // If a list is selected, show items in that list.
-            // If no list is selected ("" or null), show ALL shows.
-
+          
             string query;
             if (string.IsNullOrEmpty(listName))
             {
@@ -189,9 +187,7 @@ namespace DBapplication
                         "JOIN Show S ON M.MediaID = S.MediaID";
             }
             else
-            {
-                // Show items in a specific list for this user
-                // Joins: User -> List -> ListItems -> Media -> Show
+            { 
                 query = "SELECT M.Name, M.NumOfFavs, M.Finished " +
                         "FROM Media M " +
                         "JOIN Show S ON M.MediaID = S.MediaID " +

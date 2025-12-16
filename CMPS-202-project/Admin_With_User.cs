@@ -18,6 +18,7 @@ namespace CMPS_202_project
         public Admin_With_User()
         {
             InitializeComponent();
+            GUIHelper.ApplyModernStyle(this);
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -104,6 +105,11 @@ namespace CMPS_202_project
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void Admin_With_User_Load(object sender, EventArgs e)
         {
 
         }

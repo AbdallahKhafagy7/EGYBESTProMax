@@ -18,10 +18,21 @@ namespace CMPS_202_project
         public LoginForm()
         {
             InitializeComponent();
+            GUIHelper.ApplyModernStyle(this);
             textBox2.UseSystemPasswordChar = true;
             label6.Hide();
             label7.Hide();
             label8.Hide();
+        }
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+            // FORCE "Sign up" label to be RED and clickable
+            label3.ForeColor = Color.FromArgb(220, 20, 60); // Modern Red
+            label3.Cursor = Cursors.Hand;
+
+            // Add Hover Effects manually since it is a Label, not a LinkLabel
+            label3.MouseEnter += (s, ev) => label3.ForeColor = Color.Red; // Bright Red on Hover
+            label3.MouseLeave += (s, ev) => label3.ForeColor = Color.FromArgb(220, 20, 60); // Back to Darker Red
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -97,10 +108,6 @@ namespace CMPS_202_project
 
         }
 
-        private void LoginForm_Load(object sender, EventArgs e)
-        {
-
-        }
 
         private void label3_Click(object sender, EventArgs e)
         {

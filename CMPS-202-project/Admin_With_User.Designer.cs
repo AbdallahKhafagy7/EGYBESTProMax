@@ -129,6 +129,7 @@
             this.ForeColor = System.Drawing.Color.Black;
             this.Name = "Admin_With_User";
             this.Text = "Admin_With_User";
+            this.Load += new System.EventHandler(this.Admin_With_User_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

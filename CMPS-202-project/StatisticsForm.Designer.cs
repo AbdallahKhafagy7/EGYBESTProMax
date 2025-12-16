@@ -135,6 +135,7 @@
             this.Controls.Add(this.chartPublisherShows);
             this.Name = "StatsForm";
             this.Text = "StatisticsForm";
+            this.Load += new System.EventHandler(this.StatsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chartPublisherShows)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartGenreDistribution)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewShows)).EndInit();
