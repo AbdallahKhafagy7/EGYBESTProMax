@@ -488,18 +488,23 @@ namespace DBapplication
             int mediaId = Convert.ToInt32(dbMan.ExecuteScalar(getMediaIdQuery));
 
             // 3. Insert into Show (inheritance)
-            string insertShowQuery =
-                "INSERT INTO Show (MediaID) VALUES (" + mediaId + ")";
+            string insertShowQuery = "INSERT INTO Show (MediaID) VALUES (" + mediaId + ")";
             dbMan.ExecuteNonQuery(insertShowQuery);
 
-            // 4. Insert Season 1 with provided episodes count
-            string insertSeasonQuery =
-                "INSERT INTO Seasons (MediaID, EpisodeCount, Name) " +
-                "VALUES (" + mediaId + ", " + episodesCount + ", 'Season 1')";
+            // 4. Determine next season number
+            string countSeasonsQuery = "SELECT COUNT(*) FROM Seasons WHERE MediaID = " + mediaId;
+            int currentSeasons = Convert.ToInt32(dbMan.ExecuteScalar(countSeasonsQuery));
+            int newSeasonNumber = currentSeasons + 1;
+            string newSeasonName = "Season " + newSeasonNumber;
+
+            // 5. Insert the season with provided episodes count
+            string insertSeasonQuery = "INSERT INTO Seasons (MediaID, EpisodeCount, Name) " +
+                                       "VALUES (" + mediaId + ", " + episodesCount + ", '" + newSeasonName + "')";
             dbMan.ExecuteNonQuery(insertSeasonQuery);
 
             return mediaId;
         }
+
 
         // rate show
         public int RateShow(string mail, string showName, int rating)
