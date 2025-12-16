@@ -63,3 +63,4 @@ C:\Users\Abdallah\Desktop\ya rab\CMPS-202-project\obj\Debug\CMPS-202-project.pdb
 >>>>>>> 5454bbc2d3aff665d7bf5896eebea16d01b8609e
 C:\Users\abdel\source\repos\CMPS-202-project\CMPS-202-project\obj\Debug\CMPS_202_project.Form1.resources
 C:\Users\abdel\source\repos\CMPS-202-project\CMPS-202-project\obj\Debug\CMPS_202_project.AddAdminForm.resources
+C:\Users\abdel\source\repos\CMPS-202-project\CMPS-202-project\obj\Debug\CMPS_202_project.WatchForm.resources

@@ -12,7 +12,7 @@ namespace CMPS_202_project
         ListForm list;
         RateForm rate;
         EditInfoForm edit;
-        WatchForm watch
+        WatchForm watch;
         Controller controllerobj = new Controller();
         public string email;
 
@@ -98,7 +98,7 @@ namespace CMPS_202_project
 
         private void button5_Click(object sender, EventArgs e)
         {
-            if (edit = null || edit.IsDisposed)
+            if (edit == null || edit.IsDisposed)
             {
                 edit = new EditInfoForm(controllerobj.GetNameFromEmail(email), email);
             }
