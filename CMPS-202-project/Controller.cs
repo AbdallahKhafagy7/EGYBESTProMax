@@ -488,23 +488,33 @@ namespace DBapplication
             int mediaId = Convert.ToInt32(dbMan.ExecuteScalar(getMediaIdQuery));
 
             // 3. Insert into Show (inheritance)
-            string insertShowQuery = "INSERT INTO Show (MediaID) VALUES (" + mediaId + ")";
+            string insertShowQuery =
+                "INSERT INTO Show (MediaID) VALUES (" + mediaId + ")";
             dbMan.ExecuteNonQuery(insertShowQuery);
 
-            // 4. Determine next season number
-            string countSeasonsQuery = "SELECT COUNT(*) FROM Seasons WHERE MediaID = " + mediaId;
-            int currentSeasons = Convert.ToInt32(dbMan.ExecuteScalar(countSeasonsQuery));
-            int newSeasonNumber = currentSeasons + 1;
-            string newSeasonName = "Season " + newSeasonNumber;
-
-            // 5. Insert the season with provided episodes count
-            string insertSeasonQuery = "INSERT INTO Seasons (MediaID, EpisodeCount, Name) " +
-                                       "VALUES (" + mediaId + ", " + episodesCount + ", '" + newSeasonName + "')";
+            // 4. Insert Season 1 with provided episodes count
+            string insertSeasonQuery =
+                "INSERT INTO Seasons (MediaID, EpisodeCount, Name) " +
+                "VALUES (" + mediaId + ", " + episodesCount + ", 'Season 1')";
             dbMan.ExecuteNonQuery(insertSeasonQuery);
 
             return mediaId;
         }
 
+        // For adding a new season to an existing show
+        public int AddSeason(int mediaId, int episodesCount)
+        {
+            // Count existing seasons
+            string countSeasonsQuery = "SELECT COUNT(*) FROM Seasons WHERE MediaID = " + mediaId;
+            int currentSeasons = Convert.ToInt32(dbMan.ExecuteScalar(countSeasonsQuery));
+            int newSeasonNumber = currentSeasons + 1;
+            string newSeasonName = "Season " + newSeasonNumber;
+
+            // Insert new season
+            string insertSeasonQuery = "INSERT INTO Seasons (MediaID, EpisodeCount, Name) " +
+                                       "VALUES (" + mediaId + ", " + episodesCount + ", '" + newSeasonName + "')";
+            return dbMan.ExecuteNonQuery(insertSeasonQuery);
+        }
 
         // rate show
         public int RateShow(string mail, string showName, int rating)
@@ -674,6 +684,13 @@ namespace DBapplication
                                      "VALUES (" + newPaymentId + ", " + price + ", '" + newPlan + "', " + userId + ")";
                 return dbMan.ExecuteNonQuery(insertQuery);
             }
+        }
+
+        // get show by name if exits
+        public DataTable GetShowByName(string showName)
+        {
+            string query = "SELECT * FROM Media WHERE Name = '" + showName + "'";
+            return dbMan.ExecuteReader(query);
         }
 
         public void TerminateConnection()

@@ -61,7 +61,7 @@ namespace CMPS_202_project
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -83,23 +83,42 @@ namespace CMPS_202_project
             string showName = textBox2.Text;
 
             // 3. Get publisher
-            DataTable dt1 = controllerObj.GetPublisherByEmail(email);
-            if (dt1.Rows.Count == 0)
+            DataTable dtPublisher = controllerObj.GetPublisherByEmail(email);
+            if (dtPublisher.Rows.Count == 0)
             {
                 MessageBox.Show("Publisher not found.");
                 return;
             }
 
-            int publisherID = Convert.ToInt32(dt1.Rows[0][0]);
+            int publisherID = Convert.ToInt32(dtPublisher.Rows[0][0]);
 
-            // 4. Insert show with season
-            int status = controllerObj.InsertShow(publisherID, showName, episodesCount);
+            // 4. Check if show already exists by name
+            DataTable dtShow = controllerObj.GetShowByName(showName); // just by name
+            int mediaId;
 
-            // 5. Show feedback
-            if (status == 0)
-                MessageBox.Show("Error adding show.");
+            if (dtShow.Rows.Count == 0)
+            {
+                // Show does not exist → insert new show with first season
+                mediaId = controllerObj.InsertShow(publisherID, showName, episodesCount);
+                if (mediaId == 0)
+                {
+                    MessageBox.Show("Error adding show.");
+                    return;
+                }
+                MessageBox.Show("Show added successfully with Season 1.");
+            }
             else
-                MessageBox.Show("Show added successfully.");
+            {
+                // Show exists → add new season
+                mediaId = Convert.ToInt32(dtShow.Rows[0]["MediaID"]);
+                int result = controllerObj.AddSeason(mediaId, episodesCount);
+                if (result == 0)
+                {
+                    MessageBox.Show("Error adding new season.");
+                    return;
+                }
+                MessageBox.Show("New season added successfully.");
+            }
         }
     }
-}
+    }
