@@ -5,9 +5,12 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace CMPS_202_project
 {
@@ -49,44 +52,44 @@ namespace CMPS_202_project
 
         private void button2_Click(object sender, EventArgs e)
         {
+            label2.Hide();
+
             if (comboBox1.SelectedIndex == -1)
             {
-                MessageBox.Show("Please select a list to add the show to.");
+                label2.ForeColor = Color.Red;
+                label2.Text = "Please select a list.";
+                label2.Show();
                 return;
             }
 
-            if (dataGridView1.SelectedRows.Count == 0)
+
+            string showName = dataGridView1.SelectedRows[0].Cells["Name"].Value.ToString();
+
+            DataTable dt = controllerObj.GetShowByName(showName);
+            if (dt.Rows.Count == 0)
             {
-                MessageBox.Show("Please select a show from the table.");
+                MessageBox.Show("Show not found.");
                 return;
             }
 
-            // Ensure your query returns a column named 'MediaID'
-            if (dataGridView1.SelectedRows[0].Cells["MediaID"] == null)
-            {
-                MessageBox.Show("Error: MediaID column not found.");
-                return;
-            }
+            int mediaId = Convert.ToInt32(dt.Rows[0]["MediaID"]);
 
-            string mediaIdString = dataGridView1.SelectedRows[0].Cells["MediaID"].Value.ToString();
-            int mediaId = int.Parse(mediaIdString);
             string listName = comboBox1.Text;
+                
+            string userName = controllerObj.GetNameFromEmail(username);
 
-            int result = controllerObj.AddShowToList(listName, mediaId, username);
+            int result = controllerObj.AddShowToList(listName, mediaId, userName);
 
-            if (result > 0)
+            if (result == 0)
             {
-                MessageBox.Show("Show added to list successfully!");
-            }
-            else if (result == -1)
-            {
-                MessageBox.Show("This show is already in that list!");
+                MessageBox.Show("Error adding the show to the list.");
             }
             else
             {
-                MessageBox.Show("Failed to add show.");
+                MessageBox.Show("Show added successfully to the list.");
             }
         }
+        
 
         // Search by Show Name
         private void button1_Click(object sender, EventArgs e)
@@ -162,7 +165,7 @@ namespace CMPS_202_project
             }
 
             // Call the specific controller method for Actor Search
-            DataTable dt = controllerObj.GetMoviesByActor(txtSearchActor.Text);
+            DataTable dt = controllerObj.GetShowsByActor(txtSearchActor.Text);
 
             if (dt != null)
             {

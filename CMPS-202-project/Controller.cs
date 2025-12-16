@@ -98,7 +98,7 @@ namespace DBapplication
         public DataTable GetShowsByName(string subName)
         {
             // The '%' allows finding any name that *contains* the text entered
-            string query = "SELECT M.MediaID, M.Name, M.NumOfFavs, M.Finished " +
+            string query = "SELECT M.Name, M.NumOfFavs, M.Finished " +
                            "FROM Media M " +
                            "JOIN Show S ON M.MediaID = S.MediaID " +
                            "WHERE M.Name LIKE '%" + subName + "%'";
