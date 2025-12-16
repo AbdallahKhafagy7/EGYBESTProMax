@@ -14,18 +14,15 @@ namespace CMPS_202_project
 {
     public partial class ListForm : Form
     {
-        WelcomeForm welcomeForm;
         Controller controllerObj = new Controller();
-        ~ListForm()
+        string username;
+
+        public ListForm(string username)
         {
-            welcomeForm.Close();
-        }
-        public ListForm(WelcomeForm welcomeForm)
-        {
-            this.welcomeForm = welcomeForm;
+            this.username = username;
             InitializeComponent();
             comboBox1.DisplayMember = "list";
-            DataTable dt = controllerObj.getAllist(this.welcomeForm.username);
+            DataTable dt = controllerObj.getAllist(username);
             comboBox1.DataSource = dt;
             comboBox1.ValueMember = "list";
         }
@@ -40,6 +37,7 @@ namespace CMPS_202_project
 
         }
 
+        
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -74,7 +72,7 @@ namespace CMPS_202_project
 
             // 5. Call the Controller
             // Note: Ensure you have the 'username' available in this form (passed in constructor)
-            int result = controllerObj.AddShowToList(listName, mediaId, this.welcomeForm.Name);
+            int result = controllerObj.AddShowToList(listName, mediaId, username);
 
             // 6. Handle the Result
             if (result > 0)
@@ -110,6 +108,20 @@ namespace CMPS_202_project
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+      
+
+        private void ListForm_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            WelcomeForm welcomeForm = new WelcomeForm(username);
+            welcomeForm.Show();
+            this.Close();
         }
     }
 }

@@ -35,3 +35,5 @@ C:\Users\hp\Documents\CMPS-202-project\CMPS-202-project\obj\Debug\CMPS-202-proje
 C:\Users\hp\Documents\CMPS-202-project\CMPS-202-project\obj\Debug\CMPS-202-project.exe
 C:\Users\hp\Documents\CMPS-202-project\CMPS-202-project\obj\Debug\CMPS-202-project.pdb
 C:\Users\hp\Documents\CMPS-202-project\CMPS-202-project\obj\Debug\CMPS_202_project.StatsForm.resources
+C:\Users\abdel\source\repos\CMPS-202-project\CMPS-202-project\obj\Debug\CMPS_202_project.StatsForm.resources
+C:\Users\abdel\source\repos\CMPS-202-project\CMPS-202-project\obj\Debug\CMPS_202_project.EditInfoForm.resources

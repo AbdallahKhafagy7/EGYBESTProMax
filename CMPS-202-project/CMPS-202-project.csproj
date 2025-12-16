@@ -68,6 +68,12 @@
     </Compile>
     <Compile Include="Controller.cs" />
     <Compile Include="DBManager.cs" />
+    <Compile Include="EditInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditInfoForm.Designer.cs">
+      <DependentUpon>EditInfoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ListForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,6 +126,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Admin_With_User.resx">
       <DependentUpon>Admin_With_User.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditInfoForm.resx">
+      <DependentUpon>EditInfoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListForm.resx">
       <DependentUpon>ListForm.cs</DependentUpon>

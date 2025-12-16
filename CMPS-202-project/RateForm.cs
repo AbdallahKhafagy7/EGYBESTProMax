@@ -13,19 +13,14 @@ namespace CMPS_202_project
 {
     public partial class RateForm : Form
     {
-        WelcomeForm welcomeForm;
         Controller controllerobj =new Controller();
         string username;
 
-        ~RateForm()
-        {
-            welcomeForm.Close();
-        }   
-        public RateForm(WelcomeForm welcomeForm,string username)
+        
+        public RateForm(string username)
         {
             InitializeComponent();
             label3.Hide();
-            this.welcomeForm = welcomeForm;
             this.username = username;
         }
 
@@ -75,6 +70,13 @@ namespace CMPS_202_project
         private void button1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            WelcomeForm welcomeForm = new WelcomeForm(username);
+            welcomeForm.Show();
+            this.Close();
         }
     }
 }

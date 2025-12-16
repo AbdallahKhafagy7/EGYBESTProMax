@@ -21,8 +21,8 @@ namespace CMPS_202_project
         public WelcomeForm(string username ="")
         {
             InitializeComponent();
-            ListForm list = new ListForm(this);
-            RateForm rate = new RateForm(this,username);
+            this.list = new ListForm(username);
+            this.rate = new RateForm(username);
             label2.Text = "Welcome " + controllerobj.GetNameFromEmail(username);
             this.username= username;
             dataGridView1.Hide();
@@ -60,9 +60,9 @@ namespace CMPS_202_project
         {
             if (list == null || list.IsDisposed)
             {
-                list = new ListForm(this);
+                list = new ListForm(username);
             }
-            this.Hide();
+            this.Close();
             list.Show();
         }
 
@@ -70,9 +70,9 @@ namespace CMPS_202_project
         {
             if (rate == null || rate.IsDisposed)
             {
-                list = new ListForm(this);
+                list = new ListForm(username);
             }
-            this.Hide();
+            this.Close();
             rate.Show();
         }
 
