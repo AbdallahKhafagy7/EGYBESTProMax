@@ -14,7 +14,7 @@ namespace CMPS_202_project
     public partial class WatchForm : Form
     {
         Controller controllerObj;
-        string currentEmail;
+        string currentEmail
 
         // This flag prevents "Auto-Adding" when the form loads or search updates
         bool isReady = false;
@@ -37,6 +37,7 @@ namespace CMPS_202_project
 
             // Enable the event logic now that everything is ready
             isReady = true;
+            GUIHelper.ApplyModernStyle(this);
         }
 
         private void Form1_Load(object sender, EventArgs e)
