@@ -36,7 +36,7 @@ namespace CMPS_202_project
             int userId = controllerobj.GetUserIDFromEmail(email);
             DataTable dt = controllerobj.GetUserLists(userId);
             comboBox1.DataSource = dt;
-            comboBox1.DisplayMember = "list";
+            comboBox1.DisplayMember = "ListName";
             comboBox1.SelectedIndex = -1;
         }
 
@@ -47,9 +47,11 @@ namespace CMPS_202_project
 
         private void button1_Click(object sender, EventArgs e)
         {
-            DataTable dt = controllerobj.getShows(email, null);
-            dataGridView1.DataSource = dt;
             dataGridView1.Show();
+            int userId = controllerobj.GetUserIDFromEmail(email);
+            string listName = comboBox1.Text;
+            DataTable dt = controllerobj.GetListShows(userId, listName);
+            dataGridView1.DataSource = dt;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -89,11 +91,7 @@ namespace CMPS_202_project
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            dataGridView1.Show();
-            int userId = controllerobj.GetUserIDFromEmail(email);
-            string listName = comboBox1.Text;
-            DataTable dt = controllerobj.GetListShows(userId, listName);
-            dataGridView1.DataSource = dt;
+            
         }
 
         private void button5_Click(object sender, EventArgs e)
