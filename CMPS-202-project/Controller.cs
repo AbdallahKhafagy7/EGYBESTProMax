@@ -473,7 +473,7 @@ namespace DBapplication
         }
 
         // insert show
-        public int InsertShow(int publisherId, string showName, int episodesCount)
+        public int InsertShow(int publisherId, string showName, int episodesCount, string genre)
         {
             // 1. Insert into Media
             string insertMediaQuery =
@@ -497,6 +497,12 @@ namespace DBapplication
                 "INSERT INTO Seasons (MediaID, EpisodeCount, Name) " +
                 "VALUES (" + mediaId + ", " + episodesCount + ", 'Season 1')";
             dbMan.ExecuteNonQuery(insertSeasonQuery);
+
+            // 5. Insert Genre
+            string insertGenreQuery =
+                "INSERT INTO MediaGenre (MediaID, GenreName) " +
+                "VALUES (" + mediaId + ", '" + genre + "')";
+            dbMan.ExecuteNonQuery(insertGenreQuery);
 
             return mediaId;
         }
@@ -556,6 +562,17 @@ namespace DBapplication
             if (result != null)
                 return Convert.ToInt32(result);
             return -1;
+        }
+
+        // get user name by email
+
+        public string GetUserNameFromEmail(string email)
+        {
+            string query = "SELECT Name FROM [User] WHERE Email = '" + email + "'";
+            object result = dbMan.ExecuteScalar(query);
+            if (result != null)
+                return result.ToString();
+            return "";
         }
 
 
@@ -690,7 +707,12 @@ namespace DBapplication
         public DataTable GetShowByName(string showName)
         {
             string query = "SELECT * FROM Media WHERE Name = '" + showName + "'";
-            return dbMan.ExecuteReader(query);
+            DataTable dt = dbMan.ExecuteReader(query);
+
+            if (dt == null)
+                return new DataTable();
+
+            return dt;
         }
         public int AddActor(string name, int age)
         {

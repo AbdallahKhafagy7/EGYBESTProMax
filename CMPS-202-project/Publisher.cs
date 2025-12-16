@@ -80,6 +80,14 @@ namespace CMPS_202_project
                 return;
             }
 
+            // validate genre
+            if (string.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                MessageBox.Show("Please enter a genre.");
+                return;
+            }
+
+            string genre = textBox1.Text;
             string showName = textBox2.Text;
 
             // 3. Get publisher
@@ -99,7 +107,7 @@ namespace CMPS_202_project
             if (dtShow.Rows.Count == 0)
             {
                 // Show does not exist → insert new show with first season
-                mediaId = controllerObj.InsertShow(publisherID, showName, episodesCount);
+                mediaId = controllerObj.InsertShow(publisherID, showName, episodesCount, genre);
                 if (mediaId == 0)
                 {
                     MessageBox.Show("Error adding show.");
