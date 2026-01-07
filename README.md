@@ -13,6 +13,42 @@ It tracks **media content, subscriptions, watch history, ratings**, and enables 
 
 ---
 
+## Database Explanation 📊
+
+The database is designed to handle all aspects of a **media streaming platform**. Here’s an overview of the key tables and their purpose:
+
+### 1. Users and Roles 👥
+- **User**: Superclass representing anyone accessing the platform (name, email, password).  
+- **EndUser**: Subclass for viewers/subscribers; tracks subscription plans and watch history.  
+- **Administrator**: Subclass for system managers; can manage users, content, and view statistics.  
+- **Publisher**: Subclass for content providers; can upload media, add seasons/episodes, and manage their profile.
+
+### 2. Media Content 🎥
+- **Media**: Core table for all movies and shows (title, status, number of favorites).  
+- **Show**: Subclass of Media that contains multiple seasons.  
+- **Season**: Collection of episodes within a show.  
+- **Episode**: Individual content unit within a season.  
+- **Actor**: Stores performers and their roles; connected to Media.  
+- **MediaGenre**: Categorizes media into genres (e.g., Action, Drama).
+
+### 3. User Interactions 💻
+- **Payment**: Tracks subscription transactions for EndUsers.  
+- **WatchHistory**: Logs when a user watches a piece of media.  
+- **List**: Custom collections created by EndUsers (e.g., Favorites, Watch Later).
+
+### 4. Relationships 🔗
+- **Inheritance**: EndUser, Admin, and Publisher inherit from User.  
+- **One-to-many**: Publisher → Media, Show → Season → Episode.  
+- **Many-to-many**: Media ↔ Actor, EndUser ↔ List ↔ Media.  
+- Ensures **data integrity** and supports complex queries for analytics.
+
+### 5. Analytics & Features 📈
+- Easily retrieve top-rated shows, most watched media, or active subscribers.  
+- Allows monitoring of publisher activity and user engagement.  
+- Normalized tables reduce redundancy and simplify maintenance.  
+
+---
+
 ## How to Run the Project ⚡
 
 1. **Open the Solution File:**  
@@ -37,19 +73,4 @@ It tracks **media content, subscriptions, watch history, ratings**, and enables 
 
 ---
 
-## Database Overview 📊
-
-The database contains the following **core entities**:  
-- **User hierarchy:** User → EndUser / Admin / Publisher  
-- **Media content:** Media, Show, Season, Episode  
-- **Metadata:** Actor, MediaGenre  
-- **User interactions:** Payment, WatchHistory, List  
-
-### Key Features:
-- Normalized tables to reduce redundancy.  
-- Role-based data access and relationships.  
-- Analytics capabilities through SQL queries for favorites, ratings, and subscriptions.  
-
----
-
-*This project demonstrates best practices in database design, role-based management, and analytics queries, making it ideal for academic DBMS coursework.* ✅
+*This database-centric approach demonstrates **design, normalization, relationships, and analytics**, making it ideal for academic DBMS coursework.* ✅
