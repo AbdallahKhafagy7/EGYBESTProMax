@@ -75,57 +75,6 @@ The system supports three types of users: **End-User (Viewer)**, **Administrator
 
 ---
 
-## Sample ER Diagram 🖼️
-
-```
-[User]---<EndUser>
-      \---<Administrator>
-      \---<Publisher>---<Media>---<Show>---<Season>---<Episode>
-[Actor]---<Media>
-[EndUser]---<List>---<Media>
-[EndUser]---<WatchHistory>---<Media>
-[MediaGenre]---<Media>
-[Payment]---<EndUser>
-```
-
-*Visual ER diagram can be added with a diagramming tool for clarity.*
-
----
-
-## Example SQL Queries 🧩
-
-**1️⃣ List top 5 highest-rated movies:**
-
-```sql
-SELECT m.Name, AVG(r.Rating) AS AvgRating
-FROM Media m
-JOIN Ratings r ON m.MediaID = r.MediaID
-GROUP BY m.Name
-ORDER BY AvgRating DESC
-LIMIT 5;
-```
-
-**2️⃣ Get all movies in 'Action' genre:**
-
-```sql
-SELECT m.Name
-FROM Media m
-JOIN MediaGenre g ON m.GenreID = g.GenreID
-WHERE g.Name = 'Action';
-```
-
-**3️⃣ View an EndUser's watch history:**
-
-```sql
-SELECT w.Timestamp, m.Name
-FROM WatchHistory w
-JOIN Media m ON w.MediaID = m.MediaID
-WHERE w.UserID = 101
-ORDER BY w.Timestamp DESC;
-```
-
----
-
 ## Project Goals (Database-Focused) 🎯
 
 * Design a **normalized relational database** for users, subscriptions, media, and interactions.
@@ -136,3 +85,4 @@ ORDER BY w.Timestamp DESC;
 ---
 
 *This project highlights database design and management excellence, making it ideal for academic demonstration of DBMS concepts.* ✅
+
